@@ -1,4 +1,4 @@
-<section class="content">
+<section class="">
   <div class="container-fluid">
     <div class="block-header">
       <h2>DEVICES / BUY</h2>
@@ -50,8 +50,7 @@
                   <div class="number">&#8358;{{device.price | number: '.2'}}</div>
                 </div>
                 <div class="buy_item">
-                  <button type="button" (click)="buyDevice(device)" data-toggle="modal" data-target="#smallModal"
-                    class="btn1 waves-effect">
+                  <button type="button" (click)="buyDevice(device)" data-toggle="modal" data-target="#smallModal" class="btn1 waves-effect">
                     <h6><i class="material-icons">shopping_cart</i> Buy</h6>
                   </button>
                 </div>
@@ -95,12 +94,10 @@
             </div>
             <div class="modal-footer" style="text-align:center !important;">
               <button type="button" class="btn btn-link waves-effect" (click)="buyDevice(selectedDevice)"
-                angular4-paystack [key]="paystackClientKey" [email]="customer.email"
-                [amount]="selectedDevice?.price*100" [ref]="refKey" [class]="'btn btn-primary'"
-                (close)="paymentCancel()" (callback)="paymentDone($event)"
+                angular4-paystack [key]="paystackClientKey" [email]="customer.email" [amount]="selectedDevice?.price*100"
+                [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()" (callback)="paymentDone($event)"
                 class="btn waves-effect waves-light">Yes</button>
-              <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect"
-                data-dismiss="modal">No</button>
+              <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
             </div>
           </div>
         </div>
