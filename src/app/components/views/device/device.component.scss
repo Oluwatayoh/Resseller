@@ -1,0 +1,75 @@
+.thumbnail {
+  padding: 20px;
+}
+
+.myDeviceWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .col-md-3 {
+    margin-right: 5px;
+  }
+}
+
+.deviceList {
+  padding: 20px;
+}
+
+.icon {
+  img {
+    float: right;
+    width: 70px !important;
+  }
+}
+
+.buy-hover {
+  .buy_item {
+    display: none !important;
+  }
+}
+
+.buy-hover:hover {
+  background-color: rgba(46, 46, 46, 0.384);
+  .buy_item {
+    display: flex !important;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    position: absolute;
+    margin-left: 40%;
+  }
+}
+
+.btn1 {
+  background: #2196f3 !important;
+  border: none;
+  border-radius: 50px !important;
+  padding: 25px;
+  i, h6 {
+    color: white;
+    font-size: 15px;
+    padding: 3px;
+  }
+}
+
+.orange {
+  color: orange;
+}
+
+.confirm_pay {
+  display: grid;
+  text-align: center;
+}
+
+.info-box-4 {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  display: flex;
+  cursor: default;
+  background-color: #fff;
+  overflow: hidden;
+  /* margin-bottom: 30px; */
+}
+
+
+.sel{margin: 0 0 10px 25px;}

@@ -1,0 +1,31 @@
+<h6>Buy Data Plan</h6>
+<div class="row" *ngFor="let plan of dataplans">
+  <div class="data-bundle-row">
+    <div class="four columns data-bundle-column">
+      <div class="circle bundle-color">
+        <span class="circle-back"></span>
+        <span class="data-bundle">{{plan.bandwidth}}<span class="data-bundle-size">{{plan.bandWidthUnit.name}}</span></span>
+      </div>
+    </div>
+
+    <div class="four columns data-bundle-column">
+      <h5>{{plan.name}}</h5>
+      <div>
+        <ul>
+          <li>{{plan.bandwidth}} {{plan.bandWidthUnit.name}} {{plan.name}} Data Plan</li>
+          <li>Valid for {{plan.validity}} {{plan.validityUnit?.name}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="four columns data-bundle-column">
+      <button (click)="buyDataPlan(plan)" angular4-paystack [key]="paystackClientKey" [email]="customer.email" [amount]="plan.price*100"
+        [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Buy</button>
+      <h3>&#8358;{{plan.price | number: '.2'}}</h3>
+    </div>
+    <!-- <div *ngIf="paystackPayment">
+      <angular4-paystack [key]="paystackClientKey" [email]="customer.email" [amount]="selectedPlan?.price*100" [ref]="refKey"
+        [class]=" 'btn btn-primary btn-medium btn-blue' " (close)="paymentCancel() " (callback)="paymentDone($event) ">Paystack</angular4-paystack>
+    </div> -->
+  </div>
+</div>

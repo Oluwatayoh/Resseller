@@ -1,0 +1,61 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="defaultModalLabel">New Ticket</h4>
+    </div>
+    <div class="modal-body">
+      <div class="body">
+        <form class="form-horizontal">
+          <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+              <label for="subject">Subject</label>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <div class="form-line">
+                <input type="text" id="subject" class="form-control" placeholder="Enter subject for the ticket">
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+              <label for="priority">Priority</label>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick" id="priority">
+                <option value="10">Minor</option>
+                <option value="20">Major</option>
+                <option value="30">Critical</option>
+              </select>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+              <label for="status">Status</label>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick" id="status">
+                <option value="10">New</option>
+                <option value="20">In Process</option>
+                <option value="30">Closed</option>
+              </select>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+              <label for="message">Message</label>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <div class="form-line">
+                <textarea rows="1" id="message" class="form-control no-resize auto-growth" placeholder="Please enter your message"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.input-daterange {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+
+.form-line {
+  label {
+    margin-bottom: 0px !important;
+    font-size: 12px !important;
+  }
+}
+
+td {
+  i:hover {
+    cursor: pointer;
+    font-size: 26px;
+    color: #1f91f3 ;
+  }
+}

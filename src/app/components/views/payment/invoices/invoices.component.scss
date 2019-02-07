@@ -1,0 +1,52 @@
+#myInput {
+  // background-image: url('../../../../../assets/img/search.png');
+  /* Add a search icon to input */
+  background-position: 6px 6px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 12px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 12px;
+  /* Add some space below the input */
+}
+
+#myTable {
+  border-collapse: collapse;
+  /* Collapse borders */
+  width: 100%;
+  /* Full-width */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  font-size: 14px;
+  /* Increase font-size */
+}
+
+
+td {
+  i:hover {
+    cursor: pointer;
+    font-size: 26px;
+    color: #1f91f3;
+  }
+}
+
+.view_invoiceWrap {
+  display: flex;
+  justify-content: space-between;
+
+  .invoiceWrap {
+    display: flex;
+
+    a {
+      margin-left: 5px;
+      font-weight: bold;
+    }
+  }
+}

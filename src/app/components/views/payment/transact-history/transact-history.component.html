@@ -1,0 +1,101 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>TRANSACTION HISTORY</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <form class="input-daterange row">
+            <strong>Date Range:</strong>
+            <div class="form-line col">
+              <label>Start Date</label>
+              <input type="date" class="form-control" placeholder="Start Date">
+            </div>
+            <span class="col">to</span>
+            <div class="form-line col">
+              <label>End Date</label>
+              <input type="date" class="form-control" placeholder="End Date">
+            </div>
+            <button class="btn btn-primary btn-small waves-effect" style="color: white !important;"
+              type="button">Preview</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Items</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>15th Nov., 2018</td>
+                    <td>0068</td>
+                    <td>4</td>
+                    <td>&#8358;345,000</td>
+                    <td class="green">Fulfilled</td>
+                    <td>
+                      <i data-toggle="modal" data-target="#largeModal" class="material-icons">remove_red_eye</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>8th Jan., 2019</td>
+                    <td>0068</td>
+                    <td>2</td>
+                    <td>&#8358;145,000</td>
+                    <td class="red">Unfulfill</td>
+                    <td>
+                      <i data-toggle="modal" data-target="#largeModal" class="material-icons">remove_red_eye</i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <nav>
+                  <ul class="pagination pagination-sm">
+                    <li>
+                      <a class="waves-effect">
+                        <i class="material-icons">chevron_left</i>
+                      </a>
+                    </li>
+                    <li><a class="waves-effect">1</a></li>
+                    <li><a class="waves-effect">2</a></li>
+                    <li><a class="waves-effect">3</a></li>
+                    <li><a class="waves-effect">4</a></li>
+                    <li><a class="waves-effect">5</a></li>
+                    <li>
+                      <a class="waves-effect">
+                        <i class="material-icons">chevron_right</i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+      <app-transact-history-preview></app-transact-history-preview>
+    </div>
+  </div>
+</section>

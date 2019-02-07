@@ -1,0 +1,111 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>DEVICES / BUY</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="myDeviceWrap">
+        <div class="col-sm-6 col-md-3" *ngFor="let transaction of deviceTransactions">
+          <div *ngIf="transaction?.serialNumber?.length > 1" class="thumbnail">
+            <img src="assets/img/modem.jpg">
+            <div class="caption">
+              <h3>{{transaction.device.name}}</h3>
+              <hr>
+              <p>Product Code: {{transaction.device.productCode}}</p>
+              <p>Serial: {{transaction.serialNumber}} </p>
+              <p>IMEI Number: {{transaction.imeiNumber}} </p>
+              <p>Date Purchase: {{transaction.transactionDate|date:'short'}} </p>
+            </div>
+          </div>
+          <div *ngIf="transaction.serialNumber===null" class="thumbnail">
+            <img src="assets/img/modem.jpg">
+            <div class="caption">
+              <h3>{{transaction.device.name}}</h3>
+              <hr>
+              <p>Product Code: {{transaction.device.productCode}}</p>
+              <p>Date Purchase: {{transaction.transactionDate|date:'short'}} </p>
+              <a>Purchase Status</a>
+              <h4 class="orange">Pending</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="deviceList">
+          <h4>List of Devices</h4>
+          <div class="row">
+            <div *ngFor="let device of devices" class="col-lg-4  col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box-4 buy-hover hover-zoom-effect">
+                <div class="icon">
+                  <img src="assets/img/devices/SIM.png">
+                </div>
+                <div class="content">
+                  <div class="text"><span>{{device.name}}</span>
+                    <span *ngIf="device.dataPlan !== undefined">
+                      + <span>{{device.dataPlan.bandwidth}}Gb Data</span>
+                    </span>
+                  </div>
+                  <div class="number">&#8358;{{device.price | number: '.2'}}</div>
+                </div>
+                <div class="buy_item">
+                  <button type="button" (click)="buyDevice(device)" data-toggle="modal" data-target="#smallModal"
+                    class="btn1 waves-effect">
+                    <h6><i class="material-icons">shopping_cart</i> Buy</h6>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content" style="display:grid;">
+            <div class="modal-header" style="text-align:center;">
+              <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              <div class="confirm_pay">
+                <p>You are about to purchase</p>
+                <h2>{{selectedDevice?.name}}</h2>
+                <h3>&#8358;{{selectedDevice?.price | number: '.2'}}</h3>
+                <br>
+                <div class="dropdown">
+                  <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <select class="form-control show-tick">
+                      <option value="0">--Payment Method--</option>
+                      <option value="1">Bank Transfer</option>
+                      <option value="2">POS</option>
+                      <option value="3">Online Payment</option>
+                    </select>
+                  </div>
+                  <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <select class="form-control show-tick">
+                      <option value="0">--Select Bank--</option>
+                      <option value="1">First Bank</option>
+                      <option value="2">Fidelity </option>
+                      <option value="3">Zenith</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="text-align:center !important;">
+              <button type="button" class="btn btn-link waves-effect" (click)="buyDevice(selectedDevice)"
+                angular4-paystack [key]="paystackClientKey" [email]="customer.email"
+                [amount]="selectedDevice?.price*100" [ref]="refKey" [class]="'btn btn-primary'"
+                (close)="paymentCancel()" (callback)="paymentDone($event)"
+                class="btn waves-effect waves-light">Yes</button>
+              <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect"
+                data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

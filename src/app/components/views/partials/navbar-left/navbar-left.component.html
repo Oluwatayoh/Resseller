@@ -1,0 +1,540 @@
+<section>
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar">
+    <!-- User Info -->
+    <div class="user-info">
+      <div class="image">
+        <img src="assets/images/user.png" width="48" height="48" alt="User" />
+      </div>
+      <div class="info-container">
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+        <div class="email">john.doe@example.com</div>
+        <div class="btn-group user-helper-dropdown">
+          <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+          <ul class="dropdown-menu pull-right">
+            <li><a [routerLink]="['/views/profile']"><i class=" material-icons">person</i>Profile</a></li>
+            <li><a (click)="signOut()"><i class="material-icons">input</i>Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- #User Info -->
+    <!-- Menu -->
+    <div class="menu">
+      <ul class="list">
+        <li class="header">MAIN NAVIGATION</li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/home']"><i class="material-icons">home</i> <span>Home</span></a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/profile']"><i class="material-icons">person</i> <span>Profile</span></a>
+        </li>
+        <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/typography']"><i class="material-icons">text_fields</i> <span>Typography</span></a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/helper-classes']"><i class="material-icons">layers</i> <span>Helper Classes</span></a>
+        </li> -->
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">assignment</i>
+            <span>Purchases</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/bandwidth']">Bandwidths</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/device']">Devices</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">view_list</i>
+            <span>Payments</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/invoice']">Invoices</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/history']">Transaction History</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">perm_media</i>
+            <span>Tickets</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/support']">Support</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/history']">Payment</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/history']">Messages</a>
+            </li>
+          </ul>
+        </li>
+        <!-- <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">widgets</i>
+            <span>Widgets</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <span>Cards</span>
+              </a>
+              <ul class="ml-menu">
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/cards/basic']">Basic</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/cards/colored']">Colored</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/cards/no-header']">No Header</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <span>Infobox</span>
+              </a>
+              <ul class="ml-menu">
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/infobox/infobox-1']">Infobox-1</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/infobox/infobox-2']">Infobox-2</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/infobox/infobox-3']">Infobox-3</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/infobox/infobox-4']">Infobox-4</a>
+                </li>
+                <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                  <a [routerLink]="['/views/widgets/infobox/infobox-5']">Infobox-5</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li> -->
+        <!-- <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">swap_calls</i>
+            <span>User Interface (UI)</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/alerts']">Alerts</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/animations']">Aninmations</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/badges']">Badges</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/breadcrumbs']">Breadcrumbs</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/buttons']">Buttons</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/collapse']">Collapse</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/colors']">Colors</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/dialogs']">Dialogs</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/icons']">Icons</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/labels']">Labels</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/list-group']">List Group</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/media-object']">Media Object</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/modals']">Modals</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/notifications']">Notifications</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/pagination']">Pagination</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/preloaders']">Preloaders</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/progressbars']">Progress Bars</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/range-sliders']">Range Sliders</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/sortable-nestable']">Sortable &amp; Nestable</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/tabs']">Tabs</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/thumbnails']">Thumbnails</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/tooltips-popovers']">Tooltips &amp; Popovers</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/ui/waves']">Waves</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">assignment</i>
+            <span>Forms</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/basic']">Basic Form Elements</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/advanced']">Advanced Form Elements</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/examples']">Form Examples</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/validation']">Form Validation</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/wizard']">Form Wizard</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/forms/editors']">Editors</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">view_list</i>
+            <span>Tables</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/tables/bootstrap']">Bootstrap Tables</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/tables/ngx']">ngx Data Tables</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/tables/ng2']">ng2 Smart Table</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">perm_media</i>
+            <span>Medias</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/medias/image-gallery']">Image Gallery</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/medias/carousel']">Carousel</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">pie_chart</i>
+            <span>Charts</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/charts/ngx-charts']">ngx-Charts</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">content_copy</i>
+            <span>Example Pages</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/pages/profile']">Profile</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/auth']">Sign In</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/auth/register']">Register</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/auth/forgot']">Forgot Password</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/blank']">Blank Page</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/404']">404 - Not Found</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">map</i>
+            <span>Maps</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/maps/google']">Google Maps</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/maps/yandex']">YandexMap</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/maps/jvectormap']">jVectorMap</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">trending_down</i>
+            <span>Multi Level Menu</span>
+          </a>
+          <ul class="ml-menu">
+            <li>
+              <a href="javascript:void(0);">
+                <span>Menu Item</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span>Menu Item - 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                <span>Level - 2</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="javascript:void(0);">
+                    <span>Menu Item</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                    <span>Level - 3</span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li>
+                      <a href="javascript:void(0);">
+                        <span>Level - 4</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li> -->
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/changelogs']"><i class="material-icons">update</i> <span>Changelogs</span></a>
+        </li>
+        <li class="header">Help</li>
+        <li>
+          <a href="javascript:void(0);">
+            <i class="material-icons col-red">donut_large</i>
+            <span>Customer Feedbacks</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">
+            <i class="material-icons col-amber">donut_large</i>
+            <span>Abpit</span>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0);">
+            <i class="material-icons col-light-blue">input</i>
+            <span>Sign Out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- #Menu -->
+    <!-- Footer -->
+    <div class="legal">
+      <div class="copyright">
+        &copy; {{appInfo.copyright.year}}
+        <a href="{{appInfo.copyright.url}}">{{appInfo.copyright.owner}}</a>.
+      </div>
+      <div class="version">
+        <b>Powered By: </b> {{appInfo.version}}
+      </div>
+    </div>
+    <!-- #Footer -->
+  </aside>
+  <!-- #END# Left Sidebar -->
+  <!-- Right Sidebar -->
+  <aside id="rightsidebar" class="right-sidebar">
+    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+      <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+      <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+        <ul class="demo-choose-skin">
+          <li data-theme="red" class="active">
+            <div class="red"></div>
+            <span>Red</span>
+          </li>
+          <li data-theme="pink">
+            <div class="pink"></div>
+            <span>Pink</span>
+          </li>
+          <li data-theme="purple">
+            <div class="purple"></div>
+            <span>Purple</span>
+          </li>
+          <li data-theme="deep-purple">
+            <div class="deep-purple"></div>
+            <span>Deep Purple</span>
+          </li>
+          <li data-theme="indigo">
+            <div class="indigo"></div>
+            <span>Indigo</span>
+          </li>
+          <li data-theme="blue">
+            <div class="blue"></div>
+            <span>Blue</span>
+          </li>
+          <li data-theme="light-blue">
+            <div class="light-blue"></div>
+            <span>Light Blue</span>
+          </li>
+          <li data-theme="cyan">
+            <div class="cyan"></div>
+            <span>Cyan</span>
+          </li>
+          <li data-theme="teal">
+            <div class="teal"></div>
+            <span>Teal</span>
+          </li>
+          <li data-theme="green">
+            <div class="green"></div>
+            <span>Green</span>
+          </li>
+          <li data-theme="light-green">
+            <div class="light-green"></div>
+            <span>Light Green</span>
+          </li>
+          <li data-theme="lime">
+            <div class="lime"></div>
+            <span>Lime</span>
+          </li>
+          <li data-theme="yellow">
+            <div class="yellow"></div>
+            <span>Yellow</span>
+          </li>
+          <li data-theme="amber">
+            <div class="amber"></div>
+            <span>Amber</span>
+          </li>
+          <li data-theme="orange">
+            <div class="orange"></div>
+            <span>Orange</span>
+          </li>
+          <li data-theme="deep-orange">
+            <div class="deep-orange"></div>
+            <span>Deep Orange</span>
+          </li>
+          <li data-theme="brown">
+            <div class="brown"></div>
+            <span>Brown</span>
+          </li>
+          <li data-theme="grey">
+            <div class="grey"></div>
+            <span>Grey</span>
+          </li>
+          <li data-theme="blue-grey">
+            <div class="blue-grey"></div>
+            <span>Blue Grey</span>
+          </li>
+          <li data-theme="black">
+            <div class="black"></div>
+            <span>Black</span>
+          </li>
+        </ul>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="settings">
+        <div class="demo-settings">
+          <p>GENERAL SETTINGS</p>
+          <ul class="setting-list">
+            <li>
+              <span>Report Panel Usage</span>
+              <div class="switch">
+                <label><input type="checkbox" checked><span class="lever"></span></label>
+              </div>
+            </li>
+            <li>
+              <span>Email Redirect</span>
+              <div class="switch">
+                <label><input type="checkbox"><span class="lever"></span></label>
+              </div>
+            </li>
+          </ul>
+          <p>SYSTEM SETTINGS</p>
+          <ul class="setting-list">
+            <li>
+              <span>Notifications</span>
+              <div class="switch">
+                <label><input type="checkbox" checked><span class="lever"></span></label>
+              </div>
+            </li>
+            <li>
+              <span>Auto Updates</span>
+              <div class="switch">
+                <label><input type="checkbox" checked><span class="lever"></span></label>
+              </div>
+            </li>
+          </ul>
+          <p>ACCOUNT SETTINGS</p>
+          <ul class="setting-list">
+            <li>
+              <span>Offline</span>
+              <div class="switch">
+                <label><input type="checkbox"><span class="lever"></span></label>
+              </div>
+            </li>
+            <li>
+              <span>Location Permission</span>
+              <div class="switch">
+                <label><input type="checkbox" checked><span class="lever"></span></label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- #END# Right Sidebar -->
+</section>

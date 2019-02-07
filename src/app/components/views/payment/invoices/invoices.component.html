@@ -1,0 +1,165 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>INVOICE</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h4>
+              Invoice List
+            </h4>
+          </div>
+          <div class="body">
+            <div class="table-responsive">
+              <input type="text" id="myInput" (keyup)="filterSearch()" placeholder="Search Item">
+              <table id="myTable" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Items</th>
+                    <th>Invoice Number</th>
+                    <th>Date</th>
+                    <th>Mode of Payment</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                  </tr>
+                <tbody>
+                  <tr *ngFor="let invoice of invoices;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{invoice.item}}</td>
+                    <td>{{invoice.invoiceNumber}}</td>
+                    <td>{{invoice.invoiceDate|date:'medium'}}</td>
+                    <td>
+                      <span *ngIf="invoice.customerBandWidthTransactionId > 0">
+                        {{invoice.customerBandWidthTransactionDto?.paymentMode?.name}}
+                      </span>
+                      <span *ngIf="invoice.customerDeviceTransactionId > 0">
+                        {{invoice.customerDeviceTransactionDto?.paymentMode?.name}}
+                      </span>
+                    </td>
+                    <td>&#8358;
+                      <span *ngIf="invoice.customerBandWidthTransactionId > 0">
+                        {{invoice.customerBandWidthTransactionDto?.dataPlan?.price * invoice.quantity}}
+                      </span>
+                      <span *ngIf="invoice.customerDeviceTransactionId > 0">
+                        {{invoice.customerDeviceTransactionDto?.device?.price * invoice.quantity}}
+                      </span>
+
+                    </td>
+                    <td>
+                      <i (click)="viewDetail(invoice)" data-toggle="modal" data-target="#defaultModal" class="material-icons">remove_red_eye</i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <nav>
+                  <ul class="pagination pagination-sm">
+                    <li>
+                      <a class="waves-effect">
+                        <i class="material-icons">chevron_left</i>
+                      </a>
+                    </li>
+                    <li><a class="waves-effect">1</a></li>
+                    <li><a class="waves-effect">2</a></li>
+                    <li><a class="waves-effect">3</a></li>
+                    <li><a class="waves-effect">4</a></li>
+                    <li><a class="waves-effect">5</a></li>
+                    <li>
+                      <a class="waves-effect">
+                        <i class="material-icons">chevron_right</i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="defaultModalLabel">View Invoice</h4>
+          </div>
+          <div class="modal-body">
+            <div class="view_invoiceWrap">
+              <div class="invoiceWrap">
+                <span>Invoice to:</span>
+                <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
+                  <a>{{selectedInvoice?.customerBandWidthTransactionDto?.customer.surname}}
+                    {{selectedInvoice?.customerBandWidthTransactionDto?.customer.otherNames}}</a>
+                </span>
+                <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
+                  <a>{{selectedInvoice?.customerDeviceTransactionDto?.customer.surname}}
+                    {{selectedInvoice?.customerDeviceTransactionDto?.customer.otherNames}}</a>
+                </span>
+
+              </div>
+              <div class="invoiceWrap">
+                <span>Invoice Date:</span>
+                <a>{{selectedInvoice?.invoiceDate | date:'medium'}}</a>
+              </div>
+            </div>
+            <div class="view_invoiceWrap">
+              <div class="invoiceWrap">
+                <span>Invoice Number:</span>
+                <a>{{selectedInvoice?.invoiceNumber}}</a>
+              </div>
+              <div class="invoiceWrap">
+                <span>Due Date:</span>
+                <a>{{selectedInvoice?.invoiceDate | date:'medium'}}</a>
+              </div>
+            </div>
+            <hr>
+            <div class="body table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">{{selectedInvoice?.item}}</th>
+                    <td>{{selectedInvoice?.quantity}}</td>
+                    <td>
+                      &#8358;
+                      <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
+                        {{selectedInvoice?.customerBandWidthTransactionDto?.dataPlan?.price}}
+                      </span>
+                      <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
+                        {{selectedInvoice?.customerDeviceTransactionDto?.device?.price}}
+                      </span>
+                    </td>
+                    <td>&#8358;
+                      <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
+                        {{selectedInvoice?.customerBandWidthTransactionDto?.dataPlan?.price *
+                        selectedInvoice.quantity}}
+                      </span>
+                      <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
+                        {{selectedInvoice?.customerDeviceTransactionDto?.device?.price * selectedInvoice.quantity}}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
