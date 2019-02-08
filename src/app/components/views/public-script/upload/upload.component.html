@@ -1,14 +1,14 @@
 <!-- <h1>File Upload Using Angular 5 and ASP.NET Core 2.1</h1> -->
 
 <div class="form-group">
-  <label class="file-upload btn btn-primary" for="imgUpload">Upload Image
+  <label class="file-upload btn btn-primary" for="imgUpload">
     <input id="imgUpload" #file type="file" multiple (change)="upload(file.files)" />
-  </label>
-  <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
-    {{progress}}%
-  </span>
+    <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+      {{progress}}%
+    </span>
 
-  <span style="font-weight:bold;color:green;" *ngIf="message">
-    {{message}}
-  </span>
+    <span style="font-weight:bold;color:green;" *ngIf="message">
+      {{message}}
+    </span>
+  </label>
 </div>

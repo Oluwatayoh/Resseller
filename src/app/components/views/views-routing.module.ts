@@ -64,6 +64,7 @@ import { InvoicesComponent } from './payment/invoices/invoices.component';
 import { ProductListComponent } from './purchases/product-list/product-list.component';
 import { MyCartComponent } from './purchases/my-cart/my-cart.component';
 import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
+import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
 
 const viewsRoutes: Routes = [
 	{
@@ -77,6 +78,7 @@ const viewsRoutes: Routes = [
 			{ path: 'invoice', component: InvoicesComponent },
 			{ path: 'history', component: TransactHistoryComponent },
 			{ path: 'product-list', component: ProductListComponent },
+			{ path: 'product-detail', component: ProductDetailsComponent },
 			{ path: 'cart', component: MyCartComponent },
 			{ path: 'support-ticket', component: SupportTicketComponent },
 			{ path: 'payment-ticket', component: PaymentTicketComponent },

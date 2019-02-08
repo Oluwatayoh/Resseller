@@ -79,6 +79,10 @@
 .prodwrap {
   margin: 10px;
 }
+.prodwrap:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
 
 .prod-title {
   margin-bottom: 0;
@@ -117,23 +121,23 @@
   padding-right: 35px;
   background: 0 0;
 
-  i{
-      background-repeat: no-repeat;
-      display: inline-block;
-      fill: currentColor;
-      height: 24px;
-      width: 24px;
+  i {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
   }
 
-  .icons{
-      font-weight: 400;
-      line-height: 20px;
+  .icons {
+    font-weight: 400;
+    line-height: 20px;
   }
-  .icon{
-      position: absolute;
-      right: 25px;
-      top: 20px;
-      font-size: 24px;
+  .icon {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 24px;
   }
 }
 
