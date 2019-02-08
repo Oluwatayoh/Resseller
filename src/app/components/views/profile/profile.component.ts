@@ -127,6 +127,7 @@ export class ProfileComponent implements OnInit {
 						null,
 						null
 					);
+
 					this.changePassword = false;
 					this.donePasswordChange = true;
 					this.sing_out();
