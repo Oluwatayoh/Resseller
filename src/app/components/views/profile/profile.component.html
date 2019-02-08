@@ -16,7 +16,8 @@
               <div class="img-container">
                 <img src="{{baseUrl}}{{customer.fileName}}" alt="">
               </div>
-              <app-upload-component style="margin:10px;"></app-upload-component>
+              <app-upload-component style="margin:10px;" (completeOperation)="completeOperation($event)"></app-upload-component>
+              <!-- <app-upload-component style="margin:10px;"></app-upload-component> -->
               <!-- <div class="form-group">
                 <label class="file-upload btn btn-primary" for="imgUpload">Upload Image
                   <input type="file" id="imgUpload">
