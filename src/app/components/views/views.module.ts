@@ -68,9 +68,12 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import { InvoicesComponent } from './payment/invoices/invoices.component';
 import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
 import { SupportComponent } from './tickets/support/support.component';
+import { ProductListComponent } from './purchases/product-list/product-list.component';
+import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
+import { MyCartComponent } from './purchases/my-cart/my-cart.component';
 
 @NgModule({
-	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
+	imports: [CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule],
 	declarations: [
 		ViewsComponent,
 		NavbarTopComponent,
@@ -134,8 +137,11 @@ import { SupportComponent } from './tickets/support/support.component';
 		TransactHistoryComponent,
 		TransactHistoryPreviewComponent,
 		NewTicketComponent,
-		SupportComponent
+		SupportComponent,
+		ProductListComponent,
+		ProductDetailsComponent,
+		MyCartComponent
 	],
 	providers: []
 })
-export class ViewsModule {}
+export class ViewsModule { }

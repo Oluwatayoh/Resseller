@@ -25,7 +25,7 @@
       "../node_modules/animate.css/animate.min.css",
       "assets/css/style.css",
       "assets/css/all-themes.css",
-      "styles.css"
+      "styles.scss"
     ],
     "scripts": [
       "../node_modules/jquery/dist/jquery.min.js",

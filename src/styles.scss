@@ -35,6 +35,48 @@
     height: auto !important;
 }
 
+
+body::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+  
+  input[type="date"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+  
+  .disabled {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  
+  .rg-layout {
+    display: block;
+    margin-top: 7px;
+  }
+  
+  .rg-form-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    align-items: center;
+  }
+  
+  
+  .red{color: red;}
+  .orange{color: orange;}
+  .green{color:green;}
+
+
 @media (max-width: 767px) {
     .navbar-brand.views {
         margin-left: 55px !important;
