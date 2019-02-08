@@ -1,9 +1,3 @@
-.prof-detail-wrap {
-  display: flex;
-  padding: 20px;
-  align-items: center;
-}
-
 .img-wrap {
   display: inline;
   justify-content: center;
@@ -53,21 +47,6 @@ label.file-upload {
   display: block;
 }
 
-.tp-act {
-  display: flex;
-
-  .modal-close-ico {
-    position: absolute;
-    z-index: 1;
-    border-radius: 0;
-    top: 20px;
-    right: 20px;
-    font-size: 20px;
-    padding: 5px;
-  }
-
-  .modal-close-ico:hover {
-    cursor: pointer;
-    font-size: 23px;
-  }
+.btn{
+  border-radius: 15px !important;
 }

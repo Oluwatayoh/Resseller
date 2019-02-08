@@ -7554,7 +7554,7 @@ fieldset[disabled] .form-control {
       .sidebar .user-info .info-container .user-helper-dropdown {
         position: absolute;
         right: -3px;
-        bottom: -12px;
+        bottom: 20px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         -ms-box-shadow: none;
