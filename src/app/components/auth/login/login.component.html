@@ -1,19 +1,20 @@
 <div class="login-box">
-  <div class="logo">
-    <a href="javascript:void(0);">Admin<b>BSB</b></a>
-    <small>Admin BootStrap Based - Material Design</small>
+  <div class="logo" style="text-align:center;">
+    <img class="pull-center" style="right: 0px; border-radius: 20%; height: 100px;  width: 100px;"
+      src="assets/img/logo.png" alt="" title="NigComSat" id="Img1" />
+    <a>Customer Portal<br></a>
+    <small>Supply your Email and Password to log in</small>
   </div>
-  <div class="card">
+  <div class="card" style="border-radius:10px !important;">
     <div class="body">
-      <form id="sign_in" [formGroup]="signForm" method="POST">
+      <form [formGroup]="signForm" id="sign_in">
         <div class="msg">Sign in to start your session</div>
         <div class="input-group">
           <span class="input-group-addon">
             <i class="material-icons">person</i>
           </span>
           <div class="form-line">
-            <input formControlName="email" type="text" class="form-control" name="email" placeholder="Email" required
-              autofocus>
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" required autofocus />
           </div>
         </div>
         <div class="input-group">
@@ -21,8 +22,7 @@
             <i class="material-icons">lock</i>
           </span>
           <div class="form-line">
-            <input type="password" formControlName="password" class="form-control" name="password" placeholder="Password"
-              required>
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" required="" />
           </div>
         </div>
         <div class="row">
@@ -31,15 +31,16 @@
             <label for="rememberme">Remember Me</label>
           </div>
           <div class="col-xs-4">
-            <button (click)="signIn()" class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+            <button (click)="signIn()" class="btn btn-block bg-pink waves-effect" type="submit">SIGN
+              IN</button>
           </div>
         </div>
         <div class="row m-t-15 m-b--20">
-          <div class="col-xs-6">
-            <a [routerLink]="['/auth/register']">Register Now!</a>
+          <div (click)="signUp()" class="col-xs-6 btm-actions">
+            <a>Register Now!</a>
           </div>
-          <div class="col-xs-6 align-right">
-            <a [routerLink]="['/auth/forgot']">Forgot Password?</a>
+          <div class="col-xs-6 align-right btm-actions">
+            <a class="btm-actions">Forgot Password?</a>
           </div>
         </div>
       </form>

@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+
+.landing-bg {
+  background-color: #ffffff !important;
+}
+
+.notification-box {
+  display: block;
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.profile-avatar {
+  border-radius: 100%;
+  margin: 0 auto;
+  display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  background: #ffffff;
+  margin-top: -95px;
+  position: relative;
+}
+
+.navbar-brand.views {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 0px !important;
+}
+
+.navbar-brand.views img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.btm-actions {
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.rg-layout {
+  display: block;
+  margin-top: 7px;
+}
+
+.rg-form-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
+.orange {
+  color: orange;
+}
+.green {
+  color: green;
+}
+
+@media (max-width: 767px) {
+  .navbar-brand.views {
+    margin-left: 55px !important;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .navbar > .container .navbar-brand.views,
+  .navbar > .container-fluid .navbar-brand.views {
+    margin-left: 40px !important;
+  }
+}
+
+@media (max-width: 1169px) and (min-width: 992px) {
+  .navbar > .container .navbar-brand.views,
+  .navbar > .container-fluid .navbar-brand.views {
+    margin-left: 40px !important;
+  }
+}

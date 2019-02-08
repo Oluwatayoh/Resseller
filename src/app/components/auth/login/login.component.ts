@@ -8,7 +8,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.css' ]
+	styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit, OnDestroy {
 	signForm: FormGroup;
@@ -33,6 +33,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 		const body = document.getElementsByTagName('body')[0];
 		body.classList.remove('login-page');
 	}
+
+	signUp() {
+		this._router.navigate([ '/auth/register' ]).then((pay) => {});
+	}
+
 
 	signIn() {
 		this._systemModuleService.on();
