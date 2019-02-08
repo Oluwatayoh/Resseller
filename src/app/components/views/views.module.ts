@@ -1,3 +1,4 @@
+import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TransactHistoryPreviewComponent } from './payment/transact-history/transact-history-preview/transact-history-preview.component';
 import { TransactHistoryComponent } from './payment/transact-history/transact-history.component';
 import { BandwidthComponent } from './bandwidth/bandwidth.component';
@@ -67,7 +68,9 @@ import { DeviceComponent } from './device/device.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { InvoicesComponent } from './payment/invoices/invoices.component';
 import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
-import { SupportComponent } from './tickets/support/support.component';
+import { PaymentTicketComponent } from './tickets/payment-ticket/payment-ticket.component';
+import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.component';
+import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 
 @NgModule({
 	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
@@ -134,7 +137,10 @@ import { SupportComponent } from './tickets/support/support.component';
 		TransactHistoryComponent,
 		TransactHistoryPreviewComponent,
 		NewTicketComponent,
-		SupportComponent
+		TicketListComponent,
+		PaymentTicketComponent,
+		MessageTicketComponent,
+		SupportTicketComponent
 	],
 	providers: []
 })

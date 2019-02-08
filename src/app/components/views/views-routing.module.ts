@@ -1,3 +1,5 @@
+import { PaymentTicketComponent } from './tickets/payment-ticket/payment-ticket.component';
+import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.component';
 import { BandwidthComponent } from './bandwidth/bandwidth.component';
 import { DeviceComponent } from './device/device.component';
 import { NgModule } from '@angular/core';
@@ -59,7 +61,7 @@ import { BasicFormsComponent } from './forms/basic-forms/basic-forms.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TransactHistoryComponent } from './payment/transact-history/transact-history.component';
 import { InvoicesComponent } from './payment/invoices/invoices.component';
-import { SupportComponent } from './tickets/support/support.component';
+import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 
 const viewsRoutes: Routes = [
 	{
@@ -72,7 +74,9 @@ const viewsRoutes: Routes = [
 			{ path: 'device', component: DeviceComponent },
 			{ path: 'invoice', component: InvoicesComponent },
 			{ path: 'history', component: TransactHistoryComponent },
-			{ path: 'support', component: SupportComponent },
+			{ path: 'support-ticket', component: SupportTicketComponent },
+			{ path: 'payment-ticket', component: PaymentTicketComponent },
+			{ path: 'message-ticket', component: MessageTicketComponent },
 			{ path: 'typography', component: TypographyComponent },
 			{ path: 'helper-classes', component: HelperClassesComponent },
 			{ path: 'widgets/cards/basic', component: BasicComponent },

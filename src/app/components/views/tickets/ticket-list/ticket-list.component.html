@@ -1,7 +1,7 @@
-<section class="content">
+<section class="">
   <div class="container-fluid">
     <div class="block-header">
-      <h2>TICKET</h2>
+      <h2>{{ticketType}} TICKET</h2>
     </div>
 
     <div class="row clearfix">
@@ -33,14 +33,14 @@
                     <th>Action</th>
                   </tr>
                 <tbody>
-                  <tr>
-                    <td>BT-0038</td>
+                  <tr *ngFor="let ticket of ticketDataList">
+                    <td>{{ticket?.ticketId}}</td>
                     <td>
-                      <p>Called for support last week but no answer</p>
+                      <p>{{ticket?.subject}}</p>
                     </td>
-                    <td class="red">Critical</td>
-                    <td>15th Nov., 2018</td>
-                    <td><strong>In Process</strong></td>
+                    <td class="red">{{ticket?.priority}}</td>
+                    <td>{{ticket.dateCreated | date:'medium'}}</td>
+                    <td><strong>{{ticket.status}}</strong></td>
                     <td class="dropdown js-sweetalert">
                       <i class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                         aria-expanded="false" class="material-icons">more_vert</i>
@@ -50,7 +50,7 @@
                       </ul>
                     </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td>OY-0938</td>
                     <td>
                       <p>Called for support last week but no answer</p>
@@ -73,7 +73,7 @@
                     <td>
                       <i class="material-icons">more_vert</i>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -104,7 +104,7 @@
     </div>
 
     <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-      <app-new-ticket></app-new-ticket>
+      <app-new-ticket (completeOperation)="completeOperation($event)" [ticketType]="ticketType"></app-new-ticket>
     </div>
   </div>
 </section>

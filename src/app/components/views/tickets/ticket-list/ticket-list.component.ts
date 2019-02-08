@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
-	selector: 'app-support',
-	templateUrl: './support.component.html',
-	styleUrls: [ './support.component.scss' ]
+	selector: 'app-ticket-list',
+	templateUrl: './ticket-list.component.html',
+	styleUrls: [ './ticket-list.component.scss' ]
 })
-export class SupportComponent implements OnInit {
+export class TicketListComponent implements OnInit {
+	@Input() ticketType = '';
+	@Input() ticketDataList: any[] = [];
 	constructor() {}
 
 	ngOnInit() {}
 
 	filterSearch() {
 		// Declare variables
-		var input, filter, table, tr, td, i, txtValue;
+		let input, filter, table, tr, td, i, txtValue;
 		input = document.getElementById('searchInput');
 		filter = input.value.toUpperCase();
 		table = document.getElementById('ticketList');
@@ -30,5 +32,8 @@ export class SupportComponent implements OnInit {
 				}
 			}
 		}
+	}
+	completeOperation(value: any) {
+		this.ticketDataList.push(value);
 	}
 }

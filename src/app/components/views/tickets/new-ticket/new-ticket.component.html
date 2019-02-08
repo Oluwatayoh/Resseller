@@ -5,14 +5,17 @@
     </div>
     <div class="modal-body">
       <div class="body">
-        <form class="form-horizontal">
+        <form [formGroup]="customerForm" class="form-horizontal">
           <div class="row clearfix">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
               <label for="subject">Subject</label>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
               <div class="form-line">
-                <input type="text" id="subject" class="form-control" placeholder="Enter subject for the ticket">
+                <input formControlName="subject" type="text" id="subject" class="form-control" placeholder="Enter subject for the ticket">
+                <small [hidden]="customerForm.controls['subject'].valid ||  (customerForm.controls['subject'].pristine)">
+                  Subject is required (minimum 3 characters).
+                </small>
               </div>
             </div>
           </div>
@@ -21,10 +24,10 @@
               <label for="priority">Priority</label>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-              <select class="form-control show-tick" id="priority">
-                <option value="10">Minor</option>
-                <option value="20">Major</option>
-                <option value="30">Critical</option>
+              <select formControlName="priority" class="form-control show-tick" id="priority">
+                <option value="Minor">Minor</option>
+                <option value="Major">Major</option>
+                <option value="Critical">Critical</option>
               </select>
             </div>
           </div>
@@ -33,10 +36,10 @@
               <label for="status">Status</label>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-              <select class="form-control show-tick" id="status">
-                <option value="10">New</option>
-                <option value="20">In Process</option>
-                <option value="30">Closed</option>
+              <select formControlName="status" class="form-control show-tick" id="status">
+                <option value="New">New</option>
+                <option value="In Process">In Process</option>
+                <option value="Closed">Closed</option>
               </select>
             </div>
           </div>
@@ -46,16 +49,29 @@
             </div>
             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
               <div class="form-line">
-                <textarea rows="1" id="message" class="form-control no-resize auto-growth" placeholder="Please enter your message"></textarea>
+                <textarea formControlName="message" rows="1" id="message" class="form-control no-resize auto-growth"
+                  placeholder="Please enter your message"></textarea>
+                <small [hidden]="customerForm.controls['message'].valid ||  (customerForm.controls['message'].pristine)">
+                  Message body is required (minimum 20 characters).
+                </small>
               </div>
             </div>
           </div>
+          <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+              <label for="message"></label>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <button [class.disabled]="customerForm.valid === false" (click)=" addTicket()" type="button" class="btn btn-link waves-effect">Create</button>
+            </div>
+          </div>
+
         </form>
 
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+      <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
     </div>
   </div>
 </div>
