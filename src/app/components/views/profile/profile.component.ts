@@ -93,6 +93,7 @@ export class ProfileComponent implements OnInit {
 		if (!!value) {
 			this._locker.setObject('selectedCustomer', value);
 			this.cdRef.detectChanges();
+			this.ngOnInit();
 		}
 	}
 	getRealTimeImageUrl() {
