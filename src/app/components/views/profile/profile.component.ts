@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
 		private _customerService: CustomersService,
 		private _formBuilder: FormBuilder,
 		private _systemModuleService: SystemModuleService,
-		private _router: Router
+		private _router: Router,
+		private cdRef: ChangeDetectorRef
 	) {}
 
 	ngOnInit() {
@@ -85,6 +86,20 @@ export class ProfileComponent implements OnInit {
 				);
 			}
 		);
+	}
+
+	completeOperation(value) {
+		console.log(value);
+		if (!!value) {
+			this._locker.setObject('selectedCustomer', value);
+			this.cdRef.detectChanges();
+		}
+	}
+	getRealTimeImageUrl() {
+		// {{baseUrl}}{{customer.fileName}}{{getTime()}}
+		const url = this.baseUrl + this.customer.fileName;
+		// return (url += '?random+=' + Math.random());
+		return url;
 	}
 
 	onChangePassword() {
