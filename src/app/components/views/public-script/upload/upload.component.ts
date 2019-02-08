@@ -43,8 +43,9 @@ export class UploadComponent {
 				this.progress = Math.round(100 * event.loaded / event.total);
 			} else if (event.type === HttpEventType.Response) {
 				this.message = 'Upload Successful'; // event.body.toString();
-				console.log(event);
+				console.log(event.body);
 				this.completeOperation.emit(event.body);
+				// this._locker.setObject('selectedCustomer', event.body);
 			}
 		});
 	}
