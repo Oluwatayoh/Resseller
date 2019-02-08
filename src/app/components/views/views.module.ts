@@ -71,6 +71,7 @@ import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
 import { PaymentTicketComponent } from './tickets/payment-ticket/payment-ticket.component';
 import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.component';
 import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
+import { UploadComponent } from './public-script/upload/upload.component';
 
 @NgModule({
 	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
@@ -140,7 +141,8 @@ import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.
 		TicketListComponent,
 		PaymentTicketComponent,
 		MessageTicketComponent,
-		SupportTicketComponent
+		SupportTicketComponent,
+		UploadComponent
 	],
 	providers: []
 })

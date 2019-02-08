@@ -14,13 +14,15 @@
             <!-- image -->
             <div class="img-wrap">
               <div class="img-container">
-                <img src="../../../../../assets/img/DSC_0291.jpg" alt="">
+                <img src="{{baseUrl}}{{customer.fileName}}" alt="">
+
               </div>
-              <div class="form-group">
+              <app-upload-component></app-upload-component>
+              <!-- <div class="form-group">
                 <label class="file-upload btn btn-primary" for="imgUpload">Upload Image
                   <input type="file" id="imgUpload">
                 </label>
-              </div>
+              </div> -->
             </div>
 
             <!-- profile detail -->
