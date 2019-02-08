@@ -1,3 +1,4 @@
+import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TransactHistoryPreviewComponent } from './payment/transact-history/transact-history-preview/transact-history-preview.component';
 import { TransactHistoryComponent } from './payment/transact-history/transact-history.component';
 import { BandwidthComponent } from './bandwidth/bandwidth.component';
@@ -71,6 +72,10 @@ import { SupportComponent } from './tickets/support/support.component';
 import { ProductListComponent } from './purchases/product-list/product-list.component';
 import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
 import { MyCartComponent } from './purchases/my-cart/my-cart.component';
+import { PaymentTicketComponent } from './tickets/payment-ticket/payment-ticket.component';
+import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.component';
+import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
+import { UploadComponent } from './public-script/upload/upload.component';
 
 @NgModule({
 	imports: [CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule],
@@ -141,6 +146,11 @@ import { MyCartComponent } from './purchases/my-cart/my-cart.component';
 		ProductListComponent,
 		ProductDetailsComponent,
 		MyCartComponent
+		TicketListComponent,
+		PaymentTicketComponent,
+		MessageTicketComponent,
+		SupportTicketComponent,
+		UploadComponent
 	],
 	providers: []
 })

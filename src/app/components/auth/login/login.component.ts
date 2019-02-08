@@ -27,18 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 			email: [ '', [ <any>Validators.required ] ],
 			password: [ '', [ <any>Validators.required ] ]
 		});
-
-		this._systemModuleService.announceSweetProxy(
-			`Welcome back`,
-			'success',
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null
-		);
 	}
 
 	ngOnDestroy() {

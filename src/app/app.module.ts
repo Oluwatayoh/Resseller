@@ -1,3 +1,4 @@
+import { TicketService } from './components/views/services/ticket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoolStorageModule } from 'angular2-cool-storage';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { DynamicScriptLoaderService } from './components/views/public-script/dynamic-script-loader-service';
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -54,7 +56,9 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 		DeviceService,
 		InvoiceService,
 		CustomerDeviceTransactionsService,
-		SystemModuleService
+		SystemModuleService,
+		TicketService,
+		DynamicScriptLoaderService
 	],
 	bootstrap: [ AppComponent ]
 })

@@ -1,3 +1,5 @@
+import { PaymentTicketComponent } from './tickets/payment-ticket/payment-ticket.component';
+import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.component';
 import { BandwidthComponent } from './bandwidth/bandwidth.component';
 import { DeviceComponent } from './device/device.component';
 import { NgModule } from '@angular/core';
@@ -62,6 +64,7 @@ import { InvoicesComponent } from './payment/invoices/invoices.component';
 import { SupportComponent } from './tickets/support/support.component';
 import { ProductListComponent } from './purchases/product-list/product-list.component';
 import { MyCartComponent } from './purchases/my-cart/my-cart.component';
+import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 
 const viewsRoutes: Routes = [
 	{
@@ -77,6 +80,9 @@ const viewsRoutes: Routes = [
 			{ path: 'support', component: SupportComponent },
 			{ path: 'product-list', component: ProductListComponent },
 			{ path: 'cart', component: MyCartComponent },
+			{ path: 'support-ticket', component: SupportTicketComponent },
+			{ path: 'payment-ticket', component: PaymentTicketComponent },
+			{ path: 'message-ticket', component: MessageTicketComponent },
 			{ path: 'typography', component: TypographyComponent },
 			{ path: 'helper-classes', component: HelperClassesComponent },
 			{ path: 'widgets/cards/basic', component: BasicComponent },

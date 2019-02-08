@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomersService } from '../services/customers.service';
 import { SystemModuleService } from '../public-script/system-module.service';
+import { ONLINE, ONLINEPATH } from '../public-script/global-config';
 
 @Component({
 	selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
 	customerForm: FormGroup;
 	currentPassword: string;
 	password: string;
+	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _customerService: CustomersService,
@@ -29,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit() {
 		this.customer = this._locker.getObject('selectedCustomer');
+		console.log(this.customer);
 		this.customerForm = this._formBuilder.group({
 			surname: [ this.customer.surname, [ <any>Validators.required, Validators.minLength(3) ] ],
 			otherNames: [ this.customer.otherNames, [ <any>Validators.required ] ],
