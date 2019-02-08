@@ -116,6 +116,25 @@
   outline: 0;
   padding-right: 35px;
   background: 0 0;
+
+  i{
+      background-repeat: no-repeat;
+      display: inline-block;
+      fill: currentColor;
+      height: 24px;
+      width: 24px;
+  }
+
+  .icons{
+      font-weight: 400;
+      line-height: 20px;
+  }
+  .icon{
+      position: absolute;
+      right: 25px;
+      top: 20px;
+      font-size: 24px;
+  }
 }
 
 .categories {
