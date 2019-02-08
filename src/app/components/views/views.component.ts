@@ -6,7 +6,7 @@ declare var $: any;
 @Component({
 	selector: 'app-views',
 	templateUrl: './views.component.html',
-	styleUrls: [ './views.component.css' ]
+	styleUrls: [ './views.component.scss' ]
 })
 export class ViewsComponent implements OnInit, OnDestroy {
 	constructor(public themeHelper: ThemeHelpersService, private _dynamicScriptLoader: DynamicScriptLoaderService) {}

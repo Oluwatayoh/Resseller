@@ -35,6 +35,21 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/views/helper-classes']"><i class="material-icons">layers</i> <span>Helper Classes</span></a>
         </li> -->
+
+        <li>
+          <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">shopping_cart</i>
+            <span>Buy</span>
+          </a>
+          <ul class="ml-menu">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/product-list']">Products</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/views/cart']">My Cart</a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">assignment</i>
