@@ -44,35 +44,36 @@
 .prod-content {
   position: relative;
   padding: 15px 20px;
-  .overlay {
-    border-top: 0;
-    position: absolute;
-    background: #fff;
-    width: 100%;
-    top: 0;
-    right: 0;
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    ul {
-      padding: 0;
-      margin: 0 auto -7px;
-      list-style-type: none;
-      display: inline-block;
-      li {
-        float: left;
-        display: block;
-        margin: 0 2px;
-      }
+}
+
+.overlay {
+  border-top: 0;
+  position: absolute;
+  background: rgb(255, 103, 103);
+  width: 100%;
+  top: 0;
+  right: 0;
+  display: none;
+  cursor: pointer;
+  align-items: center;
+  ul {
+    padding: 0;
+    margin: 0 auto -7px;
+    list-style-type: none;
+    display: inline-block;
+    li {
+      float: left;
+      display: block;
+      margin: 0 2px;
     }
   }
 }
 
-.prod-content:hover{
-    .overlay{
-        display: flex;
-        cursor: pointer;
-    }
+.prod-content:hover {
+  .overlay {
+    display: flex;
+    cursor: pointer;
+  }
 }
 
 .prodwrap {
@@ -94,7 +95,7 @@
 
 .searchInput {
   width: 100%;
-  font-size: 12px;
+  font-size: 16px;
   padding-right: 35px;
   border: 0;
   outline: 0;

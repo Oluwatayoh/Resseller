@@ -68,7 +68,6 @@ import { DeviceComponent } from './device/device.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { InvoicesComponent } from './payment/invoices/invoices.component';
 import { NewTicketComponent } from './tickets/new-ticket/new-ticket.component';
-import { SupportComponent } from './tickets/support/support.component';
 import { ProductListComponent } from './purchases/product-list/product-list.component';
 import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
 import { MyCartComponent } from './purchases/my-cart/my-cart.component';
@@ -142,10 +141,9 @@ import { UploadComponent } from './public-script/upload/upload.component';
 		TransactHistoryComponent,
 		TransactHistoryPreviewComponent,
 		NewTicketComponent,
-		SupportComponent,
 		ProductListComponent,
 		ProductDetailsComponent,
-		MyCartComponent
+		MyCartComponent,
 		TicketListComponent,
 		PaymentTicketComponent,
 		MessageTicketComponent,

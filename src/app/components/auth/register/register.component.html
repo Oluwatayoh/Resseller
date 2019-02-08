@@ -1,7 +1,9 @@
-<div class="signup-box">
-  <div class="logo">
-    <a href="javascript:void(0);">Admin<b>BSB</b></a>
-    <small>Admin BootStrap Based - Material Design</small>
+<div class="signup-page ">
+  <div class="logo" style="background: transparent; text-align: -webkit-center; display: grid;">
+    <!-- <img class="pull-center" style="right: 0px; border-radius: 20%; height: 100px;  width: 100px;"
+      src="assets/img/logo.png" alt="" title="NigComSat" id="Img1" /> -->
+    <h3 style="color: white;">Customer Registration</h3>
+    <span style="color: white;">Fill in your details, click the sign up button to register. </span>
   </div>
   <div class="card">
     <div class="body">
@@ -12,7 +14,8 @@
             <i class="material-icons">person</i>
           </span>
           <div class="">
-            <input type="text" formControlName="surname" class="form-control" placeholder="Surname" required="autofocus" />
+            <input type="text" formControlName="surname" class="form-control" placeholder="Surname"
+              required="autofocus" />
             <small [hidden]="customerForm.controls['surname'].valid || (customerForm.controls['surname'].pristine)">
               Username is required (minimum 3 characters).
             </small>
@@ -25,7 +28,8 @@
           </span>
           <div class="">
             <input type="text" formControlName="otherNames" class="form-control" placeholder="Other Names" required />
-            <small [hidden]="customerForm.controls['otherNames'].valid || (customerForm.controls['otherNames'].pristine)">
+            <small
+              [hidden]="customerForm.controls['otherNames'].valid || (customerForm.controls['otherNames'].pristine)">
               Username is required (minimum 3 characters).
             </small>
           </div>
@@ -78,13 +82,15 @@
           <div class="  ">
             <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword"
               minlength="6" placeholder="Confirm Password" required="" validateEqual="password" />
-            <small [hidden]="customerForm.controls['confirmPassword'].valid ||  (customerForm.controls['confirmPassword'].pristine)">
+            <small
+              [hidden]="customerForm.controls['confirmPassword'].valid ||  (customerForm.controls['confirmPassword'].pristine)">
               Password mismatch
             </small>
           </div>
         </div>
         <div class="form-group">
-          <input type="checkbox" required formControlName="accept" name="terms" id="terms" class="filled-in chk-col-pink" />
+          <input type="checkbox" required formControlName="accept" name="terms" id="terms"
+            class="filled-in chk-col-pink" />
           <label for="terms">I read and agree to the <a href="#">terms of usage</a>.</label>
         </div>
 
