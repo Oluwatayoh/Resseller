@@ -78,7 +78,7 @@ const viewsRoutes: Routes = [
 			{ path: 'invoice', component: InvoicesComponent },
 			{ path: 'history', component: TransactHistoryComponent },
 			{ path: 'product-list', component: ProductListComponent },
-			{ path: 'product-detail', component: ProductDetailsComponent },
+			{ path: 'product-detail/:id', component: ProductDetailsComponent },
 			{ path: 'cart', component: MyCartComponent },
 			{ path: 'support-ticket', component: SupportTicketComponent },
 			{ path: 'payment-ticket', component: PaymentTicketComponent },

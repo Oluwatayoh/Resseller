@@ -11,6 +11,10 @@ export class DeviceService {
 		return this.http.get(`${this.baseUrl}`);
 	}
 
+	getDevice(id) {
+		return this.http.get(`${this.baseUrl}/${id}?includeTransactions=${true}`);
+	}
+
 	postDevice(device) {
 		return this.http.post(this.baseUrl, device);
 	}

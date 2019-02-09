@@ -1,3 +1,4 @@
+import { ProductListService } from './components/views/services/product-list.service';
 import { PaymentModeService } from './components/views/services/payment-mode.service';
 import { TicketService } from './components/views/services/ticket.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -60,7 +61,8 @@ import { BroadcastImageUploadService } from './components/views/public-script/br
 		TicketService,
 		DynamicScriptLoaderService,
 		PaymentModeService,
-		BroadcastImageUploadService
+		BroadcastImageUploadService,
+		ProductListService
 	],
 	bootstrap: [ AppComponent ]
 })

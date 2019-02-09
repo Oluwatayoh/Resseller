@@ -2,6 +2,11 @@
   border-right: 1px solid #efefef;
   padding: 30px 30px 20px;
   width: 72%;
+
+  .m-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .card {
@@ -36,16 +41,19 @@
   display: block;
   margin: auto;
   border: 0;
+
   i {
     font-size: 72px !important;
     margin-top: 4px;
     color: #149dcc;
   }
+
   .plan-detail-wrap {
     text-align: center;
     background-color: #229dff;
     color: #fff;
     padding: 5px;
+
     h3 {
       margin-top: 10px !important;
     }
@@ -55,6 +63,7 @@
 .prod-content {
   position: relative;
   padding: 15px 20px;
+
   .cart-btn {
     display: none;
   }
@@ -63,24 +72,33 @@
 .prodwrap {
   margin: 10px;
 }
+
 .prodwrap:hover {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  i{color: #F44336;}
+
+  i {
+    color: #F44336;
+  }
+
   cursor: pointer;
+
   .cart-btn {
     display: flex;
   }
+
   .plan-content {
     background-color: #F44336 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+
     strong {
       color: #fff;
       text-align: left !important;
     }
   }
+
   .plan-detail-wrap {
     text-align: center;
     background-color: #fff;
@@ -114,11 +132,13 @@
   font-family: roboto, sans-serif;
   width: 28%;
 }
+
 .content-filter {
   padding: 20px 25px;
   position: relative;
   border-bottom: 1px solid #efefef;
 }
+
 .search {
   width: 100%;
   outline: 0;
@@ -137,6 +157,7 @@
     font-weight: 400;
     line-height: 20px;
   }
+
   .icon {
     position: absolute;
     right: 25px;
@@ -187,6 +208,7 @@ a {
 nav {
   ul {
     display: inline-flex !important;
+
     ul li:hover {
       color: #ff4081;
     }

@@ -6,40 +6,40 @@
 
     <div class="row card">
       <div class="col m8 l9 s12 layout main-product">
-        <div class="row row-clear row-product">
-          <div [routerLink]="['/views/product-detail']" class="col l4 s6 waves-effect prodwrap">
-            <div class="item-product">
-              <img class="img" src="../../../../../assets/img/modem.jpg">
-              <div class="prod-content">
-                <h5 class="tittle truncate">Satellite Dish</h5>
-                <strong class="price">$782.00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="col l4 s6 waves-effect prodwrap">
-            <div class="item-product">
-              <div class="img">
-                <i class="material-icons">data_usage</i>
-                <div class="plan-detail-wrap">
-                  <h3>Home</h3>
-                  <h4>10Gb Bandwidth</h4>
-                  <small>1.5 Mbps Up-To-Speed</small>
-                  <h5>Monthly Subscription</h5>
+        <div class="m-wrap">
+          <div class="row row-clear row-product" *ngFor="let product of productList">
+            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]" class="col l4 s6 waves-effect prodwrap">
+              <div class="item-product">
+                <img class="img" src="../../../../../assets/img/modem.jpg">
+                <div class="prod-content">
+                  <h5 class="tittle truncate">{{product.name}}</h5>
+                  <strong class="price">&#8358;{{product.price|number:'.2'}}</strong>
                 </div>
               </div>
-              <br>
-              <br>
-              <div class="prod-content plan-content">
-                <strong class="price">$782.00</strong>
-                <button type="button" data-toggle="modal" data-target="#smallModal"
-                  class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
-                  <i class="material-icons">payment</i>
-                </button>
+            </div>
+            <div *ngIf="product.dataPlanId === undefined" class="col l4 s6 waves-effect prodwrap">
+              <div class="item-product">
+                <div class="img">
+                  <i class="material-icons">data_usage</i>
+                  <div class="plan-detail-wrap">
+                    <h3>{{product?.name}}</h3>
+                    <h4>{{product?.bandwidth}}{{product?.bandWidthUnit?.name}} Bandwidth</h4>
+                    <small>1.5 Mbps Up-To-Speed</small>
+                    <h5>{{product?.validity}} {{product?.validityUnit?.name}}</h5>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="prod-content plan-content">
+                  <strong class="price">&#8358;{{product?.price| number: '.2'}}</strong>
+                  <button type="button" data-toggle="modal" data-target="#smallModal" class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                    <i class="material-icons">payment</i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
         <!-- pagination -->
         <div>
           <div class="wrap-pagination">

@@ -6,7 +6,6 @@ export class ThemeHelpersService {
 	constructor() {}
 
 	viewsActivate() {
-		console.log($);
 		$.AdminBSB.browser.activate();
 		$.AdminBSB.leftSideBar.activate();
 		$.AdminBSB.rightSideBar.activate();
