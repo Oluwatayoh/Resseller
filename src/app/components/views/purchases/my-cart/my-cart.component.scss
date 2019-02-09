@@ -6,7 +6,6 @@ td {
 }
 
 input {
-  position: relative !important;
   left: 20px !important;
   opacity: 1 !important;
 }
@@ -19,5 +18,53 @@ input {
   }
   .cart-bill-details {
     width: 30%;
+    margin: 20px;
   }
+}
+
+.table-cart {
+  width: 790px;
+  thead {
+    border-bottom: 1px solid #d0d0d0;
+  }
+  th {
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+    font-weight: 500;
+    color: #3f3f3f;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #efefef;
+  }
+  tbody tr td {
+    position: relative;
+    padding: 10px;
+    vertical-align: top;
+    text-align: center;
+  }
+  thead tr th {
+    position: relative;
+    padding: 15px;
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.count {
+  border: 1px solid #e0e0e0;
+  td {
+    padding: 15px 5px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+}
+
+.count tr td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
 }
