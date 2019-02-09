@@ -77,7 +77,7 @@ import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.
 import { UploadComponent } from './public-script/upload/upload.component';
 
 @NgModule({
-	imports: [CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule],
+	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
 	declarations: [
 		ViewsComponent,
 		NavbarTopComponent,
@@ -152,4 +152,4 @@ import { UploadComponent } from './public-script/upload/upload.component';
 	],
 	providers: []
 })
-export class ViewsModule { }
+export class ViewsModule {}

@@ -1,3 +1,4 @@
+import { PaymentModeService } from './components/views/services/payment-mode.service';
 import { TicketService } from './components/views/services/ticket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,9 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './components/auth/auth.module';
 import { LandingModule } from './components/landing/landing.module';
 import { ViewsModule } from './components/views/views.module';
-
-
-
 
 // Main Components
 import { AppComponent } from './app.component';
@@ -32,9 +30,10 @@ import { CoolStorageModule } from 'angular2-cool-storage';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { DynamicScriptLoaderService } from './components/views/public-script/dynamic-script-loader-service';
+import { EqualValidator } from './components/views/public-script/equal-validator.directive';
 
 @NgModule({
-	declarations: [ AppComponent ],
+	declarations: [ AppComponent, EqualValidator ],
 	imports: [
 		BrowserModule,
 		FlashMessagesModule.forRoot(),
@@ -58,7 +57,8 @@ import { DynamicScriptLoaderService } from './components/views/public-script/dyn
 		CustomerDeviceTransactionsService,
 		SystemModuleService,
 		TicketService,
-		DynamicScriptLoaderService
+		DynamicScriptLoaderService,
+		PaymentModeService
 	],
 	bootstrap: [ AppComponent ]
 })

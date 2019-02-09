@@ -8,7 +8,7 @@ import { CustomersService } from '../../services/customers.service';
 @Component({
 	selector: 'app-navbar-left',
 	templateUrl: './navbar-left.component.html',
-	styleUrls: ['./navbar-left.component.scss']
+	styleUrls: [ './navbar-left.component.scss' ]
 })
 export class NavbarLeftComponent implements OnInit {
 	appInfo: any = Config.APP;
@@ -22,7 +22,7 @@ export class NavbarLeftComponent implements OnInit {
 		this._customerService.customerSelected.subscribe((value) => {
 			this.customer = value;
 		});
-		this.loadScripts();
+		// this.loadScripts();
 	}
 
 	ngOnInit() {
@@ -61,8 +61,8 @@ export class NavbarLeftComponent implements OnInit {
 	}
 
 	signOut() {
-		this._router.navigate(['/auth']).then(
-			(result) => { },
+		this._router.navigate([ '/auth' ]).then(
+			(result) => {},
 			(error) => {
 				console.log(error);
 			}
