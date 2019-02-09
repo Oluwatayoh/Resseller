@@ -7,6 +7,7 @@ import { DataplanService } from '../../services/dataplan.service';
 import { CustomerBandwidthTransactionsService } from '../../services/customer-bandwidth-transactions.service';
 import { PaystackVerificationService } from '../../services/paystack-verification.service';
 import { SystemModuleService } from '../../public-script/system-module.service';
+import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
 	selector: 'app-buy',
@@ -21,6 +22,7 @@ export class BuyComponent implements OnInit {
 	refKey: string;
 	selectedPlan: any;
 	paystackPayment = false;
+	currentInvoice: any;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _dataPlanService: DataplanService,
@@ -28,6 +30,7 @@ export class BuyComponent implements OnInit {
 		private _formBuilder: FormBuilder,
 		private _payStackVerificationService: PaystackVerificationService,
 		private _systemModuleService: SystemModuleService,
+		private _invoiceService: InvoiceService,
 		private _router: Router
 	) {}
 
@@ -51,54 +54,76 @@ export class BuyComponent implements OnInit {
 	}
 
 	buyDataPlan(plan) {
-		this.selectedPlan = plan;
-		this.paystackPayment = true;
+		this.currentInvoice = undefined;
+		const invoice = {
+			quantity: 1,
+			item: plan.name,
+			itemType: 'Data Plan',
+			invoiceNumber: '',
+			customerId: this.customer.id,
+			productType: 'Data Plan',
+			productId: plan.id,
+			price: plan.price
+		};
+		this._invoiceService.postInvoice(invoice).subscribe(
+			(payload: any) => {
+				this.selectedPlan = plan;
+				this.paystackPayment = true;
+				this.currentInvoice = payload;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
 	}
 	paymentCancel() {
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 	}
 	paymentDone(paymentRes) {
-		console.log(paymentRes);
-		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
+		if (this.currentInvoice === undefined) {
+		} else {
+			this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 
-		const amount = parseFloat(this.selectedPlan.price);
-		const walletTransaction: any = {
-			payStackReponse: paymentRes,
-			amount: amount,
-			customerId: this.customer.id,
-			dataPlanId: this.selectedPlan.id,
-			transactionType: 'Data Plan'
-		};
-		console.log(walletTransaction);
+			const amount = parseFloat(this.selectedPlan.price);
+			const walletTransaction: any = {
+				payStackReponse: paymentRes,
+				amount: amount,
+				customerId: this.customer.id,
+				dataPlanId: this.selectedPlan.id,
+				transactionType: 'Data Plan',
+				invoiceId: this.currentInvoice.id
+			};
+			console.log(walletTransaction);
 
-		this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
-			(payload) => {
-				this._systemModuleService.announceSweetProxy(
-					`Successfully purchased ${this.selectedPlan.name}`,
-					'success',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-				this.reloadTransaction.emit(true);
-			},
-			(error) => {
-				this._systemModuleService.announceSweetProxy(
-					`Transaction error occured while purchasing ${this.selectedPlan.name}`,
-					'error',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-			}
-		);
+			this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
+				(payload) => {
+					this._systemModuleService.announceSweetProxy(
+						`Successfully purchased ${this.selectedPlan.name}`,
+						'success',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+					this.reloadTransaction.emit(true);
+				},
+				(error) => {
+					this._systemModuleService.announceSweetProxy(
+						`Transaction error occured while purchasing ${this.selectedPlan.name}`,
+						'error',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+				}
+			);
+		}
 	}
 }

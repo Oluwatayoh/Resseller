@@ -74,25 +74,23 @@
                 <br>
                 <div class="dropdown">
                   <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                    <select class="form-control show-tick">
+                    <select [formControl]="paymentMode" class="form-control show-tick">
                       <option value="0">--Payment Method--</option>
-                      <option value="1">Bank Transfer</option>
-                      <option value="2">POS</option>
-                      <option value="3">Online Payment</option>
+                      <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}</option>
                     </select>
                   </div>
-                  <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                  <!-- <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
                     <select class="form-control show-tick">
                       <option value="0">--Select Bank--</option>
                       <option value="1">First Bank</option>
                       <option value="2">Fidelity </option>
                       <option value="3">Zenith</option>
                     </select>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
-            <div class="modal-footer" style="text-align:center !important;">
+            <div *ngIf="hideOnlinePayment===false" class="modal-footer" style="text-align:center !important;">
               <button type="button" class="btn btn-link waves-effect" (click)="buyDevice(selectedDevice)"
                 angular4-paystack [key]="paystackClientKey" [email]="customer.email" [amount]="selectedDevice?.price*100"
                 [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()" (callback)="paymentDone($event)"

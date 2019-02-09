@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CoolLocalStorage } from 'angular2-cool-storage';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomersService } from '../services/customers.service';
 import { SystemModuleService } from '../public-script/system-module.service';
 import { ONLINE, ONLINEPATH } from '../public-script/global-config';
+import { BroadcastImageUploadService } from '../public-script/broadcast-image-upload.service';
 
 @Component({
 	selector: 'app-profile',
@@ -18,21 +19,22 @@ export class ProfileComponent implements OnInit {
 	donePasswordChange = true;
 	customer;
 	customerForm: FormGroup;
-	currentPassword: string;
-	password: string;
+	currentPassword: FormControl = new FormControl('');
+	password: FormControl = new FormControl('');
+	confirmPassword: FormControl = new FormControl('');
 	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _customerService: CustomersService,
 		private _formBuilder: FormBuilder,
 		private _systemModuleService: SystemModuleService,
+		private _imageUploadBroadCastUploadService: BroadcastImageUploadService,
 		private _router: Router,
 		private cdRef: ChangeDetectorRef
 	) {}
 
 	ngOnInit() {
 		this.customer = this._locker.getObject('selectedCustomer');
-		console.log(this.customer);
 		this.customerForm = this._formBuilder.group({
 			surname: [ this.customer.surname, [ <any>Validators.required, Validators.minLength(3) ] ],
 			otherNames: [ this.customer.otherNames, [ <any>Validators.required ] ],
@@ -94,6 +96,7 @@ export class ProfileComponent implements OnInit {
 			this._locker.setObject('selectedCustomer', value);
 			this.cdRef.detectChanges();
 			this.ngOnInit();
+			this._imageUploadBroadCastUploadService.announceLoading(value);
 		}
 	}
 	getRealTimeImageUrl() {
@@ -109,42 +112,65 @@ export class ProfileComponent implements OnInit {
 	}
 	sing_out() {
 		this._locker.clear();
-		this._router.navigate([ '/' ]);
+		this._router.navigate([ '/auth/login' ]);
 	}
 	onDonePasswordChange() {
-		this._customerService
-			.putCustomerPassword(this.customer.id, this.currentPassword.trim(), this.password.trim(), this.customer)
-			.subscribe(
-				(payload) => {
-					this._systemModuleService.announceSweetProxy(
-						`You have successfully changed your password`,
-						'success',
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						null
-					);
+		console.log(this.currentPassword.value);
+		if (this.password.value === this.confirmPassword.value) {
+			this._customerService
+				.putCustomerPassword(this.customer.id, this.currentPassword.value, this.password.value, this.customer)
+				.subscribe(
+					(payload) => {
+						this._systemModuleService.announceSweetProxy(
+							`You have successfully changed your password`,
+							'success',
+							null,
+							null,
+							null,
+							null,
+							null,
+							null,
+							null
+						);
 
-					this.changePassword = false;
-					this.donePasswordChange = true;
-					this.sing_out();
-				},
-				(error) => {
-					this._systemModuleService.announceSweetProxy(
-						`An error has occured while changing your password`,
-						'error',
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						null
-					);
-				}
+						this.changePassword = false;
+						this.donePasswordChange = true;
+						this.sing_out();
+					},
+					(error) => {
+						this._systemModuleService.announceSweetProxy(
+							`An error has occured while changing your password`,
+							'error',
+							null,
+							null,
+							null,
+							null,
+							null,
+							null,
+							null
+						);
+					}
+				);
+		} else {
+			this._systemModuleService.announceSweetProxy(
+				`Password and ConfirmPassword must be equal`,
+				'error',
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null
 			);
+		}
+	}
+	cancel() {
+		this.changePassword = false;
+		this.donePasswordChange = true;
+	}
+	cancelEdit() {
+		this.editFields = false;
+		this.doneEdit = true;
 	}
 }

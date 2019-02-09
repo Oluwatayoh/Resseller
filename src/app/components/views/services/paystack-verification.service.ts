@@ -8,7 +8,6 @@ export class PaystackVerificationService {
 	constructor(private http: HttpClient) {}
 
 	postPayStackVerification(data) {
-		console.log(data);
 		return this.http.post(this.baseUrl, data);
 	}
 }

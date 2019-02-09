@@ -63,8 +63,7 @@
                   </div>
                 </div>
                 <div *ngIf="editFields" class="col-xs-4">
-                  <button (click)="onDoneEdit()" class="btn btn-block bg-blue waves-effect"
-                    type="submit">Update</button>
+                  <button (click)="onDoneEdit()" class="btn btn-block bg-blue waves-effect" type="submit">Update</button>
                 </div>
                 <br>
                 <hr>
@@ -73,25 +72,33 @@
                     <span>Current Password:</span>
                     <h5 *ngIf="donePasswordChange">***********</h5>
                     <div *ngIf="changePassword" class="form-line">
-                      <input name="current" [(ngModel)]="currentPassword" class="form-control" type="password">
+                      <input name="current" [formControl]="currentPassword" class="form-control" type="password">
                     </div>
                   </div>
+
                   <div *ngIf="changePassword" class="">
                     <span>New Password:</span>
                     <div class="form-line">
-                      <input name="password" [(ngModel)]="password" class="form-control" type="password">
+                      <input name="password" [formControl]="password" class="form-control" type="password"
+                        validateEqual="confirmPassword" reverse="true" minlength="6" required>
                     </div>
+                    <small [hidden]="password.valid ||  password.pristine">
+                      Password mismatch
+                    </small>
                   </div>
                   <div *ngIf="changePassword" class="">
                     <span>Confirm Password:</span>
                     <div class="form-line">
-                      <input name="password" class="form-control" type="password">
+                      <input name="confirmPassword" [formControl]="confirmPassword" validateEqual="password" class="form-control"
+                        type="password" minlength="6" required>
                     </div>
+                    <small [hidden]="confirmPassword.valid ||  confirmPassword.pristine">
+                      Password mismatch
+                    </small>
                   </div>
-                  <button *ngIf="changePassword" (click)="onDonePasswordChange()"
-                    class="btn waves-effect bg-blue waves-light" type="submit"><i
-                      class="material-icons">check</i></button>
-                  <button *ngIf="changePassword" class="btn waves-effect bg-red waves-light" type="cancel"><i
+                  <button *ngIf="changePassword" (click)="onDonePasswordChange()" class="btn waves-effect bg-blue waves-light"
+                    type="submit"><i class="material-icons">check</i></button>
+                  <button (click)="cancel()" *ngIf="changePassword" class="btn waves-effect bg-red waves-light" type="cancel"><i
                       class="material-icons">cancel</i></button>
                   <div class="switch" *ngIf="donePasswordChange">
                     <label>
@@ -108,8 +115,7 @@
                 <form [formGroup]="customerForm">
                   <div class="input-group">
                     <div class="form-line">
-                      <input formControlName="surname" type="text" class="form-control" placeholder="Surname"
-                        required="autofocus" />
+                      <input formControlName="surname" type="text" class="form-control" placeholder="Surname" required="autofocus" />
                     </div>
                   </div>
 
@@ -148,9 +154,8 @@
                     </div>
                   </div>
 
-                  <button (click)="onDoneEdit()" class="btn btn-block btn-lg bg-blue waves-effect"
-                    type="button">Update</button>
-                  <button class="btn btn-block btn-lg bg-red waves-effect" type="button">Cancel</button>
+                  <button (click)="onDoneEdit()" class="btn btn-block btn-lg bg-blue waves-effect" type="button">Update</button>
+                  <button (click)="cancelEdit()" class="btn btn-block btn-lg bg-red waves-effect" type="button">Cancel</button>
                 </form>
               </div>
             </div>
