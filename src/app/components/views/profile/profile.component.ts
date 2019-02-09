@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CustomersService } from '../services/customers.service';
 import { SystemModuleService } from '../public-script/system-module.service';
 import { ONLINE, ONLINEPATH } from '../public-script/global-config';
+import { BroadcastImageUploadService } from '../public-script/broadcast-image-upload.service';
 
 @Component({
 	selector: 'app-profile',
@@ -27,13 +28,13 @@ export class ProfileComponent implements OnInit {
 		private _customerService: CustomersService,
 		private _formBuilder: FormBuilder,
 		private _systemModuleService: SystemModuleService,
+		private _imageUploadBroadCastUploadService: BroadcastImageUploadService,
 		private _router: Router,
 		private cdRef: ChangeDetectorRef
 	) {}
 
 	ngOnInit() {
 		this.customer = this._locker.getObject('selectedCustomer');
-		console.log(this.customer);
 		this.customerForm = this._formBuilder.group({
 			surname: [ this.customer.surname, [ <any>Validators.required, Validators.minLength(3) ] ],
 			otherNames: [ this.customer.otherNames, [ <any>Validators.required ] ],
@@ -95,6 +96,7 @@ export class ProfileComponent implements OnInit {
 			this._locker.setObject('selectedCustomer', value);
 			this.cdRef.detectChanges();
 			this.ngOnInit();
+			this._imageUploadBroadCastUploadService.announceLoading(value);
 		}
 	}
 	getRealTimeImageUrl() {

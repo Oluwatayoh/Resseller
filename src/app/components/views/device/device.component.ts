@@ -8,6 +8,7 @@ import { DeviceService } from '../services/device.service';
 import { PaystackVerificationService } from '../services/paystack-verification.service';
 import { SystemModuleService } from '../public-script/system-module.service';
 import { PaymentModeService } from '../services/payment-mode.service';
+import { InvoiceService } from '../services/invoice.service';
 
 @Component({
 	selector: 'app-device',
@@ -26,6 +27,7 @@ export class DeviceComponent implements OnInit {
 	selectedDevice: any;
 	paymentMode: FormControl = new FormControl();
 	hideOnlinePayment = true;
+	currentInvoice: any;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _customerTransactionService: CustomerDeviceTransactionsService,
@@ -34,6 +36,7 @@ export class DeviceComponent implements OnInit {
 		private _payStackVerificationService: PaystackVerificationService,
 		private _systemModuleService: SystemModuleService,
 		private _paymentModeService: PaymentModeService,
+		private _invoiceService: InvoiceService,
 		private _router: Router
 	) {}
 
@@ -92,55 +95,77 @@ export class DeviceComponent implements OnInit {
 
 	buyDevice(device) {
 		this.selectedDevice = device;
+		this.currentInvoice = undefined;
+		const invoice = {
+			quantity: 1,
+			item: device.name,
+			itemType: 'Data Plan',
+			invoiceNumber: '',
+			customerId: this.customer.id,
+			productType: 'Data Plan',
+			productId: device.id,
+			price: device.price
+		};
+		this._invoiceService.postInvoice(invoice).subscribe(
+			(payload: any) => {
+				this.currentInvoice = payload;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
 	}
 
 	paymentCancel() {
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 	}
 	paymentDone(paymentRes) {
-		console.log(paymentRes);
-		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
+		if (this.currentInvoice === undefined) {
+		} else {
+			this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 
-		const amount = parseFloat(this.selectedDevice.price);
-		const walletTransaction: any = {
-			payStackReponse: paymentRes,
-			amount: amount,
-			customerId: this.customer.id,
-			deviceId: this.selectedDevice.id,
-			transactionType: 'Device'
-		};
-		console.log(walletTransaction);
+			const amount = parseFloat(this.selectedDevice.price);
+			const walletTransaction: any = {
+				payStackReponse: paymentRes,
+				amount: amount,
+				customerId: this.customer.id,
+				deviceId: this.selectedDevice.id,
+				transactionType: 'Device',
+				invoiceId: this.currentInvoice.id
+			};
+			console.log(walletTransaction);
 
-		this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
-			(payload) => {
-				this._systemModuleService.announceSweetProxy(
-					`Successfully purchased ${this.selectedDevice.name}`,
-					'success',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-				this.closeAddExpenseModal.nativeElement.click();
-				this.getDeviceTransations();
-			},
-			(error) => {
-				this._systemModuleService.announceSweetProxy(
-					`Transaction error occured while purchasing ${this.selectedDevice.name}`,
-					'error',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-			}
-		);
+			this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
+				(payload) => {
+					this._systemModuleService.announceSweetProxy(
+						`Successfully purchased ${this.selectedDevice.name}`,
+						'success',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+					this.closeAddExpenseModal.nativeElement.click();
+					this.getDeviceTransations();
+				},
+				(error) => {
+					this._systemModuleService.announceSweetProxy(
+						`Transaction error occured while purchasing ${this.selectedDevice.name}`,
+						'error',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+				}
+			);
+		}
 	}
 
 	// onshowBankTransfer(){this.selBankTransfer=true}

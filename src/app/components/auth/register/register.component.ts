@@ -39,37 +39,51 @@ export class RegisterComponent implements OnInit, OnDestroy {
 	}
 
 	signUp() {
-		this._customerService.postCustomer(this.customerForm.value).subscribe(
-			(payload) => {
-				this._systemModuleService.announceSweetProxy(
-					'Customer created successfully',
-					'success',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-				this._customerService.selectCustomer(payload);
-				this._locker.setObject('selectedCustomer', payload);
-				this._router.navigate([ '/views/home' ]).then((pay) => {});
-			},
-			(error) => {
-				this._systemModuleService.announceSweetProxy(
-					'An error occured while creating customer',
-					'error',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-			}
-		);
+		if (this.customerForm.controls['password'].value === this.customerForm.controls['confirmPassword'].value) {
+			this._customerService.postCustomer(this.customerForm.value).subscribe(
+				(payload) => {
+					this._systemModuleService.announceSweetProxy(
+						'Customer created successfully',
+						'success',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+					this._customerService.selectCustomer(payload);
+					this._locker.setObject('selectedCustomer', payload);
+					this._router.navigate([ '/views/home' ]).then((pay) => {});
+				},
+				(error) => {
+					this._systemModuleService.announceSweetProxy(
+						'An error occured while creating customer',
+						'error',
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null
+					);
+				}
+			);
+		} else {
+			this._systemModuleService.announceSweetProxy(
+				`Password and ConfirmPassword must be equal`,
+				'error',
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null
+			);
+		}
 	}
 
 	signIn() {

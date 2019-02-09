@@ -27,8 +27,6 @@ export class UploadComponent {
 		for (const file of files) {
 			formData.append(file.name, file);
 		}
-		// return this.http.put(`${this.baseUrl}/${id}/changepassword?current=${current}&password=${password}`, customer);
-		console.log(`${this.baseUrl}/${this.customer.id}/uploadfile`);
 		const uploadReq = new HttpRequest(
 			'POST',
 			`${this.baseUrl}/${this.customer.id}/${'customer'}/uploadfile`,
@@ -42,10 +40,9 @@ export class UploadComponent {
 			if (event.type === HttpEventType.UploadProgress) {
 				this.progress = Math.round(100 * event.loaded / event.total);
 			} else if (event.type === HttpEventType.Response) {
+				console.log(event);
 				this.message = 'Upload Successful'; // event.body.toString();
-				console.log(event.body);
 				this.completeOperation.emit(event.body);
-				// this._locker.setObject('selectedCustomer', event.body);
 			}
 		});
 	}

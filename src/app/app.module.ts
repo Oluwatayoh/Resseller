@@ -31,6 +31,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { DynamicScriptLoaderService } from './components/views/public-script/dynamic-script-loader-service';
 import { EqualValidator } from './components/views/public-script/equal-validator.directive';
+import { BroadcastImageUploadService } from './components/views/public-script/broadcast-image-upload.service';
 
 @NgModule({
 	declarations: [ AppComponent, EqualValidator ],
@@ -58,7 +59,8 @@ import { EqualValidator } from './components/views/public-script/equal-validator
 		SystemModuleService,
 		TicketService,
 		DynamicScriptLoaderService,
-		PaymentModeService
+		PaymentModeService,
+		BroadcastImageUploadService
 	],
 	bootstrap: [ AppComponent ]
 })
