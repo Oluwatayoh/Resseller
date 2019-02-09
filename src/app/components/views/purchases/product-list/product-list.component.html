@@ -19,15 +19,22 @@
           <div class="col l4 s6 waves-effect prodwrap">
             <div class="item-product">
               <div class="img">
-                <i class="material-icons"> import_export </i>
-                <h3>Home</h3>
-                <h4>10Gb Bandwidth</h4>
-                <small>1.5 Mbps Up-To-Speed</small>
-                <h5>Monthly Subscription</h5>
+                <i class="material-icons">data_usage</i>
+                <div class="plan-detail-wrap">
+                  <h3>Home</h3>
+                  <h4>10Gb Bandwidth</h4>
+                  <small>1.5 Mbps Up-To-Speed</small>
+                  <h5>Monthly Subscription</h5>
+                </div>
               </div>
-              <div class="prod-content">
-                <hr>
+              <br>
+              <br>
+              <div class="prod-content plan-content">
                 <strong class="price">$782.00</strong>
+                <button type="button" data-toggle="modal" data-target="#smallModal"
+                  class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                  <i class="material-icons">payment</i>
+                </button>
               </div>
             </div>
           </div>
@@ -70,3 +77,47 @@
     </div>
   </div>
 </section>
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" style="display:grid;">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="confirm_pay">
+          <p>You are about to purchase</p>
+          <h2>Home</h2>
+          <h3>10Gb Bandwidth</h3>
+          <small>1.5 Mbps Up-To-Speed</small>
+          <h5>Monthly Subscription</h5>
+          <h3>&#8358;10,000</h3>
+          <br>
+          <div class="dropdown">
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Payment Method--</option>
+                <option value="1">Bank Transfer</option>
+                <option value="2">POS</option>
+                <option value="3">Online Payment</option>
+              </select>
+            </div>
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Select Bank--</option>
+                <option value="1">First Bank</option>
+                <option value="2">Fidelity </option>
+                <option value="3">Zenith</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect">Yes</button>
+        <button class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

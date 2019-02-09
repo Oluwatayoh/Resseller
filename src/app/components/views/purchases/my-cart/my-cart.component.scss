@@ -1,0 +1,23 @@
+th,
+td {
+  i {
+    cursor: pointer;
+  }
+}
+
+input {
+  position: relative !important;
+  left: 20px !important;
+  opacity: 1 !important;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  .table-responsive {
+    width: 70%;
+  }
+  .cart-bill-details {
+    width: 30%;
+  }
+}

@@ -1,3 +1,81 @@
-<p>
-  product-details works!
-</p>
+<section>
+  <h2>Satellite Dish</h2>
+  <br>
+  <div class="det-layout">
+    <div class="lft">
+      <img src="../../../../../assets/img/modem.jpg" alt="product-1">
+    </div>
+    <div class="rht">
+      <h3>&#8358;45,000</h3>
+      <small>In stock (60 items available)</small>
+      <form class="form-horizontal">
+        <div class="row clearfix">
+          <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+            <label for="quantity">Quantity</label>
+          </div>
+          <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="form-line">
+              <input type="number" id="quantity" value="1" class="form-control"
+                placeholder="Enter Quantity">
+            </div>
+          </div>
+        </div>
+      </form>
+      <br>
+      <button class="btn btn-block btn-lg bg-red waves-effect" type="button"> <i
+          class="material-icons">shopping_cart</i>Add To Cart (0)</button>
+      <button class="btn btn-block btn-lg bg-blue waves-effect" type="button" data-toggle="modal"
+        data-target="#smallModal"><i class="material-icons">payment</i>Buy</button>
+      <br>
+      <br>
+      <br>
+      <h4>Description</h4>
+      <p>Lorem ipsum dolor sit amet, in erant aliquando percipitur eam, malis disputationi an per, sit unum adipisci
+        salutandi ea. Sit adhuc nobis alterum et, ei nec dolorem fierent offendit, ad per laudem causae. Ea his vocent
+        necessitatibus, solet quando ex vis, in pri tantas voluptatum intellegebat. Est te facilisis aliquando
+        conclusiwomanmque, vis an fugit altera essent.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" style="display:grid;">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="confirm_pay">
+          <p>You are about to purchase</p>
+          <h2>Satellite Dish</h2>
+          <h3>&#8358;10,000</h3>
+          <br>
+          <div class="dropdown">
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Payment Method--</option>
+                <option value="1">Bank Transfer</option>
+                <option value="2">POS</option>
+                <option value="3">Online Payment</option>
+              </select>
+            </div>
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Select Bank--</option>
+                <option value="1">First Bank</option>
+                <option value="2">Fidelity </option>
+                <option value="3">Zenith</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect">Yes</button>
+        <button class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
