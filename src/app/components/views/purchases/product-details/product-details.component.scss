@@ -1,0 +1,32 @@
+section {
+  margin: 50px;
+  .det-layout {
+    display: inline-flex;
+    .lft {
+      width: auto;
+      img {
+        padding: 10px;
+        max-height: 450px !important;
+        border: 1px solid #b9b7b7;
+      }
+    }
+    .rht {
+      float: right;
+      margin-left: 20px;
+      margin-top: 30px;
+      h3{
+          margin-top: 0px !important;
+      }
+      button{
+          i{margin-right: 10px;}
+      }
+      button:hover{
+        color: white;
+      }
+    }
+  }
+}
+
+.form-control{
+  background-color: transparent !important;
+}

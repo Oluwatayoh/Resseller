@@ -1,3 +1,154 @@
-<p>
-  my-cart works!
-</p>
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="header">
+        <h4>
+          Cart List
+        </h4>
+      </div>
+      <div class="body">
+        <div class="table-responsive">
+          <table class="table-cart">
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>S/N</th>
+                <th>Added Items</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Remove</th>
+              </tr>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>1</td>
+                <td>Satellite Dish</td>
+                <td>5</td>
+                <td>&#8358;128,000</td>
+                <td>
+                  <i class="material-icons red">remove_circle</i>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>2</td>
+                <td>Satellite Dish</td>
+                <td>5</td>
+                <td>&#8358;128,000</td>
+                <td>
+                  <i class="material-icons red">remove_circle</i>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>3</td>
+                <td>Satellite Dish</td>
+                <td>5</td>
+                <td>&#8358;128,000</td>
+                <td>
+                  <i class="material-icons red">remove_circle</i>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>4</td>
+                <td>Satellite Dish</td>
+                <td>5</td>
+                <td>&#8358;128,000</td>
+                <td>
+                  <i class="material-icons red">remove_circle</i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <nav>
+              <ul class="pagination pagination-sm">
+                <li>
+                  <a class="waves-effect">
+                    <i class="material-icons">chevron_left</i>
+                  </a>
+                </li>
+                <li><a class="waves-effect">1</a></li>
+                <li><a class="waves-effect">2</a></li>
+                <li><a class="waves-effect">3</a></li>
+                <li><a class="waves-effect">4</a></li>
+                <li><a class="waves-effect">5</a></li>
+                <li>
+                  <a class="waves-effect">
+                    <i class="material-icons">chevron_right</i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="cart-bill-details col l4 s12">
+          <table class="count">
+            <tbody>
+              <tr>
+                <td>Sub Total</td>
+                <td class="right-align">$0.00</td>
+              </tr>
+              <tr>
+                <td>Promo</td>
+                <td class="right-align">$0.00</td>
+              </tr>
+              <tr>
+                <td>Total Price</td>
+                <td class="right-align"><strong>$0.00</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-block btn-lg bg-blue waves-effect" type="button" data-toggle="modal"
+            data-target="#smallModal"><i class="material-icons">payment</i>Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" style="display:grid;">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="confirm_pay">
+          <p>You are about to purchase</p>
+          <h2>Home</h2>
+          <h3>10Gb Bandwidth</h3>
+          <small>1.5 Mbps Up-To-Speed</small>
+          <h5>Monthly Subscription</h5>
+          <h3>&#8358;10,000</h3>
+          <br>
+          <div class="dropdown">
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Payment Method--</option>
+                <option value="1">Bank Transfer</option>
+                <option value="2">POS</option>
+                <option value="3">Online Payment</option>
+              </select>
+            </div>
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Select Bank--</option>
+                <option value="1">First Bank</option>
+                <option value="2">Fidelity </option>
+                <option value="3">Zenith</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect">Yes</button>
+        <button class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

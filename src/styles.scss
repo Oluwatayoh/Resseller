@@ -67,6 +67,15 @@ input[type="date"]::-webkit-inner-spin-button {
   margin-top: 7px;
 }
 
+.confirm_pay {
+  display: grid;
+  text-align: center;
+}
+
+.sel {
+  margin: 0 0 10px 25px;
+}
+
 .rg-form-content {
   display: flex;
   justify-content: space-between;
