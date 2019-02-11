@@ -19,33 +19,30 @@
                 <thead>
                   <tr>
                     <th>S/N</th>
-                    <th>Items</th>
+                    <!-- <th>Items</th> -->
                     <th>Invoice Number</th>
                     <th>Date</th>
-                    <th>Mode of Payment</th>
+                    <!-- <th>Mode of Payment</th> -->
                     <th>Total</th>
                     <th>Action</th>
                   </tr>
                 <tbody>
                   <tr *ngFor="let invoice of invoices;let i=index">
                     <td>{{i+1}}</td>
-                    <td>{{invoice.item}}</td>
+                    <!-- <td>{{invoice.item}}</td> -->
                     <td>{{invoice.invoiceNumber}}</td>
                     <td>{{invoice.invoiceDate|date:'medium'}}</td>
-                    <td>
+                    <!-- <td>
                       <span *ngIf="invoice.customerBandWidthTransactionId > 0">
                         {{invoice.customerBandWidthTransactionDto?.paymentMode?.name}}
                       </span>
                       <span *ngIf="invoice.customerDeviceTransactionId > 0">
                         {{invoice.customerDeviceTransactionDto?.paymentMode?.name}}
                       </span>
-                    </td>
+                    </td> -->
                     <td>&#8358;
-                      <span *ngIf="invoice.customerBandWidthTransactionId > 0">
-                        {{invoice.customerBandWidthTransactionDto?.dataPlan?.price * invoice.quantity}}
-                      </span>
-                      <span *ngIf="invoice.customerDeviceTransactionId > 0">
-                        {{invoice.customerDeviceTransactionDto?.device?.price * invoice.quantity}}
+                      <span>
+                        {{invoice.total|number:'.2'}}
                       </span>
 
                     </td>
@@ -92,15 +89,10 @@
             <div class="view_invoiceWrap">
               <div class="invoiceWrap">
                 <span>Invoice to:</span>
-                <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
-                  <a>{{selectedInvoice?.customerBandWidthTransactionDto?.customer.surname}}
-                    {{selectedInvoice?.customerBandWidthTransactionDto?.customer.otherNames}}</a>
+                <span>
+                  <a>{{selectedInvoice?.customer.surname}}
+                    {{selectedInvoice?.customer.otherNames}}</a>
                 </span>
-                <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
-                  <a>{{selectedInvoice?.customerDeviceTransactionDto?.customer.surname}}
-                    {{selectedInvoice?.customerDeviceTransactionDto?.customer.otherNames}}</a>
-                </span>
-
               </div>
               <div class="invoiceWrap">
                 <span>Invoice Date:</span>
@@ -129,25 +121,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">{{selectedInvoice?.item}}</th>
-                    <td>{{selectedInvoice?.quantity}}</td>
+                  <tr *ngFor="let detail of details">
+                    <th scope="row">{{detail?.item}}</th>
+                    <td>{{detail?.quantity}}</td>
                     <td>
                       &#8358;
-                      <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
-                        {{selectedInvoice?.customerBandWidthTransactionDto?.dataPlan?.price}}
-                      </span>
-                      <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
-                        {{selectedInvoice?.customerDeviceTransactionDto?.device?.price}}
+                      <span>
+                        {{detail?.price|number:'.2'}}
                       </span>
                     </td>
                     <td>&#8358;
-                      <span *ngIf="selectedInvoice?.customerBandWidthTransactionId > 0">
-                        {{selectedInvoice?.customerBandWidthTransactionDto?.dataPlan?.price *
-                        selectedInvoice.quantity}}
-                      </span>
-                      <span *ngIf="selectedInvoice?.customerDeviceTransactionId > 0">
-                        {{selectedInvoice?.customerDeviceTransactionDto?.device?.price * selectedInvoice.quantity}}
+                      <span>
+                        {{(detail?.price * detail?.quantity)|number:'.2'}}
                       </span>
                     </td>
                   </tr>

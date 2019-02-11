@@ -10,4 +10,5 @@ export const ALPHABET_REGEX = '[a-zA-Z][a-zA-Z ]+';
 export const GEO_LOCATIONS = [ 'ng' ];
 export const LOCAL = 'http://nigcomsatapi.mywebsitedemo.com.ng/api/';
 export const ONLINE = 'http://localhost:6670/api/';
+export const LOCALPATH = 'http://nigcomsatapi.mywebsitedemo.com.ng/upload/';
 export const ONLINEPATH = 'http://localhost:6670/upload/';

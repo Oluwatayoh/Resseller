@@ -39,7 +39,6 @@ export class NewTicketComponent implements OnInit {
 	}
 
 	addTicket() {
-		console.log(this.customerForm.value);
 		this._ticketService.postTicket(this.customerForm.value).subscribe(
 			(payload) => {
 				this.completeOperation.emit(payload);

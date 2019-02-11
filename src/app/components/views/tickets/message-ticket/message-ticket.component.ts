@@ -31,7 +31,6 @@ export class MessageTicketComponent implements OnInit {
 		this._ticketService.getTickets(this.customer.id, this.ticketType, false).subscribe(
 			(payload: any) => {
 				this.messagetList = payload;
-				console.log(payload);
 			},
 			(error) => {}
 		);

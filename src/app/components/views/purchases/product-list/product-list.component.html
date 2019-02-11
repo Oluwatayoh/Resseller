@@ -32,7 +32,8 @@
                 <br>
                 <div class="prod-content plan-content">
                   <strong class="price">&#8358;{{product?.price| number: '.2'}}</strong>
-                  <button type="button" data-toggle="modal" data-target="#smallModal" class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                  <button (click)="setDataPlan(product)" type="button" data-toggle="modal" data-target="#smallModal"
+                    class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
                     <i class="material-icons">payment</i>
                   </button>
                 </div>
@@ -68,9 +69,9 @@
         <div class="content-filter">
           <h6 class="title">Categories</h6>
           <ul class="categories">
-            <li class="active"><a>All</a></li>
-            <li><a>Bandwidth</a></li>
-            <li><a>Devices</a></li>
+            <li (click)="onSelectCategory('All')" [class.active]="selectedCategory === 'All'"><a>All</a></li>
+            <li (click)="onSelectCategory('Bandwidth')" [class.active]="selectedCategory === 'Bandwidth'"><a>Bandwidth</a></li>
+            <li (click)="onSelectCategory('Devices')" [class.active]="selectedCategory === 'Devices'"><a>Devices</a></li>
           </ul>
         </div>
       </div>
@@ -88,22 +89,20 @@
       <div class="modal-body">
         <div class="confirm_pay">
           <p>You are about to purchase</p>
-          <h2>Home</h2>
-          <h3>10Gb Bandwidth</h3>
+          <h2>{{selectedDataPlan?.name}}</h2>
+          <h3>{{selectedDataPlan?.bandwidth}}{{selectedDataPlan?.bandWidthUnit.name}} Bandwidth</h3>
           <small>1.5 Mbps Up-To-Speed</small>
-          <h5>Monthly Subscription</h5>
-          <h3>&#8358;10,000</h3>
+          <h5>{{selectedDataPlan?.validity}}{{selectedDataPlan?.validityUnit.name}}</h5>
+          <h3>&#8358;{{selectedDataPlan?.price|number:'.2'}}</h3>
           <br>
           <div class="dropdown">
             <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
-              <select class="form-control show-tick">
+              <select [formControl]="paymentMode" class="form-control show-tick">
                 <option value="0">--Payment Method--</option>
-                <option value="1">Bank Transfer</option>
-                <option value="2">POS</option>
-                <option value="3">Online Payment</option>
+                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}</option>
               </select>
             </div>
-            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
               <select class="form-control show-tick">
                 <option value="0">--Select Bank--</option>
                 <option value="1">First Bank</option>
@@ -114,9 +113,12 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect">Yes</button>
-        <button class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      <div *ngIf="hideOnlinePayment === false && this.currentInvoice !== undefined && this.currentInvoice?.id > 0"
+        class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
+          [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()"
+          (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
+        <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

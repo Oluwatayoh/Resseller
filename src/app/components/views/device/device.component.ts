@@ -47,8 +47,7 @@ export class DeviceComponent implements OnInit {
 		this.getDevices();
 		this.getPaymentModes();
 		this.paymentMode.valueChanges.subscribe((value) => {
-			console.log(value);
-			if (value === 'Online Transfer') {
+			if (value === 'Online Payment') {
 				this.hideOnlinePayment = false;
 			} else {
 				this.hideOnlinePayment = true;
@@ -60,7 +59,6 @@ export class DeviceComponent implements OnInit {
 		this._customerTransactionService.getCustomerDeviceTransactions(this.customer.id, true).subscribe(
 			(payload: any) => {
 				this.deviceTransactions = payload;
-				console.log(payload);
 			},
 			(error) => {
 				console.log(error);
@@ -72,8 +70,7 @@ export class DeviceComponent implements OnInit {
 		this._paymentModeService.getPaymentModes().subscribe(
 			(payload: any) => {
 				this.paymentModes = payload;
-				console.log(payload);
-				this.paymentMode.setValue('Online Transfer');
+				this.paymentMode.setValue('Online Payment');
 			},
 			(error) => {
 				console.log(error);
@@ -85,7 +82,6 @@ export class DeviceComponent implements OnInit {
 		this._deviceService.getDevices().subscribe(
 			(payload: any) => {
 				this.devices = payload;
-				console.log(payload);
 			},
 			(error) => {
 				console.log(error);
@@ -96,19 +92,21 @@ export class DeviceComponent implements OnInit {
 	buyDevice(device) {
 		this.selectedDevice = device;
 		this.currentInvoice = undefined;
+		// const invoices = [];
 		const invoice = {
 			quantity: 1,
 			item: device.name,
-			itemType: 'Data Plan',
+			itemType: 'Device',
 			invoiceNumber: '',
 			customerId: this.customer.id,
-			productType: 'Data Plan',
+			productType: 'Device',
 			productId: device.id,
 			price: device.price
 		};
+
 		this._invoiceService.postInvoice(invoice).subscribe(
 			(payload: any) => {
-				this.currentInvoice = payload;
+				this.currentInvoice = JSON.parse(payload);
 			},
 			(error) => {
 				console.log(error);
@@ -133,7 +131,6 @@ export class DeviceComponent implements OnInit {
 				transactionType: 'Device',
 				invoiceId: this.currentInvoice.id
 			};
-			console.log(walletTransaction);
 
 			this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
 				(payload) => {

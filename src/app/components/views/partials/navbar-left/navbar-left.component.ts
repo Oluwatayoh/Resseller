@@ -69,6 +69,7 @@ export class NavbarLeftComponent implements OnInit {
 	signOut() {
 		this._router.navigate([ '/auth' ]).then(
 			(result) => {
+				this._locker.setObject('cart', []);
 				this._locker.clear();
 			},
 			(error) => {

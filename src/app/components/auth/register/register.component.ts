@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 					);
 					this._customerService.selectCustomer(payload);
 					this._locker.setObject('selectedCustomer', payload);
+					this._locker.setObject('cart', []);
 					this._router.navigate([ '/views/home' ]).then((pay) => {});
 				},
 				(error) => {

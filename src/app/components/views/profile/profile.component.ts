@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
 	}
 
 	onDoneEdit() {
-		console.log(this.customerForm.value);
 		const _customer = this.customerForm.value;
 		this.customer.surname = _customer.surname;
 		this.customer.otherNames = _customer.otherNames;
@@ -91,7 +90,6 @@ export class ProfileComponent implements OnInit {
 	}
 
 	completeOperation(value) {
-		console.log(value);
 		if (!!value) {
 			this._locker.setObject('selectedCustomer', value);
 			this.cdRef.detectChanges();
@@ -115,7 +113,6 @@ export class ProfileComponent implements OnInit {
 		this._router.navigate([ '/auth/login' ]);
 	}
 	onDonePasswordChange() {
-		console.log(this.currentPassword.value);
 		if (this.password.value === this.confirmPassword.value) {
 			this._customerService
 				.putCustomerPassword(this.customer.id, this.currentPassword.value, this.password.value, this.customer)

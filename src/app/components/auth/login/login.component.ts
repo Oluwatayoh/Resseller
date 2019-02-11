@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this._router.navigate([ '/auth/register' ]).then((pay) => {});
 	}
 
-
 	signIn() {
 		this._systemModuleService.on();
 		const email = this.signForm.controls['email'].value;
 		const password = this.signForm.controls['password'].value;
 		this._customerService.loginCustomer(email, password).subscribe(
 			(payload: any) => {
+				this._locker.setObject('cart', []);
 				this._systemModuleService.announceSweetProxy(
 					`Welcome back ${payload.surname} ${payload.otherNames}`,
 					'success',

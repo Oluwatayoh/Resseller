@@ -1,6 +1,7 @@
+import { BroadcastShoppingCartService } from './../../public-script/broadcast-shopping-cart.service';
 import { DeviceService } from './../../services/device.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -11,21 +12,34 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProductDetailsComponent implements OnInit {
 	sub: Subscription;
 	id = 0;
-	constructor(private _activatedRoute: ActivatedRoute, private _deviceService: DeviceService) {}
+	selectedProduct: any;
+	quantity = 1;
+	constructor(
+		private _activatedRoute: ActivatedRoute,
+		private _deviceService: DeviceService,
+		private _broadCastShopping: BroadcastShoppingCartService,
+		private _router: Router
+	) {}
 
 	ngOnInit() {
 		this.sub = this._activatedRoute.params.subscribe((params) => {
 			this.id = params['id'];
 			this._deviceService.getDevice(this.id).subscribe(
 				(payload) => {
-					console.log(payload);
+					this.selectedProduct = payload;
 				},
 				(error) => {
 					console.log(error);
 				}
 			);
-			console.log(this.id);
 		});
-		console.log(this.id);
+	}
+	addToCart() {
+		this._broadCastShopping.announceCartOperation({
+			product: this.selectedProduct,
+			quantity: this.quantity,
+			operation: 'add'
+		});
+		this._router.navigate([ '/views/product-list' ]);
 	}
 }

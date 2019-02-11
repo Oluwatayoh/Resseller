@@ -18,128 +18,38 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let product of cart; let i =index">
               <td data-th="Product">
                 <input type="checkbox">
                 <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
-                      class="img-responsive" /></div>
+                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
                   <div class="col-sm-10">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                      Lorem ipsum dolor sit amet.</p>
+                    <h4 class="nomargin">{{product.product.name}}</h4>
+                    <p>{{product?.product?.description}}</p>
                   </div>
                 </div>
               </td>
-              <td data-th="Price">$1.99</td>
+              <td data-th="Price">${{product.product.price|number:'.2'}}</td>
               <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
+                <input name="quantity" min="1" [(ngModel)]="product.quantity" type="number" class="form-control text-center">
               </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
+              <td data-th="Subtotal" class="text-center">{{(product.product.price*product.quantity)|number:'.2'}}</td>
               <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="Product">
-                <input type="checkbox">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
-                      class="img-responsive" /></div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                      Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
-              </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
-              <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="Product">
-                <input type="checkbox">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
-                      class="img-responsive" /></div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                      Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
-              </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
-              <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="Product">
-                <input type="checkbox">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
-                      class="img-responsive" /></div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                      Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
-              </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
-              <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="Product">
-                <input type="checkbox">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..."
-                      class="img-responsive" /></div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin">Product 1</h4>
-                    <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                      Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="Price">$1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
-              </td>
-              <td data-th="Subtotal" class="text-center">1.99</td>
-              <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
+                <button (click)="removeProduct(product, i)" class="btn btn-danger btn-sm waves-effect"><i class="fa fa-trash-o"></i></button>
               </td>
             </tr>
           </tbody>
           <tfoot>
             <tr class="visible-xs">
-              <td class="text-center"><strong>Total 1.99</strong></td>
+              <td class="text-center"><strong>Total {{getTotal()|number:'.2'}}</strong></td>
             </tr>
             <tr>
-              <td><a href="#" class="btn btn-warning waves-effect" [routerLink]="['/views/product-list']"><i
-                    class="fa fa-angle-left"></i> Continue Shopping</a></td>
+              <td><a href="#" class="btn btn-warning waves-effect" [routerLink]="['/views/product-list']"><i class="fa fa-angle-left"></i>
+                  Continue Shopping</a></td>
               <td colspan="2" class="hidden-xs"></td>
-              <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-              <td><a href="#" class="btn btn-success btn-block waves-effect" type="button" data-toggle="modal"
-                  data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
+              <td class="hidden-xs text-center"><strong>Total ${{getTotal()|number:'.2'}}</strong></td>
+              <td><a href="#" class="btn btn-success btn-block waves-effect" (click)="checkOut()" type="button"
+                  data-toggle="modal" data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
             </tr>
           </tfoot>
         </table>
@@ -160,24 +70,19 @@
         <div class="confirm_pay">
           <p>You are about to purchase</p>
           <div class="pay-list">
-            <h5> &#8226; Home</h5>
-            <h5> &#8226; 10Gb Bandwidth</h5>
-            <h5>&#8226; 1.5 Mbps Up-To-Speed</h5>
-            <h5> &#8226; Monthly Subscription</h5>
+            <h5 *ngFor="let product of cart"> &#8226; {{product.product.name}}</h5>
           </div>
 
-          <h3>&#8358;10,000</h3>
+          <h3>&#8358;{{getTotal()|number:'.2'}}</h3>
           <br>
           <div class="dropdown">
             <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
-              <select class="form-control show-tick">
+              <select [formControl]="paymentMode" class="form-control show-tick">
                 <option value="0">--Payment Method--</option>
-                <option value="1">Bank Transfer</option>
-                <option value="2">POS</option>
-                <option value="3">Online Payment</option>
+                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}</option>
               </select>
             </div>
-            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
               <select class="form-control show-tick">
                 <option value="0">--Select Bank--</option>
                 <option value="1">First Bank</option>
@@ -188,9 +93,12 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect">Yes</button>
-        <button class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      <div *ngIf="hideOnlinePayment===false && this.currentInvoice !== undefined && this.currentInvoice.id > 0" class="modal-footer"
+        style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
+          [amount]="getTotal()*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()" (callback)="paymentDone($event)"
+          class="btn waves-effect waves-light">Yes</button>
+        <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>

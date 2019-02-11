@@ -37,19 +37,15 @@ export class BuyComponent implements OnInit {
 	ngOnInit() {
 		this.customer = this._locker.getObject('selectedCustomer');
 		this.getDataPlanRecords();
-		console.log(this.customer);
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 	}
 
 	getDataPlanRecords() {
 		this._dataPlanService.getDataPlans(true).subscribe(
 			(payload: any) => {
-				console.log(payload);
 				this.dataplans = payload;
 			},
-			(error) => {
-				console.log(error);
-			}
+			(error) => {}
 		);
 	}
 
@@ -69,7 +65,7 @@ export class BuyComponent implements OnInit {
 			(payload: any) => {
 				this.selectedPlan = plan;
 				this.paystackPayment = true;
-				this.currentInvoice = payload;
+				this.currentInvoice = JSON.parse(payload);
 			},
 			(error) => {
 				console.log(error);
@@ -93,7 +89,6 @@ export class BuyComponent implements OnInit {
 				transactionType: 'Data Plan',
 				invoiceId: this.currentInvoice.id
 			};
-			console.log(walletTransaction);
 
 			this._payStackVerificationService.postPayStackVerification(walletTransaction).subscribe(
 				(payload) => {

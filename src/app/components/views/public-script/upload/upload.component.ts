@@ -40,7 +40,6 @@ export class UploadComponent {
 			if (event.type === HttpEventType.UploadProgress) {
 				this.progress = Math.round(100 * event.loaded / event.total);
 			} else if (event.type === HttpEventType.Response) {
-				console.log(event);
 				this.message = 'Upload Successful'; // event.body.toString();
 				this.completeOperation.emit(event.body);
 			}

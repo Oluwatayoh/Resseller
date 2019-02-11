@@ -17,12 +17,12 @@ const routes: Routes = [
 		path: 'views',
 		loadChildren: 'app/components/views/views.module#ViewsModule'
 	},
-	{ path: '', redirectTo: '/landing', pathMatch: 'full' },
+	{ path: '', redirectTo: '/auth/login', pathMatch: 'full' },
 	{ path: '**', component: NotFoundComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
-	imports: [ RouterModule.forRoot(routes) ],
+	imports: [ RouterModule.forRoot(routes, { useHash: true }) ],
 	exports: [ RouterModule ],
 	declarations: [ NotFoundComponent ]
 })
