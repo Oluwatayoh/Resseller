@@ -1,0 +1,72 @@
+@import "./../product-details.component.scss";
+
+.hpanel {
+    background-color: none;
+    border: 0;
+    box-shadow: none;
+    margin-bottom: 25px;
+    .panel-body {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+    }
+}
+
+.hpanel.hblue .panel-body {
+    border-top: 2px solid #3498db;
+    border-bottom: 5px solid #3498db;
+}
+
+.panel-body{
+    padding: 15px;
+    text-align: center;
+    h2{font-size: 70px;}
+}
+
+.fnt-img{
+    background: #3498db;
+    padding: 5px;
+    svg{
+        color: white !important;
+        font-size: 100px !important;
+    }
+}
+
+.hpanel>.panel-footer, .hpanel>.panel-section {
+    color: inherit;
+    border: 1px solid #eaeaea;
+    border-top: 0;
+    font-size: 90%;
+    background: #f7f9fa;
+    padding: 10px 15px;
+}
+
+.contact-footer {
+    padding: 0 15px;
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.border-right {
+    border-right: 1px solid #eaeaea;
+}
+
+.contact-stat {
+    padding: 8px 0;
+    text-align: center;
+    span {
+        font-size: 10px;
+        font-weight: 500;
+        display: block;
+        color: #9d9fa2;
+        text-transform: uppercase;
+    }
+}
