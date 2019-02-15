@@ -65,6 +65,7 @@ import { ProductListComponent } from './purchases/product-list/product-list.comp
 import { MyCartComponent } from './purchases/my-cart/my-cart.component';
 import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
+import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth-details/bandwidth-details.component';
 
 const viewsRoutes: Routes = [
 	{
@@ -74,6 +75,7 @@ const viewsRoutes: Routes = [
 			{ path: 'home', component: HomeComponent },
 			{ path: 'profile', component: ProfileComponent },
 			{ path: 'bandwidth', component: BandwidthComponent },
+			{ path: 'bandwidth-details', component: BandwidthDetailsComponent },
 			{ path: 'device', component: DeviceComponent },
 			{ path: 'invoice', component: InvoicesComponent },
 			{ path: 'history', component: TransactHistoryComponent },

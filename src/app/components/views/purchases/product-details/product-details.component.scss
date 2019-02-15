@@ -13,20 +13,22 @@ section {
     .rht {
       float: right;
       margin-left: 20px;
-      h3{
-          margin-top: 0px !important;
+      h3 {
+        margin-top: 0px !important;
       }
-      button{
-          i{margin-right: 10px;}
+      button {
+        i {
+          margin-right: 10px;
+        }
       }
-      button:hover{
+      button:hover {
         color: white;
       }
     }
   }
 }
 
-.form-control{
+.form-control {
   background-color: transparent !important;
 }
 
@@ -44,4 +46,8 @@ section {
 .count tr td {
   padding: 10px 15px;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.form-control-label {
+  text-align: left !important;
 }
