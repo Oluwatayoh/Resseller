@@ -112,8 +112,10 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
 				productId: product.product.id,
 				price: product.product.price,
-				quantity: product.quantity
+				quantity: product.quantity,
+				deviceId: product.device.id
 			};
+			console.log(detail);
 			invoice.invoiceDetails.push(detail);
 		});
 		this._invoiceService.postInvoice(invoice).subscribe(
@@ -139,7 +141,6 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				payStackReponse: paymentRes,
 				amount: amount,
 				customerId: this.customer.id,
-				transactionType: 'Device',
 				invoiceId: this.currentInvoice.id
 			};
 

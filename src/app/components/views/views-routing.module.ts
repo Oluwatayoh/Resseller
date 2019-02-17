@@ -75,7 +75,7 @@ const viewsRoutes: Routes = [
 			{ path: 'home', component: HomeComponent },
 			{ path: 'profile', component: ProfileComponent },
 			{ path: 'bandwidth', component: BandwidthComponent },
-			{ path: 'bandwidth-details', component: BandwidthDetailsComponent },
+			{ path: 'bandwidth-details/:id', component: BandwidthDetailsComponent },
 			{ path: 'device', component: DeviceComponent },
 			{ path: 'invoice', component: InvoicesComponent },
 			{ path: 'history', component: TransactHistoryComponent },

@@ -6,4 +6,5 @@ export interface InvoiceDetail {
 	productId: number;
 	price: number;
 	quantity: number;
+	deviceId?: number;
 }

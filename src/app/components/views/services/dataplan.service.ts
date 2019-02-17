@@ -11,6 +11,10 @@ export class DataplanService {
 		return this.http.get(`${this.baseUrl}?includeTransactions=${includeTransactions}`);
 	}
 
+	getDataPlan(id) {
+		return this.http.get(`${this.baseUrl}/${id}?includeTransactions=${true}`);
+	}
+
 	postDataPlan(dataPlan) {
 		return this.http.post(this.baseUrl, dataPlan);
 	}

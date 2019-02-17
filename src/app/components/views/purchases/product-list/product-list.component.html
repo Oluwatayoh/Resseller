@@ -8,8 +8,7 @@
       <div class="col m8 l9 s12 layout main-product">
         <div class="m-wrap">
           <div class="row row-clear row-product" *ngFor="let product of productList">
-            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]"
-              class="col l4 s6 waves-effect prodwrap">
+            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]" class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
                 <img class="img" src="../../../../../assets/img/modem.jpg">
                 <div class="prod-content">
@@ -18,9 +17,9 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="product.dataPlanId === undefined"  class="col l4 s6 waves-effect prodwrap">
+            <div *ngIf="product.dataPlanId === undefined" class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
-                <div class="img" [routerLink]="['/views/bandwidth-details']">
+                <div class="img" [routerLink]="['/views/bandwidth-details', product.id]">
                   <i class="material-icons">data_usage</i>
                   <div class="plan-detail-wrap">
                     <h3>{{product?.name}}</h3>
@@ -125,9 +124,9 @@
       </div>
       <div *ngIf="hideOnlinePayment === false && this.currentInvoice !== undefined && this.currentInvoice?.id > 0"
         class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
-          [email]="customer.email" [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'"
-          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
+          [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()"
+          (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
         <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
