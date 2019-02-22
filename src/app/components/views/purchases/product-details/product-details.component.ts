@@ -38,7 +38,8 @@ export class ProductDetailsComponent implements OnInit {
 		this._broadCastShopping.announceCartOperation({
 			product: this.selectedProduct,
 			quantity: this.quantity,
-			operation: 'add'
+			operation: 'add',
+			checked: false
 		});
 		this._router.navigate([ '/views/product-list' ]);
 	}

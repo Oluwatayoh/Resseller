@@ -28,6 +28,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 	currentInvoice: any;
 	paystackClientKey: string = PAYSTACK_CLIENT_KEY;
 	refKey: string;
+	checkedAll: false;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _broadCastShoppingService: BroadcastShoppingCartService,
@@ -75,7 +76,6 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				this.paymentMode.setValue('Online Payment');
 			},
 			(error) => {
-				console.log(error);
 			}
 		);
 	}
@@ -115,7 +115,6 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				quantity: product.quantity,
 				deviceId: product.device.id
 			};
-			console.log(detail);
 			invoice.invoiceDetails.push(detail);
 		});
 		this._invoiceService.postInvoice(invoice).subscribe(
@@ -123,7 +122,6 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				this.currentInvoice = JSON.parse(payload);
 			},
 			(error) => {
-				console.log(error);
 			}
 		);
 	}
@@ -179,4 +177,18 @@ export class MyCartComponent implements OnInit, OnDestroy {
 			);
 		}
 	}
+
+	checkAll(event) {
+		const value = event.target.checked;
+		this.cart.forEach((item) => {
+			item.checked = value;
+		});
+	}
+	isAnyChecked() {
+		return this.cart.filter((c) => c.checked).length > 0;
+  }
+  onChecked(event, product){
+    const value = event.target.checked;
+    product.checked = value;
+  }
 }

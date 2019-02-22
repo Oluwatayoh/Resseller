@@ -10,7 +10,7 @@
         <table id="cart" class="table table-hover table-condensed">
           <thead>
             <tr>
-              <th style="width:50%"><input type="checkbox"> <span>Product</span></th>
+              <th style="width:50%"><input [checked]="checkedAll" (change)="checkAll($event)" type="checkbox"> <span>Product</span></th>
               <th style="width:10%">Price</th>
               <th style="width:8%">Quantity</th>
               <th style="width:22%" class="text-center">Subtotal</th>
@@ -20,7 +20,7 @@
           <tbody>
             <tr *ngFor="let product of cart; let i =index">
               <td data-th="Product">
-                <input type="checkbox">
+                <input [checked]="product.checked" (change)="onChecked($event, product)" type="checkbox">
                 <div class="row">
                   <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
                   <div class="col-sm-10">
@@ -48,7 +48,7 @@
                   Continue Shopping</a></td>
               <td colspan="2" class="hidden-xs"></td>
               <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
-              <td><a href="#" class="btn btn-success btn-block waves-effect" (click)="checkOut()" type="button"
+              <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect" (click)="checkOut()" type="button"
                   data-toggle="modal" data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
             </tr>
           </tfoot>

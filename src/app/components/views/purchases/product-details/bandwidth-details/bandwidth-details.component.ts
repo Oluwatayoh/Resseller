@@ -54,7 +54,8 @@ export class BandwidthDetailsComponent implements OnInit {
 			product: this.selectedProduct,
 			device: this.selectedDevice.value,
 			quantity: this.quantity,
-			operation: 'add'
+			operation: 'add',
+			checked: false
 		});
 		console.log(this.selectedDevice.value);
 		console.log(this.selectedDevice.valid);
