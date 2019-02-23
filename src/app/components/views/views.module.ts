@@ -76,6 +76,7 @@ import { MessageTicketComponent } from './tickets/message-ticket/message-ticket.
 import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 import { UploadComponent } from './public-script/upload/upload.component';
 import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth-details/bandwidth-details.component';
+import { TicketThreadComponent } from './tickets/ticket-thread/ticket-thread.component';
 
 @NgModule({
 	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
@@ -150,7 +151,8 @@ import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth
 		MessageTicketComponent,
 		SupportTicketComponent,
 		UploadComponent,
-		BandwidthDetailsComponent
+		BandwidthDetailsComponent,
+		TicketThreadComponent
 	],
 	providers: []
 })
