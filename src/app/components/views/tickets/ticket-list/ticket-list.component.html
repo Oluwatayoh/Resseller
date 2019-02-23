@@ -1,10 +1,49 @@
-<section class="">
+<section class="mb">
   <div class="container-fluid">
     <div class="block-header">
       <h2>{{ticketType}} TICKET</h2>
     </div>
 
-    <div class="row clearfix">
+    <div id="frame">
+      <div class="content">
+        <div class="contact-profile">
+          <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+          <p>Orimoyegun Sunday</p>
+          <div class="social-media">
+            <!-- <small>Customer Support Representative</small> -->
+          </div>
+        </div>
+        <div class="messages">
+          <ul>
+            <li class="sent">
+              <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
+              <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+            </li>
+            <li class="replies">
+              <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+              <p>When you're backed against the wall, break the god damn thing down.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="message-input">
+          <div class="wrap">
+            <input type="text" placeholder="Write your message..." />
+            <div class="image-upload attachment">
+              <label for="file-input">
+                <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top"
+                  title="attachment"></i>
+              </label>
+              <input id="file-input" type="file" />
+            </div>
+            <!-- <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top"
+              title="attachment"></i> -->
+            <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row clearfix">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="body">
@@ -50,30 +89,6 @@
                       </ul>
                     </td>
                   </tr>
-                  <!-- <tr>
-                    <td>OY-0938</td>
-                    <td>
-                      <p>Called for support last week but no answer</p>
-                    </td>
-                    <td class="orange">Minor</td>
-                    <td>15th Nov., 2018</td>
-                    <td><strong>Closed</strong></td>
-                    <td>
-                      <i class="material-icons">more_vert</i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ED-9377</td>
-                    <td>
-                      <p>Called for support last week but no answer</p>
-                    </td>
-                    <td class="green">Major</td>
-                    <td>15th Nov., 2018</td>
-                    <td class="red"><strong>Deleted</strong></td>
-                    <td>
-                      <i class="material-icons">more_vert</i>
-                    </td>
-                  </tr> -->
                 </tbody>
               </table>
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -101,10 +116,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+    <!-- <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
       <app-new-ticket (completeOperation)="completeOperation($event)" [ticketType]="ticketType"></app-new-ticket>
-    </div>
+    </div> -->
   </div>
 </section>
