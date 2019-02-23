@@ -9428,6 +9428,8 @@ section.content {
   -o-transition: 0.5s;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  align-items: center;
+  display: flex;
 }
 
 .dropdown-menu ul.menu li a:hover {
