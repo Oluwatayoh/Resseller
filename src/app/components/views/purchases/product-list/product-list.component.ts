@@ -1,5 +1,5 @@
 import { ProductListService } from './../../services/product-list.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { PaymentModeService } from '../../services/payment-mode.service';
 import { FormControl } from '@angular/forms';
 import { Invoice } from '../../public-script/interfaces/invoice';
@@ -11,13 +11,14 @@ import { PaystackVerificationService } from '../../services/paystack-verificatio
 import { SystemModuleService } from '../../public-script/system-module.service';
 import { BroadcastShoppingCartService } from '../../public-script/broadcast-shopping-cart.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'app-product-list',
 	templateUrl: './product-list.component.html',
 	styleUrls: [ './product-list.component.scss' ]
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
 	@ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
 	productList: any[];
 	fullProductList: any[];
@@ -30,6 +31,8 @@ export class ProductListComponent implements OnInit {
 	paystackClientKey: string = PAYSTACK_CLIENT_KEY;
 	refKey: string;
 	selectedCategory: any = 'All';
+	cart: any[] = [];
+	subscription: Subscription;
 	constructor(
 		private _productListService: ProductListService,
 		private _locker: CoolLocalStorage,
@@ -39,10 +42,28 @@ export class ProductListComponent implements OnInit {
 		private _systemModuleService: SystemModuleService,
 		private _broadCastShoppingService: BroadcastShoppingCartService,
 		private _router: Router
-	) {}
+	) {
+		this.subscription = this._broadCastShoppingService.cartUpdateAnnounced$.subscribe((value: any) => {
+			if (value.operation === 'add') {
+				let innerCart: any[] = this._locker.getObject('cart');
+				if (innerCart === undefined) {
+					innerCart = [];
+				}
+				if (value.operation === 'add') {
+					innerCart.push(value);
+					this._locker.setObject('cart', innerCart);
+					this.cart = innerCart;
+				}
+			} else if (value.operation === 'refresh') {
+				this.cart = this._locker.getObject('cart');
+			}
+			console.log(this.cart);
+		});
+	}
 
 	ngOnInit() {
 		this.customer = this._locker.getObject('selectedCustomer');
+		this.cart = this._locker.getObject('cart');
 		this.getProductList();
 		this.getPaymentModes();
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
@@ -53,6 +74,11 @@ export class ProductListComponent implements OnInit {
 				this.hideOnlinePayment = true;
 			}
 		});
+		console.log(this.cart);
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	getProductList() {

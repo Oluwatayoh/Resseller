@@ -8,8 +8,7 @@
       <div class="col m8 l9 s12 layout main-product">
         <div class="m-wrap">
           <div class="row row-clear row-product" *ngFor="let product of productList">
-            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]"
-              class="col l4 s6 waves-effect prodwrap">
+            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]" class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
                 <img class="img" src="../../../../../assets/img/modem.jpg">
                 <div class="prod-content">
@@ -79,26 +78,30 @@
         </div>
         <div class="content-filter">
           <h6>My List</h6>
-          <div class="p-list">
-            <div class="icon-circle bg-light-green">
-              <img>
+          <span *ngFor="let product of cart">
+            <div *ngIf="product.product.dataPlanId === undefined" class="p-list">
+              <div class="icon-circle bg-light-green">
+                <img>
+              </div>
+              <div>
+                <strong>{{product.product.name}}</strong>
+                <p>Valid for {{product?.product?.validity}} {{product?.product?.validityUnit.name}}</p>
+                <a>&#8358;{{(product.product.price * product.quantity)|number:'.2'}}</a>
+              </div>
             </div>
-            <div>
-              <strong>Gold Premium Data Plan</strong>
-              <p>Valid for 30 Days</p>
-              <a>&#8358;50,000</a>
+            <div *ngIf="product.product.dataPlanId !== undefined" class="p-list">
+              <div class="icon-circle bg-light-green">
+                <img>
+              </div>
+              <div>
+                <strong>{{product.product.name}}</strong>
+                <p>{{product.product.model}}</p>
+                <a>&#8358; {{(product.product.price* product.quantity) | number:'.2'}}</a>
+              </div>
             </div>
-          </div>
-          <div class="p-list">
-            <div class="icon-circle bg-light-green">
-              <img>
-            </div>
-            <div>
-              <strong>Satellite Dish</strong>
-              <p>Ace Model</p>
-              <a>&#8358; 120,000</a>
-            </div>
-          </div>
+          </span>
+
+
           <div class="p-list">
             <div class="footer">
               <span [routerLink]="['/views/cart']">View All Cart Items</span>
@@ -154,9 +157,9 @@
       </div>
       <div *ngIf="hideOnlinePayment === false && this.currentInvoice !== undefined && this.currentInvoice?.id > 0"
         class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
-          [email]="customer.email" [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'"
-          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
+          [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()"
+          (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
         <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
