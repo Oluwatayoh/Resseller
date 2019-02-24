@@ -1,38 +1,37 @@
-<div class="mb modal-dialog" role="document">
+<div *ngIf="ticket !== undefined" class="mb modal-dialog" role="document">
   <div id="frame">
     <div class="content">
       <div class="contact-profile">
-        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-        <p>Orimoyegun Sunday</p>
+        <img src="{{baseUrl}}{{ticket?.customer.fileName}}" alt="" />
+        <p>{{ticket?.customer.surname}} {{ticket?.customer.otherNames}}</p>
         <div class="social-media">
           <i class="fa fa-times" #closeAddExpenseModal data-dismiss="modal"></i>
         </div>
       </div>
       <div class="messages">
-        <ul>
-          <li class="sent">
-            <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+        <ul *ngFor="let response of ticket?.ticketResponses">
+          <li *ngIf="response.responseSource==='sent'" class="sent">
+            <img src="{{baseUrl}}{{ticket?.customer.fileName}}" alt="" />
+            <p>{{response.message}}</p>
           </li>
-          <li class="replies">
+          <li *ngIf="response.responseSource==='reply'" class="replies">
             <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>When you're backed against the wall, break the god damn thing down.</p>
+            <p>{{response.message}}</p>
           </li>
         </ul>
       </div>
       <div class="message-input">
         <div class="wrap">
-          <input type="text" placeholder="Write your message..." />
+          <input [(ngModel)]="message" type="text" placeholder="Write your message..." />
           <div class="image-upload attachment">
             <label for="file-input">
-              <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top"
-                title="attachment"></i>
+              <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="attachment"></i>
             </label>
-            <input id="file-input" type="file" />
+            <input id="file-input" #file type="file" type="file" (change)="upload(file.files)" />
           </div>
           <!-- <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top"
           title="attachment"></i> -->
-          <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          <button (click)="replyMessage()" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>

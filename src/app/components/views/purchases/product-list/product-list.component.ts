@@ -57,7 +57,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 			} else if (value.operation === 'refresh') {
 				this.cart = this._locker.getObject('cart');
 			}
-			console.log(this.cart);
 		});
 	}
 
@@ -74,7 +73,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 				this.hideOnlinePayment = true;
 			}
 		});
-		console.log(this.cart);
 	}
 
 	ngOnDestroy() {

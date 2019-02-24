@@ -19,8 +19,8 @@
                   <input type="checkbox" id="CloseTicket" class="filled-in chk-col-light-blue" />
                   <label for="CloseTicket">Closed Ticket</label>
                 </div>
-                <button type="button" data-toggle="modal" data-target="#defaultModal"
-                  class="btn btn-primary waves-effect"><i class="material-icons">add_circle</i>Create
+                <button type="button" data-toggle="modal" data-target="#defaultModal" class="btn btn-primary waves-effect"><i
+                    class="material-icons">add_circle</i>Create
                   Ticket</button>
               </div>
 
@@ -35,8 +35,9 @@
                     <th>Action</th>
                   </tr>
                 <tbody>
-                  <tr *ngFor="let ticket of ticketDataList" data-toggle="modal" data-target="#smallModal" >
-                    <td>{{ticket?.ticketId}}</td>
+                  <tr (click)="setSelectedTicket(ticket)" *ngFor="let ticket of ticketDataList" data-toggle="modal"
+                    data-target="#smallModal">
+                    <td>{{ticket?.ticketNumber}}</td>
                     <td>
                       <p>{{ticket?.subject}}</p>
                     </td>
@@ -86,7 +87,7 @@
     </div>
 
     <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-      <app-ticket-thread></app-ticket-thread>
+      <app-ticket-thread [ticket]="selectedTicket"></app-ticket-thread>
     </div>
   </div>
 </section>

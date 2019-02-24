@@ -5,6 +5,8 @@ import { CoolLocalStorage } from 'angular2-cool-storage';
 import { CustomersService } from '../../services/customers.service';
 import { SystemModuleService } from '../../public-script/system-module.service';
 import { Router } from '@angular/router';
+import { UploadScriptService } from '../../services/upload-script.service';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'app-new-ticket',
@@ -17,12 +19,14 @@ export class NewTicketComponent implements OnInit {
 	@Output() completeOperation: EventEmitter<any> = new EventEmitter<any>();
 	customerForm: FormGroup;
 	customer: any;
+	formData = new FormData();
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _ticketService: TicketService,
 		private _formBuilder: FormBuilder,
 		private _systemModuleService: SystemModuleService,
-		private _router: Router
+		private _router: Router,
+		private _uploadScriptService: UploadScriptService
 	) {}
 
 	ngOnInit() {
@@ -39,8 +43,23 @@ export class NewTicketComponent implements OnInit {
 	}
 
 	addTicket() {
-		this._ticketService.postTicket(this.customerForm.value).subscribe(
-			(payload) => {
+		const ticket = {
+			subject: this.customerForm.controls['subject'].value,
+			priority: this.customerForm.controls['priority'].value,
+			status: this.customerForm.controls['status'].value,
+			ticketType: this.customerForm.controls['ticketType'].value,
+			customerId: this.customerForm.controls['customerId'].value,
+			dateCreated: this.customerForm.controls['dateCreated'].value,
+			ticketResponses: []
+		};
+		ticket.ticketResponses.push({
+			message: this.customerForm.controls['message'].value,
+			responseSource: 'sent',
+			dateMessageSent: ticket.dateCreated
+		});
+		this._ticketService.postTicket(ticket).subscribe(
+			(payload: any) => {
+				this.uploadTicketResponseAttachement(payload.ticketResponses[payload.ticketResponses.length - 1]);
 				this.completeOperation.emit(payload);
 				this._systemModuleService.announceSweetProxy(
 					'Ticket sent successfully',
@@ -69,5 +88,29 @@ export class NewTicketComponent implements OnInit {
 				);
 			}
 		);
+	}
+
+	uploadTicketResponseAttachement(response) {
+		this._uploadScriptService.postDataPlan(response.id, 'ticketResponse', this.formData).subscribe((event: any) => {
+			if (event.type === HttpEventType.UploadProgress) {
+			} else if (event.type === HttpEventType.Response) {
+				if (event.status === 200) {
+					response.fileName = event.body.fileName;
+					this._ticketService.putTicketResponse(response).subscribe((payload) => {}, (error) => {});
+				} else {
+					console.log('error');
+				}
+			}
+		});
+	}
+	upload(files) {
+		this.formData = new FormData();
+		if (files.length === 0) {
+			return;
+		}
+
+		for (const file of files) {
+			this.formData.append(file.name, file);
+		}
 	}
 }

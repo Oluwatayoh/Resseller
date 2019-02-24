@@ -37,7 +37,6 @@ export class BandwidthDetailsComponent implements OnInit {
 			this._dataPlanService.getDataPlan(this.id).subscribe(
 				(payload) => {
 					this.selectedProduct = payload;
-					console.log(this.selectedProduct);
 				},
 				(error) => {
 					console.log(error);
@@ -45,9 +44,7 @@ export class BandwidthDetailsComponent implements OnInit {
 			);
 		});
 		this.getDeviceTransations();
-		this.selectedDevice.valueChanges.subscribe((value) => {
-			console.log(value);
-		});
+		this.selectedDevice.valueChanges.subscribe((value) => {});
 	}
 	addToCart() {
 		this._broadCastShopping.announceCartOperation({
@@ -57,8 +54,6 @@ export class BandwidthDetailsComponent implements OnInit {
 			operation: 'add',
 			checked: false
 		});
-		console.log(this.selectedDevice.value);
-		console.log(this.selectedDevice.valid);
 		this._router.navigate([ '/views/product-list' ]);
 	}
 
@@ -66,7 +61,6 @@ export class BandwidthDetailsComponent implements OnInit {
 		this._customerTransactionService.getCustomerDeviceTransactions(this.customer.id, true).subscribe(
 			(payload: any) => {
 				this.deviceTransactions = payload;
-				console.log(this.deviceTransactions);
 			},
 			(error) => {
 				console.log(error);

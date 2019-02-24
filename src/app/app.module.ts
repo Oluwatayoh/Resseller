@@ -35,6 +35,7 @@ import { DynamicScriptLoaderService } from './components/views/public-script/dyn
 import { EqualValidator } from './components/views/public-script/equal-validator.directive';
 import { BroadcastImageUploadService } from './components/views/public-script/broadcast-image-upload.service';
 import { EmptyBodyInterceptor } from './components/views/public-script/empty-body-interceptor.service';
+import { UploadScriptService } from './components/views/services/upload-script.service';
 
 @NgModule({
 	declarations: [ AppComponent, EqualValidator ],
@@ -65,6 +66,7 @@ import { EmptyBodyInterceptor } from './components/views/public-script/empty-bod
 		PaymentModeService,
 		BroadcastImageUploadService,
 		BroadcastShoppingCartService,
+		UploadScriptService,
 		ProductListService,
 		{
 			provide: HTTP_INTERCEPTORS,

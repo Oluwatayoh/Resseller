@@ -15,6 +15,14 @@ export class TicketService {
 		return this.http.post(this.baseUrl, ticket);
 	}
 
+	postTicketResponse(ticketId, response) {
+		return this.http.post(`${ONLINE}ticketresponses/${ticketId}`, response);
+	}
+
+	putTicketResponse(response) {
+		return this.http.put(`${ONLINE}ticketresponses/${response.id}`, response);
+	}
+
 	putTicket(ticket) {
 		return this.http.put(`${this.baseUrl}/${ticket.id}`, ticket);
 	}

@@ -28,7 +28,7 @@ export class MessageTicketComponent implements OnInit {
 	}
 
 	getPaymentTickets() {
-		this._ticketService.getTickets(this.customer.id, this.ticketType, false).subscribe(
+		this._ticketService.getTickets(this.customer.id, this.ticketType, true).subscribe(
 			(payload: any) => {
 				this.messagetList = payload;
 			},

@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export class TicketListComponent implements OnInit {
 	@Input() ticketType = '';
 	@Input() ticketDataList: any[] = [];
+	selectedTicket: any;
 	constructor() {}
 
 	ngOnInit() {}
@@ -35,5 +36,8 @@ export class TicketListComponent implements OnInit {
 	}
 	completeOperation(value: any) {
 		this.ticketDataList.push(value);
+	}
+	setSelectedTicket(ticket) {
+		this.selectedTicket = ticket;
 	}
 }
