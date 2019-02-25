@@ -12,7 +12,9 @@ export class InvoiceService {
 	}
 
 	getInvoiceDetails(id, includeTransactions) {
-		return this.http.get(`${ONLINE}invoicedetails/${id}?includeTransactions=${includeTransactions}`);
+		return this.http.get(
+			`${ONLINE}invoicedetails/${id}/getinvoicedetail?includeTransactions=${includeTransactions}`
+		);
 	}
 
 	postInvoice(device) {
