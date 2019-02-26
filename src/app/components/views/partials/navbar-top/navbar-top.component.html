@@ -29,7 +29,9 @@
                 <li *ngFor="let product of cart">
                   <a>
                     <div class="icon-circle bg-light-green">
-                      <img>
+                      <img *ngIf="product.product?.fileName === undefined">
+                      <img *ngIf="product.product?.fileName !== null && product.product?.fileName !== undefined" width="50"
+                        height="42" src="{{baseUrl}}{{product.product?.fileName}}">
                     </div>
                     <div class="menu-info">
                       <h4>{{product.product.name}}</h4>

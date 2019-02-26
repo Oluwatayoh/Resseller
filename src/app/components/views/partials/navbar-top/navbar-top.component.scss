@@ -1,10 +1,15 @@
-.navbar-brand{
-    display: flex;
-    align-items: baseline;
-    width: auto !important;
-    margin: 5px;
-    span{
-        margin-left: 5px;
-        font-weight: bold;
-    }
+.navbar-brand {
+  display: flex;
+  align-items: baseline;
+  width: auto !important;
+  margin: 5px;
+
+  span {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+}
+
+li {
+  list-style: none
 }

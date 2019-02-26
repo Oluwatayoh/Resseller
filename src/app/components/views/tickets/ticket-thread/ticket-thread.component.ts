@@ -21,7 +21,7 @@ export class TicketThreadComponent implements OnInit {
 	replyMessage() {
 		const response = {
 			message: this.message,
-			responseSource: 'reply',
+			responseSource: 'sent',
 			dateMessageSent: new Date()
 		};
 		this._ticketService.postTicketResponse(this.ticket.id, response).subscribe(

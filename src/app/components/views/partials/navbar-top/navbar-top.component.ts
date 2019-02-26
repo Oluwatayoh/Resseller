@@ -3,6 +3,7 @@ import { BroadcastShoppingCartService } from './../../public-script/broadcast-sh
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Config } from '../../../../classes/config';
+import { ONLINEPATH } from '../../public-script/global-config';
 
 @Component({
 	selector: 'app-navbar-top',
@@ -13,7 +14,7 @@ export class NavbarTopComponent implements OnInit, OnDestroy {
 	title: String = Config.APP.title;
 	cart: any[] = [];
 	subscription: Subscription;
-
+	baseUrl = `${ONLINEPATH}`;
 	constructor(private _locker: CoolLocalStorage, private _broadCastShoppingService: BroadcastShoppingCartService) {
 		this.subscription = this._broadCastShoppingService.cartUpdateAnnounced$.subscribe((value: any) => {
 			if (value.operation === 'add') {

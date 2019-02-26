@@ -6,7 +6,7 @@ import { Invoice } from '../../public-script/interfaces/invoice';
 import { InvoiceDetail } from '../../public-script/interfaces/invoice-detail';
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { InvoiceService } from '../../services/invoice.service';
-import { PAYSTACK_CLIENT_KEY } from '../../public-script/global-config';
+import { PAYSTACK_CLIENT_KEY, ONLINEPATH } from '../../public-script/global-config';
 import { PaystackVerificationService } from '../../services/paystack-verification.service';
 import { SystemModuleService } from '../../public-script/system-module.service';
 import { BroadcastShoppingCartService } from '../../public-script/broadcast-shopping-cart.service';
@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 	selectedCategory: any = 'All';
 	cart: any[] = [];
 	subscription: Subscription;
+	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _productListService: ProductListService,
 		private _locker: CoolLocalStorage,

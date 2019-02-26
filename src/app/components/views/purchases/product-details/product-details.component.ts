@@ -3,6 +3,7 @@ import { DeviceService } from './../../services/device.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { ONLINEPATH } from '../../public-script/global-config';
 
 @Component({
 	selector: 'app-product-details',
@@ -14,6 +15,7 @@ export class ProductDetailsComponent implements OnInit {
 	id = 0;
 	selectedProduct: any;
 	quantity = 1;
+	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private _deviceService: DeviceService,

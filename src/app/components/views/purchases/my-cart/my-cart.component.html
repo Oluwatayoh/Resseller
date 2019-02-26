@@ -22,7 +22,11 @@
               <td data-th="Product">
                 <input [checked]="product.checked" (change)="onChecked($event, product)" type="checkbox">
                 <div class="row">
-                  <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+                  <div class="col-sm-2 hidden-xs icon-circle">
+                    <img class="none-image" *ngIf="product.product?.fileName === undefined">
+                    <img class="none-image" *ngIf="product.product?.fileName !== null && product.product?.fileName !== undefined"
+                      src="{{baseUrl}}{{product.product?.fileName}}">
+                  </div>
                   <div class="col-sm-10">
                     <h4 class="nomargin">{{product.product.name}}</h4>
                     <p>{{product?.product?.description}}</p>
@@ -48,8 +52,8 @@
                   Continue Shopping</a></td>
               <td colspan="2" class="hidden-xs"></td>
               <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
-              <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect" (click)="checkOut()" type="button"
-                  data-toggle="modal" data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
+              <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect"
+                  (click)="checkOut()" type="button" data-toggle="modal" data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
             </tr>
           </tfoot>
         </table>

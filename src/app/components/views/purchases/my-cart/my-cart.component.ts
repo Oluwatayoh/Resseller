@@ -7,7 +7,7 @@ import { Invoice } from '../../public-script/interfaces/invoice';
 import { InvoiceDetail } from '../../public-script/interfaces/invoice-detail';
 import { InvoiceService } from '../../services/invoice.service';
 import { FormControl } from '@angular/forms';
-import { PAYSTACK_CLIENT_KEY } from '../../public-script/global-config';
+import { PAYSTACK_CLIENT_KEY, ONLINEPATH } from '../../public-script/global-config';
 import { PaystackVerificationService } from '../../services/paystack-verification.service';
 import { SystemModuleService } from '../../public-script/system-module.service';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 	paystackClientKey: string = PAYSTACK_CLIENT_KEY;
 	refKey: string;
 	checkedAll: false;
+	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _broadCastShoppingService: BroadcastShoppingCartService,
@@ -75,8 +76,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				this.paymentModes = payload;
 				this.paymentMode.setValue('Online Payment');
 			},
-			(error) => {
-			}
+			(error) => {}
 		);
 	}
 
@@ -121,8 +121,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 			(payload) => {
 				this.currentInvoice = JSON.parse(payload);
 			},
-			(error) => {
-			}
+			(error) => {}
 		);
 	}
 
@@ -186,9 +185,9 @@ export class MyCartComponent implements OnInit, OnDestroy {
 	}
 	isAnyChecked() {
 		return this.cart.filter((c) => c.checked).length > 0;
-  }
-  onChecked(event, product){
-    const value = event.target.checked;
-    product.checked = value;
-  }
+	}
+	onChecked(event, product) {
+		const value = event.target.checked;
+		product.checked = value;
+	}
 }
