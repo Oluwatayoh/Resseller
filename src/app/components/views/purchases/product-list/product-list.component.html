@@ -11,10 +11,11 @@
             <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]" class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
                 <img *ngIf="product?.fileName === null" class="img" src="../../../../../assets/img/modem.jpg">
-                <img *ngIf="product?.fileName !== null" src="{{baseUrl}}{{product?.fileName}}">
+                <img *ngIf="product?.fileName !== null" class="img" src="{{baseUrl}}{{product?.fileName}}">
                 <div class="prod-content">
                   <h5 class="tittle truncate">{{product.name}}</h5>
-                  <strong class="price">&#8358;{{product.price|number:'.2'}}</strong>
+                  <strong class="price">&#8358;{{product.price|number:'.2'}}</strong><br>
+                  <strong class="price">500Tb Data Bundle</strong>
                 </div>
               </div>
             </div>
