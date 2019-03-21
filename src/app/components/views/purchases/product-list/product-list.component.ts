@@ -237,7 +237,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 	}
 
 	onSelectDataPlan(plan) {
-		console.log(plan);
 		if (this.deviceTransactions.length === 0) {
 			this._systemModuleService.announceSweetProxy(
 				`Buying DataPlan require that you have a device, please go ahead and purchase one!`,
@@ -252,9 +251,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 			);
 			this.onSelectCategory('Devices');
 		} else {
-			console.log('false');
-			// [routerLink] = "['/views/product-detail', product.id]"
-			// [routerLink]="['/views/bandwidth-details', product.id]"
 			this._router.navigate([ '/views/bandwidth-details', plan.id ]);
 		}
 	}

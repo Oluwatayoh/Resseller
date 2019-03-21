@@ -16,7 +16,8 @@
                 <div class="prod-content">
                   <h5 class="tittle truncate">{{product.name}}</h5>
                   <strong class="price">&#8358;{{product.price|number:'.2'}}</strong><br>
-                  <strong class="price">500Tb Data Bundle</strong>
+                  <strong class="price">{{product.dataPlan.bandwidth}}{{product.dataPlan.bandWidthUnit?.name}} Data
+                    Bundle</strong>
                 </div>
               </div>
             </div>
