@@ -12,6 +12,7 @@ import { SystemModuleService } from '../../public-script/system-module.service';
 import { BroadcastShoppingCartService } from '../../public-script/broadcast-shopping-cart.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { CustomerDeviceTransactionsService } from '../../services/customer-device-transactions.service';
 
 @Component({
 	selector: 'app-product-list',
@@ -34,6 +35,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 	cart: any[] = [];
 	subscription: Subscription;
 	baseUrl = `${ONLINEPATH}`;
+	deviceTransactions = [];
 	constructor(
 		private _productListService: ProductListService,
 		private _locker: CoolLocalStorage,
@@ -42,6 +44,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 		private _payStackVerificationService: PaystackVerificationService,
 		private _systemModuleService: SystemModuleService,
 		private _broadCastShoppingService: BroadcastShoppingCartService,
+		private _customerTransactionService: CustomerDeviceTransactionsService,
 		private _router: Router
 	) {
 		this.subscription = this._broadCastShoppingService.cartUpdateAnnounced$.subscribe((value: any) => {
@@ -66,6 +69,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 		this.cart = this._locker.getObject('cart');
 		this.getProductList();
 		this.getPaymentModes();
+		this.getDeviceTransations();
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 		this.paymentMode.valueChanges.subscribe((value) => {
 			if (value === 'Online Payment') {
@@ -218,6 +222,40 @@ export class ProductListComponent implements OnInit, OnDestroy {
 			this.productList = this.fullProductList.filter((c) => c.dataPlanId === undefined);
 		} else if (value === 'Devices') {
 			this.productList = this.fullProductList.filter((c) => c.dataPlanId !== undefined);
+		}
+	}
+
+	getDeviceTransations() {
+		this._customerTransactionService.getCustomerDeviceTransactions(this.customer.id, true).subscribe(
+			(payload: any) => {
+				this.deviceTransactions = payload;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	}
+
+	onSelectDataPlan(plan) {
+		console.log(plan);
+		if (this.deviceTransactions.length === 0) {
+			this._systemModuleService.announceSweetProxy(
+				`Buying DataPlan require that you have a device, please go ahead and purchase one!`,
+				'info',
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null
+			);
+			this.onSelectCategory('Devices');
+		} else {
+			console.log('false');
+			// [routerLink] = "['/views/product-detail', product.id]"
+			// [routerLink]="['/views/bandwidth-details', product.id]"
+			this._router.navigate([ '/views/bandwidth-details', plan.id ]);
 		}
 	}
 }

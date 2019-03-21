@@ -8,7 +8,8 @@
       <div class="col m8 l9 s12 layout main-product">
         <div class="m-wrap">
           <div class="row row-clear row-product" *ngFor="let product of productList">
-            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]" class="col l4 s6 waves-effect prodwrap">
+            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]"
+              class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
                 <img *ngIf="product?.fileName === null" class="img" src="../../../../../assets/img/modem.jpg">
                 <img *ngIf="product?.fileName !== null" src="{{baseUrl}}{{product?.fileName}}">
@@ -20,7 +21,7 @@
             </div>
             <div *ngIf="product.dataPlanId === undefined" class="col l4 s6 waves-effect prodwrap">
               <div class="item-product">
-                <div class="img" [routerLink]="['/views/bandwidth-details', product.id]">
+                <div (click)="onSelectDataPlan(product)" class="img">
                   <i class="material-icons">data_usage</i>
                   <div class="plan-detail-wrap">
                     <h3>{{product?.name}}</h3>
@@ -33,10 +34,14 @@
                 <br>
                 <div class="prod-content plan-content">
                   <strong class="price">&#8358;{{product?.price| number: '.2'}}</strong>
-                  <button (click)="setDataPlan(product)" type="button" data-toggle="modal" data-target="#smallModal"
+                  <button (click)="onSelectDataPlan(product)" type="button"
                     class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
                     <i class="material-icons">payment</i>
                   </button>
+                  <!-- <button (click)="setDataPlan(product)" type="button" data-toggle="modal" data-target="#smallModal"
+                    class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                    <i class="material-icons">payment</i>
+                  </button> -->
                 </div>
               </div>
             </div>
@@ -93,7 +98,8 @@
             <div *ngIf="product.product.dataPlanId !== undefined" class="p-list">
               <div class="icon-circle bg-light-green">
                 <img *ngIf="product.product?.fileName === null">
-                <img *ngIf="product.product?.fileName !== null" width="50" height="50" src="{{baseUrl}}{{product.product?.fileName}}">
+                <img *ngIf="product.product?.fileName !== null" width="50" height="50"
+                  src="{{baseUrl}}{{product.product?.fileName}}">
               </div>
               <div>
                 <strong>{{product.product.name}}</strong>
@@ -159,9 +165,9 @@
       </div>
       <div *ngIf="hideOnlinePayment === false && this.currentInvoice !== undefined && this.currentInvoice?.id > 0"
         class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
-          [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()"
-          (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
+          [email]="customer.email" [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'"
+          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
         <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>

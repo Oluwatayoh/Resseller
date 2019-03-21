@@ -107,15 +107,27 @@ export class MyCartComponent implements OnInit, OnDestroy {
 			total: this.getTotal()
 		};
 		this.cart.forEach((product) => {
-			const detail: InvoiceDetail = <InvoiceDetail>{
-				item: product.product.name,
-				productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
-				productId: product.product.id,
-				price: product.product.price,
-				quantity: product.quantity,
-				deviceId: product.device.id
-			};
-			invoice.invoiceDetails.push(detail);
+			if (product.product.dataPlanId === undefined) {
+				const detail: InvoiceDetail = <InvoiceDetail>{
+					item: product.product.name,
+					productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
+					productId: product.product.id,
+					price: product.product.price,
+					quantity: product.quantity,
+					deviceId: product.device.id
+				};
+				invoice.invoiceDetails.push(detail);
+			} else {
+				const detail: InvoiceDetail = <InvoiceDetail>{
+					item: product.product.name,
+					productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
+					productId: product.product.id,
+					price: product.product.price,
+					quantity: product.quantity
+					// deviceId: product.device.id
+				};
+				invoice.invoiceDetails.push(detail);
+			}
 		});
 		this._invoiceService.postInvoice(invoice).subscribe(
 			(payload) => {
