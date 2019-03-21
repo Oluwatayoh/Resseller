@@ -1,63 +1,67 @@
 <div class="row clearfix">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-lg-12">
     <div class="card">
       <div class="header">
         <h4>
           Cart List
         </h4>
       </div>
-      <div class="container">
-        <table id="cart" class="table table-hover table-condensed">
-          <thead>
-            <tr>
-              <th style="width:50%"><input [checked]="checkedAll" (change)="checkAll($event)" type="checkbox"> <span>Product</span></th>
-              <th style="width:10%">Price</th>
-              <th style="width:8%">Quantity</th>
-              <th style="width:22%" class="text-center">Subtotal</th>
-              <th style="width:10%"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of cart; let i =index">
-              <td data-th="Product">
-                <input [checked]="product.checked" (change)="onChecked($event, product)" type="checkbox">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs icon-circle">
-                    <img class="none-image" *ngIf="product.product?.fileName === undefined">
-                    <img class="none-image" *ngIf="product.product?.fileName !== null && product.product?.fileName !== undefined"
-                      src="{{baseUrl}}{{product.product?.fileName}}">
-                  </div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin">{{product.product.name}}</h4>
-                    <p>{{product?.product?.description}}</p>
-                  </div>
+      <table id="cart" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th style="width:50%"><input [checked]="checkedAll" (change)="checkAll($event)" type="checkbox">
+              <span style="margin-left: 40px;">Product</span></th>
+            <th style="width:10%">Price</th>
+            <th style="width:8%">Quantity</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of cart; let i =index">
+            <td data-th="Product">
+              <input [checked]="product.checked" (change)="onChecked($event, product)" type="checkbox">
+              <div class="row">
+                <div class="col-sm-3 hidden-xs icon-circle">
+                  <img class="none-image" *ngIf="product.product?.fileName === undefined">
+                  <img class="none-image"
+                    *ngIf="product.product?.fileName !== null && product.product?.fileName !== undefined"
+                    src="{{baseUrl}}{{product.product?.fileName}}">
                 </div>
-              </td>
-              <td data-th="Price">&#8358;{{product.product.price|number:'.2'}}</td>
-              <td data-th="Quantity">
-                <input name="quantity" min="1" [(ngModel)]="product.quantity" type="number" class="form-control text-center">
-              </td>
-              <td data-th="Subtotal" class="text-center">{{(product.product.price*product.quantity)|number:'.2'}}</td>
-              <td class="actions">
-                <button (click)="removeProduct(product, i)" class="btn btn-danger btn-sm waves-effect"><i class="far fa-trash-alt"></i></button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr class="visible-xs">
-              <td class="text-center"><strong>Total {{getTotal()|number:'.2'}}</strong></td>
-            </tr>
-            <tr>
-              <td><a href="#" class="btn btn-warning waves-effect" [routerLink]="['/views/product-list']"><i class="fa fa-angle-left"></i>
-                  Continue Shopping</a></td>
-              <td colspan="2" class="hidden-xs"></td>
-              <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
-              <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect"
-                  (click)="checkOut()" type="button" data-toggle="modal" data-target="#smallModal">Checkout <i class="fa fa-angle-right"></i></a></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+                <div class="col-sm-7">
+                  <h4 class="nomargin">{{product.product.name}}</h4>
+                  <p style="font-size: 12px;">{{product?.product?.description}}</p>
+                </div>
+              </div>
+            </td>
+            <td data-th="Price">&#8358;{{product.product.price|number:'.2'}}</td>
+            <td data-th="Quantity">
+              <input name="quantity" min="1" [(ngModel)]="product.quantity" type="number"
+                class="form-control text-center">
+            </td>
+            <td data-th="Subtotal" class="text-center">{{(product.product.price*product.quantity)|number:'.2'}}</td>
+            <td class="actions">
+              <button (click)="removeProduct(product, i)" class="btn btn-danger btn-sm waves-effect"><i
+                  class="far fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="visible-xs">
+            <td class="text-center"><strong>Total {{getTotal()|number:'.2'}}</strong></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="btn btn-warning waves-effect" [routerLink]="['/views/product-list']"><i
+                  class="fa fa-angle-left"></i>
+                Continue Shopping</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
+            <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect"
+                (click)="checkOut()" type="button" data-toggle="modal" data-target="#smallModal">Checkout <i
+                  class="fa fa-angle-right"></i></a></td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   </div>
 </div>
@@ -83,7 +87,8 @@
             <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
               <select [formControl]="paymentMode" class="form-control show-tick">
                 <option value="0">--Payment Method--</option>
-                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}</option>
+                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
+                </option>
               </select>
             </div>
             <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
@@ -97,11 +102,11 @@
           </div>
         </div>
       </div>
-      <div *ngIf="hideOnlinePayment===false && this.currentInvoice !== undefined && this.currentInvoice.id > 0" class="modal-footer"
-        style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey" [email]="customer.email"
-          [amount]="getTotal()*100" [ref]="refKey" [class]="'btn btn-primary'" (close)="paymentCancel()" (callback)="paymentDone($event)"
-          class="btn waves-effect waves-light">Yes</button>
+      <div *ngIf="hideOnlinePayment===false && this.currentInvoice !== undefined && this.currentInvoice.id > 0"
+        class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
+          [email]="customer.email" [amount]="getTotal()*100" [ref]="refKey" [class]="'btn btn-primary'"
+          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
         <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
