@@ -84,7 +84,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 		this._productListService.getProductList(true).subscribe(
 			(results: any) => {
 				this.productList = [ ...results[0], ...results[1] ];
-				this.productList = this.shuffle(this.productList);
+				// this.productList = this.shuffle(this.productList);
 				this.fullProductList = this.productList;
 			},
 			(error) => {
