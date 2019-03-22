@@ -7,7 +7,7 @@
       <img *ngIf="selectedProduct?.fileName !== null" src="{{baseUrl}}{{selectedProduct?.fileName}}">
     </div>
     <div class="rht">
-      <h3>&#8358;{{selectedProduct?.price|number:'.2'}}</h3>
+      <h3>&#8358;{{(selectedProduct?.price)+(selectedProduct?.dataPlan?.price) | number:'.2'}}</h3>
       <small>In stock (60 items available)</small>
       <br>
       <form class="form-horizontal" style="margin: 10px 0;">
@@ -17,14 +17,15 @@
           </div>
           <div class="col-md-8">
             <div class="form-line">
-              <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity" value="1" min="1" class="form-control"
-                placeholder="Enter Quantity">
+              <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity" value="1" min="1"
+                class="form-control" placeholder="Enter Quantity">
             </div>
           </div>
         </div>
       </form>
 
-      <button (click)="addToCart()" class="btn btn-block btn-lg bg-red waves-effect" type="button"> <i class="material-icons">shopping_cart</i>Add
+      <button (click)="addToCart()" class="btn btn-block btn-lg bg-red waves-effect" type="button"> <i
+          class="material-icons">shopping_cart</i>Add
         To Cart (0)</button>
       <h4>Description</h4>
       <p>{{selectedProduct?.description}}</p>

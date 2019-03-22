@@ -34,12 +34,14 @@
                 </div>
               </div>
             </td>
-            <td data-th="Price">&#8358;{{product.product.price|number:'.2'}}</td>
+            <td data-th="Price">&#8358;{{(product?.product?.price)+(product?.product?.dataPlan?.price) | number:'.2'}}
+            </td>
             <td data-th="Quantity">
               <input name="quantity" min="1" [(ngModel)]="product.quantity" type="number"
                 class="form-control text-center">
             </td>
-            <td data-th="Subtotal" class="text-center">{{(product.product.price*product.quantity)|number:'.2'}}</td>
+            <td data-th="Subtotal" class="text-center">
+              {{(product?.product?.price)+(product?.product?.dataPlan?.price)|number:'.2'}}</td>
             <td class="actions">
               <button (click)="removeProduct(product, i)" class="btn btn-danger btn-sm waves-effect"><i
                   class="far fa-trash-alt"></i></button>

@@ -15,7 +15,8 @@
                 <img *ngIf="product?.fileName !== null" class="img" src="{{baseUrl}}{{product?.fileName}}">
                 <div class="prod-content">
                   <h5 class="tittle truncate">{{product.name}}</h5>
-                  <strong class="price">&#8358;{{product.price|number:'.2'}}</strong><br>
+                  <strong
+                    class="price">&#8358;{{(product?.price)+(product?.dataPlan?.price) | number:'.2'}}</strong><br>
                   <strong class="price">{{product.dataPlan.bandwidth}}{{product.dataPlan.bandWidthUnit?.name}} Data
                     Bundle</strong>
                 </div>
@@ -94,7 +95,7 @@
               <div>
                 <strong>{{product.product.name}}</strong>
                 <p>Valid for {{product?.product?.validity}} {{product?.product?.validityUnit.name}}</p>
-                <a>&#8358;{{(product.product.price * product.quantity)|number:'.2'}}</a>
+                <a>&#8358;{{((product?.product?.price+product?.product?.dataPlan?.price) * product.quantity)|number:'.2'}}</a>
               </div>
             </div>
             <div *ngIf="product.product.dataPlanId !== undefined" class="p-list">
@@ -106,7 +107,8 @@
               <div>
                 <strong>{{product.product.name}}</strong>
                 <p>{{product.product.model}}</p>
-                <a>&#8358; {{(product.product.price* product.quantity) | number:'.2'}}</a>
+                <a>&#8358;
+                  {{((product.product.price+product?.product?.dataPlan.price)* product.quantity) | number:'.2'}}</a>
               </div>
             </div>
           </span>

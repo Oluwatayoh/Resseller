@@ -83,8 +83,13 @@ export class MyCartComponent implements OnInit, OnDestroy {
 	getTotal() {
 		let sum = 0;
 		this.cart.forEach((product) => {
-			const sub = product.product.price * product.quantity;
-			sum = sum + sub;
+			if (product.product.dataPlan !== undefined) {
+				const sub = (product.product.price + product.product.dataPlan.price) * product.quantity;
+				sum = sum + sub;
+			} else {
+				const sub = product.product.price * product.quantity;
+				sum = sum + sub;
+			}
 		});
 		return sum;
 	}
@@ -108,6 +113,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 		};
 		this.cart.forEach((product) => {
 			if (product.product.dataPlanId === undefined) {
+				// Buying DataPlan
 				const detail: InvoiceDetail = <InvoiceDetail>{
 					item: product.product.name,
 					productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
@@ -118,11 +124,12 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				};
 				invoice.invoiceDetails.push(detail);
 			} else {
+				// Buying Device
 				const detail: InvoiceDetail = <InvoiceDetail>{
 					item: product.product.name,
 					productType: product.product.dataPlanId === undefined ? 'Data Plan' : 'Device',
 					productId: product.product.id,
-					price: product.product.price,
+					price: product.product.price + product.product.dataPlan.price,
 					quantity: product.quantity
 					// deviceId: product.device.id
 				};
