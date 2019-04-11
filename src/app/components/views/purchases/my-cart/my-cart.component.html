@@ -83,17 +83,51 @@
             <h5 *ngFor="let product of cart"> &#8226; {{product.product.name}}</h5>
           </div>
 
+          <div class="dropdown">
+            <div class="sel col-lg-12">
+              <label>Select Dispatch Method </label>
+              <select [formControl]="dispatchMethodForm" class="form-control show-tick">
+                <option *ngFor="let dispatch of dispatchMethod" [ngValue]="dispatch.name">{{dispatch.name}}</option>
+              </select>
+            </div>
+            <div class="sel col-lg-12">
+              <label>Select Location Your Location</label>
+              <select class="form-control show-tick">
+                <option value="1">Abuja</option>
+                <option value="2">Lagos </option>
+                <option value="3">Port-Harcourt</option>
+              </select>
+            </div>
+            <div class="sel col-lg-12" *ngIf="courier">
+              <label>Select Courier</label>
+              <select class="form-control show-tick">
+                <option value="1">OEM Logistics</option>
+                <option value="2">LOADMe Travels</option>
+                <option value="3">OMEN Courier Service</option>
+              </select>
+              <h6>Service Charge | &#8358;50,000</h6>
+            </div>
+            <div class="sel col-lg-12" *ngIf="reseller">
+              <label>Select Reseller</label>
+              <select class="form-control show-tick">
+                <option value="1">YTR Sat. Limited</option>
+                <option value="2">TVS </option>
+                <option value="3">Open Sat.</option>
+              </select>
+            </div>
+          </div>
+
           <h3>&#8358;{{getTotal()|number:'.2'}}</h3>
           <br>
           <div class="dropdown">
-            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div class="sel col-lg-10">
               <select [formControl]="paymentMode" class="form-control show-tick">
                 <option value="0">--Payment Method--</option>
                 <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
                 </option>
               </select>
             </div>
-            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10">
               <select class="form-control show-tick">
                 <option value="0">--Select Bank--</option>
                 <option value="1">First Bank</option>

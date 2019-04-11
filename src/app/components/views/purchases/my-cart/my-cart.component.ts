@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-my-cart',
 	templateUrl: './my-cart.component.html',
-	styleUrls: [ './my-cart.component.scss' ]
+	styleUrls: ['./my-cart.component.scss']
 })
 export class MyCartComponent implements OnInit, OnDestroy {
 	@ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
@@ -25,10 +25,24 @@ export class MyCartComponent implements OnInit, OnDestroy {
 	paymentModes: any;
 	paymentMode: FormControl = new FormControl();
 	hideOnlinePayment = true;
+	courier = false;
+	reseller = false;
 	currentInvoice: any;
 	paystackClientKey: string = PAYSTACK_CLIENT_KEY;
 	refKey: string;
 	checkedAll: false;
+	dispatchMethods: any;
+	dispatchMethod = [
+	
+		{
+			"id": 1,
+			"name": "By Courier"
+		}, {
+			"id": 2,
+			"name": "By Reseller"
+		}
+	];
+	dispatchMethodForm: FormControl = new FormControl();
 	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _locker: CoolLocalStorage,
@@ -61,6 +75,20 @@ export class MyCartComponent implements OnInit, OnDestroy {
 		this.cart = this._locker.getObject('cart');
 		this.refKey = (this.customer ? this.customer.id.toString() : '') + new Date().getTime();
 		this.getPaymentModes();
+		this.dispatchMethodForm.valueChanges.subscribe((value) => {
+			if (value === 'By Courier') {
+				this.courier = true;
+			} else {
+				this.courier = false;
+			}
+		});
+		this.dispatchMethodForm.valueChanges.subscribe((value) => {
+			if (value === 'By Reseller') {
+				this.reseller = true;
+			} else {
+				this.reseller = false;
+			}
+		});
 		this.paymentMode.valueChanges.subscribe((value) => {
 			if (value === 'Online Payment') {
 				this.hideOnlinePayment = false;
@@ -76,7 +104,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				this.paymentModes = payload;
 				this.paymentMode.setValue('Online Payment');
 			},
-			(error) => {}
+			(error) => { }
 		);
 	}
 
@@ -140,7 +168,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 			(payload) => {
 				this.currentInvoice = JSON.parse(payload);
 			},
-			(error) => {}
+			(error) => { }
 		);
 	}
 
@@ -176,7 +204,7 @@ export class MyCartComponent implements OnInit, OnDestroy {
 					this._locker.setObject('cart', []);
 					this._broadCastShoppingService.announceCartOperation({ operation: 'refresh' });
 					this.closeAddExpenseModal.nativeElement.click();
-					this._router.navigate([ '/views/product-list' ]);
+					this._router.navigate(['/views/product-list']);
 				},
 				(error) => {
 					this._systemModuleService.announceSweetProxy(
@@ -194,6 +222,16 @@ export class MyCartComponent implements OnInit, OnDestroy {
 				}
 			);
 		}
+	}
+
+	onSelectCourier() {
+		this.courier = true;
+		this.reseller = false;
+	}
+
+	onSelectReseller() {
+		this.courier = false;
+		this.reseller = true;
 	}
 
 	checkAll(event) {
