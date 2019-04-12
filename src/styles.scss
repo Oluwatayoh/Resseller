@@ -68,12 +68,15 @@ input[type="date"]::-webkit-inner-spin-button {
 }
 
 .confirm_pay {
-  display: grid;
+  display: flex;
+  justify-content: center;
   text-align: center;
+  flex-direction: column;
 }
 
 .sel {
-  margin: 0 0 10px 25px;
+  margin: 0 0 10px 0px;
+  text-align: left !important;
 }
 
 .rg-form-content {
