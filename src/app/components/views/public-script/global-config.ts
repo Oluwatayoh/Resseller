@@ -11,4 +11,4 @@ export const GEO_LOCATIONS = [ 'ng' ];
 export const ONLINE = 'http://nigcomsatapi.mywebsitedemo.com.ng/api/';
 export const LOCAL = 'http://localhost:6670/api/';
 export const ONLINEPATH = 'http://nigcomsatapi.mywebsitedemo.com.ng/upload/';
-export const LOCALPATH  = 'http://localhost:6670/upload/';
+export const LOCALPATH = 'http://localhost:6670/upload/';
