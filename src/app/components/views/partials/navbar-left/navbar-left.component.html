@@ -390,7 +390,7 @@
         <li>
           <a href="javascript:void(0);">
             <i class="material-icons col-amber">donut_large</i>
-            <span>Aboutt</span>
+            <span>About</span>
           </a>
         </li>
         <li>
@@ -424,59 +424,59 @@
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
         <ul class="demo-choose-skin">
-          <li data-theme="red" class="active">
+          <li data-theme="red" (click)="setTheme('Red')" [ngClass]="{'active':selectedTheme === 'Red'}" class="active">
             <div class="red"></div>
             <span>Red</span>
           </li>
-          <li data-theme="pink">
+          <li data-theme="pink" (click)="setTheme('Pink')" [ngClass]="{'active':selectedTheme === 'Pink'}">
             <div class="pink"></div>
             <span>Pink</span>
           </li>
-          <li data-theme="purple">
+          <li data-theme="purple" (click)="setTheme('Purple')" [ngClass]="{'active':selectedTheme === 'Purple'}">
             <div class="purple"></div>
             <span>Purple</span>
           </li>
-          <li data-theme="deep-purple">
+          <li data-theme="deep-purple" (click)="setTheme('Deep Purple')" [ngClass]="{'active':selectedTheme === 'Deep Purple'}">
             <div class="deep-purple"></div>
             <span>Deep Purple</span>
           </li>
-          <li data-theme="indigo">
+          <li data-theme="indigo" [ngClass]="{'active':selectedTheme === 'Indigo'}">
             <div class="indigo"></div>
             <span>Indigo</span>
           </li>
-          <li data-theme="blue">
+          <li data-theme="blue" (click)="setTheme('Blue')" [ngClass]="{'active':selectedTheme === 'Blue'}">
             <div class="blue"></div>
             <span>Blue</span>
           </li>
-          <li data-theme="light-blue">
+          <li data-theme="light-blue" (click)="setTheme('Light Blue')" [ngClass]="{'active':selectedTheme === 'Light Blue'}">
             <div class="light-blue"></div>
             <span>Light Blue</span>
           </li>
-          <li data-theme="cyan">
+          <li data-theme="cyan" (click)="setTheme('Cyan')" [ngClass]="{'active':selectedTheme === 'Cyan'}">
             <div class="cyan"></div>
             <span>Cyan</span>
           </li>
-          <li data-theme="teal">
+          <li data-theme="teal" [ngClass]="{'active':selectedTheme === 'Teal'}">
             <div class="teal"></div>
             <span>Teal</span>
           </li>
-          <li data-theme="green">
+          <li data-theme="green" [ngClass]="{'active':selectedTheme === 'Green'}">
             <div class="green"></div>
             <span>Green</span>
           </li>
-          <li data-theme="light-green">
+          <li data-theme="light-green" [ngClass]="{'active':selectedTheme === 'Light Green'}">
             <div class="light-green"></div>
             <span>Light Green</span>
           </li>
-          <li data-theme="lime">
+          <li data-theme="lime" [ngClass]="{'active':selectedTheme === 'Lime'}">
             <div class="lime"></div>
             <span>Lime</span>
           </li>
-          <li data-theme="yellow">
+          <li data-theme="yellow" [ngClass]="{'active':selectedTheme === 'Yellow'}">
             <div class="yellow"></div>
             <span>Yellow</span>
           </li>
-          <li data-theme="amber">
+          <li data-theme="amber" [ngClass]="{'active':selectedTheme === 'Amber'}">
             <div class="amber"></div>
             <span>Amber</span>
           </li>
