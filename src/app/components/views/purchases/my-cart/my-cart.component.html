@@ -59,7 +59,7 @@
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
             <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect"
-                (click)="checkOut()" type="button" data-toggle="modal" data-target="#smallModal">Checkout <i
+                (click)="checkOut()" type="button" data-toggle="modal" data-target="#bigModal">Checkout <i
                   class="fa fa-angle-right"></i></a></td>
           </tr>
         </tfoot>
@@ -70,70 +70,71 @@
 
 
 
-<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content" style="display:grid;">
+<div class="modal fade" id="bigModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
         <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+        <hr>
       </div>
       <div class="modal-body">
-        <div class="confirm_pay">
-          <p>You are about to purchase</p>
-          <div class="pay-list">
-            <h5 *ngFor="let product of cart"> &#8226; {{product.product.name}}</h5>
-          </div>
+        <div class="modal-lay">
+          <div class="confirm_pay">
+            <p>You are about to purchase</p>
+            <div class="pay-list">
+              <h5 *ngFor="let product of cart"> &#8226; {{product.product.name}}</h5>
+            </div>
 
-          <div class="dropdown">
-            <div class="sel col-lg-12">
-              <label>Select Dispatch Method </label>
-              <select [formControl]="dispatchMethodForm" class="form-control show-tick">
-                <option *ngFor="let dispatch of dispatchMethod" [ngValue]="dispatch.name">{{dispatch.name}}</option>
-              </select>
-            </div>
-            <div class="sel col-lg-12">
-              <label>Select Dsstination</label>
-              <select class="form-control show-tick">
-                <option value="1">Abuja</option>
-                <option value="2">Lagos </option>
-                <option value="3">Port-Harcourt</option>
-              </select>
-            </div>
-            <div class="sel col-lg-12" *ngIf="courier">
-              <label>Select Courier</label>
-              <select class="form-control show-tick">
-                <option value="1">OEM Logistics</option>
-                <option value="2">LOADMe Travels</option>
-                <option value="3">OMEN Courier Service</option>
-              </select>
-              <h6>Service Charge | &#8358;50,000</h6>
-            </div>
-            <div class="sel col-lg-12" *ngIf="reseller">
-              <label>Select Reseller</label>
-              <select class="form-control show-tick">
-                <option value="1">YTR Sat. Limited</option>
-                <option value="2">TVS </option>
-                <option value="3">Open Sat.</option>
-              </select>
+            <div class="dropdown">
+              <div class="sel col-lg-12">
+                <label>Select Dispatch Method </label>
+                <select [formControl]="dispatchMethodForm" class="form-control show-tick">
+                  <option *ngFor="let dispatch of dispatchMethod" [ngValue]="dispatch.name">{{dispatch.name}}</option>
+                </select>
+              </div>
+              <div class="sel col-lg-12">
+                <label>Select Dsstination</label>
+                <select class="form-control show-tick">
+                  <option value="1">Abuja</option>
+                  <option value="2">Lagos </option>
+                  <option value="3">Port-Harcourt</option>
+                </select>
+              </div>
+              <div class="sel col-lg-12" *ngIf="courier">
+                <label>Select Courier</label>
+                <select class="form-control show-tick">
+                  <option value="1">OEM Logistics</option>
+                  <option value="2">LOADMe Travels</option>
+                  <option value="3">OMEN Courier Service</option>
+                </select>
+                <h6>Service Charge | &#8358;50,000</h6>
+              </div>
+              <div class="sel col-lg-12" *ngIf="reseller">
+                <label>Select Reseller</label>
+                <select class="form-control show-tick">
+                  <option value="1">YTR Sat. Limited</option>
+                  <option value="2">TVS </option>
+                  <option value="3">Open Sat.</option>
+                </select>
+              </div>
             </div>
           </div>
-
-          <h3>&#8358;{{getTotal()|number:'.2'}}</h3>
-          <br>
-          <div class="dropdown">
-            <div class="sel col-lg-10">
-              <select [formControl]="paymentMode" class="form-control show-tick">
-                <option value="0">--Payment Method--</option>
-                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
-                </option>
-              </select>
-            </div>
-            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10">
-              <select class="form-control show-tick">
-                <option value="0">--Select Bank--</option>
-                <option value="1">First Bank</option>
-                <option value="2">Fidelity </option>
-                <option value="3">Zenith</option>
-              </select>
+          <div>
+            <h1 style="color: #43A047; text-align: center;">&#8358;{{getTotal()|number:'.2'}}</h1>
+            <br>
+            <div class="dropdown">
+              <div class="sel col-lg-10">
+                <select [formControl]="paymentMode" class="form-control show-tick">
+                  <option value="0">--Payment Method--</option>
+                  <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="hideOnlinePayment === true" class=" card tp col-lg-10">
+                <div class="fm"> <input type="checkbox" id="bankAccountNumber">
+                  <label for="bankAccountNumber">Streling Bank | 0062388123</label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
