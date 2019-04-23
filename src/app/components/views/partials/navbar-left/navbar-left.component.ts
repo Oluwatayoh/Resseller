@@ -16,6 +16,7 @@ export class NavbarLeftComponent implements OnInit {
 	appInfo: any = Config.APP;
 	customer;
 	baseUrl = `${ONLINEPATH}`;
+	selectedTheme = 'Red';
 	constructor(
 		private _dynamicScriptLoader: DynamicScriptLoaderService,
 		private _router: Router,
@@ -76,5 +77,9 @@ export class NavbarLeftComponent implements OnInit {
 				console.log(error);
 			}
 		);
+	}
+
+	setTheme(color) {
+		this.selectedTheme = color;
 	}
 }

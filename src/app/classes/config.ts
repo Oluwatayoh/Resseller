@@ -1,7 +1,7 @@
 export class Config {
 	public static APP = {
 		title: 'AdminBSBTheme - Angular 4',
-		version: 'DynoPro Nigeria Limited',
+		version: 'Dynopro Technologies International Limited',
 		author: 'Sunny',
 		copyright: {
 			year: '2019',
