@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this._systemModuleService.on();
 		const email = this.signForm.controls['email'].value;
 		const password = this.signForm.controls['password'].value;
+		// this._router.navigate([ '/views' ]).then((pay) => {
+		// 	this._systemModuleService.off();
+		// });
 		this._customerService.loginCustomer(email, password).subscribe(
 			(payload: any) => {
 				this._locker.setObject('cart', []);
