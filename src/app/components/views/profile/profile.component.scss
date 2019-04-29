@@ -5,19 +5,31 @@
 }
 
 .img-wrap {
-  display: inline;
-  justify-content: center;
-  text-align: center;
   label {
     margin: 10px;
     color: white;
   }
 }
+
+.chngPass{
+  display: flex;
+  align-items: center;
+  i{
+    margin: 5px;
+    cursor: pointer;
+  }
+}
+
+app-upload-component{
+  margin: 7px;
+}
+
 .img-container {
   border-radius: 50%;
   width: 200px;
   height: 200px;
   background: #dddddd;
+  margin-left: 30px !important;
   img {
     border-radius: 50%;
     width: 200px !important;
@@ -64,4 +76,8 @@ label.file-upload {
       cursor: pointer;
       font-size: 23px;
   }
+}
+
+.btn{
+  border-radius: 25px !important;
 }

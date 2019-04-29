@@ -1,0 +1,50 @@
+<section>
+  <h2>{{selectedProduct?.name}}</h2>
+  <br>
+  <div class="det-layout">
+    <div class="lft">
+      <img *ngIf="selectedProduct?.fileName === null" src="../../../../../assets/img/modem.jpg" alt="product-1">
+      <img *ngIf="selectedProduct?.fileName !== null" src="{{baseUrl}}{{selectedProduct?.fileName}}">
+    </div>
+    <div class="rht">
+      <h3>&#8358;{{(selectedProduct?.price)+(selectedProduct?.dataPlan?.price) | number:'.2'}}</h3>
+      <small>In stock (60 items available)</small>
+      <br>
+      <form class="form-horizontal" style="margin: 10px 0;">
+        <div class="row clearfix">
+          <div class=" col-sm-4 form-control-label">
+            <label for="quantity">Quantity:</label>
+          </div>
+          <div class="col-md-8">
+            <div class="form-line">
+              <input type="number" id="quantity" name="quantity" [(ngModel)]="quantity" value="1" min="1"
+                class="form-control" placeholder="Enter Quantity">
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <button (click)="addToCart()" class="btn btn-block btn-lg bg-red waves-effect" type="button"> <i
+          class="material-icons">shopping_cart</i>Add
+        To Cart (0)</button>
+      <h4>Description</h4>
+      <p>{{selectedProduct?.description}}</p>
+      <table class="count">
+        <tbody>
+          <tr>
+            <td>Product Code:</td>
+            <td class="right-align"><strong>{{selectedProduct?.productCode}}</strong> </td>
+          </tr>
+          <tr>
+            <td>Model:</td>
+            <td class="right-align"><strong>{{selectedProduct?.model}}</strong></td>
+          </tr>
+          <tr>
+            <td>Data Bundle:</td>
+            <td class="right-align"><strong>500Tb</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

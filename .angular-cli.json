@@ -18,16 +18,17 @@
     "testTsconfig": "tsconfig.spec.json",
     "prefix": "app",
     "styles": [
-      "../node_modules/material-design-icons/iconfont/material-icons.css",
       "../node_modules/bootstrap/dist/css/bootstrap.min.css",
       "../node_modules/font-awesome/css/font-awesome.min.css",
       "../node_modules/node-waves/dist/waves.min.css",
       "../node_modules/animate.css/animate.min.css",
       "assets/css/style.css",
       "assets/css/all-themes.css",
-      "styles.css"
+      "assets/css/material-icons.css",
+      "styles.scss"
     ],
     "scripts": [
+      "assets/js/jquery.min.js",
       "../node_modules/jquery/dist/jquery.min.js",
       "../node_modules/bootstrap/dist/js/bootstrap.min.js",
       "../node_modules/jquery-slimscroll/jquery.slimscroll.min.js",

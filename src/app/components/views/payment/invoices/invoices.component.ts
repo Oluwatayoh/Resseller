@@ -13,6 +13,7 @@ export class InvoicesComponent implements OnInit {
 	customer;
 	invoices = [];
 	selectedInvoice: any;
+	details: Object;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _customerInvoiceService: InvoiceService,
@@ -29,7 +30,6 @@ export class InvoicesComponent implements OnInit {
 		this._customerInvoiceService.getInvoices(this.customer.id, true).subscribe(
 			(payload: any) => {
 				this.invoices = payload;
-				console.log(payload);
 			},
 			(error) => {
 				console.log(error);
@@ -61,5 +61,13 @@ export class InvoicesComponent implements OnInit {
 
 	viewDetail(invoice) {
 		this.selectedInvoice = invoice;
+		this._customerInvoiceService.getInvoiceDetails(invoice.id, false).subscribe(
+			(payload) => {
+				this.details = payload;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
 	}
 }

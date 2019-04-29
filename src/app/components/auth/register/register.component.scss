@@ -1,0 +1,73 @@
+.card {
+  padding: 10px;
+  margin-bottom: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.jj-wrap {
+  padding: 50px;
+  margin: 30px;
+  border-right: 1.5px solid #ddd;
+  img {
+    right: 0px;
+    border-radius: 20%;
+    height: 200px;
+    width: 200px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0060b4;
+  }
+}x
+
+
+
+.input-group {
+  margin-top: 20px !important;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.btnUpload {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.content-wrap {
+  margin: 10px;
+  max-width: 300px;
+  padding: 10px;
+}
+
+small {
+  color: red;
+  font-size: 65% !important;
+  text-align: left !important;
+}
+
+.msg {
+  color: #555;
+  margin-bottom: 30px;
+  text-align: center;
+}

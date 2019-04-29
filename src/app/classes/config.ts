@@ -1,7 +1,7 @@
 export class Config {
 	public static APP = {
 		title: 'AdminBSBTheme - Angular 4',
-		version: '0.0.1',
+		version: 'Dynopro Technologies International Limited',
 		author: 'Sunny',
 		copyright: {
 			year: '2019',
@@ -12,7 +12,7 @@ export class Config {
 	public static THEME = {
 		landing: 'theme-grey',
 		landing_bgcolor: 'landing-bg',
-		views: 'theme-red'
+		views: 'theme-blue'
 	};
 	public static API = {
 		endpoint: 'http://localhost:3000'

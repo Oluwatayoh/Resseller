@@ -1,0 +1,179 @@
+<section class="">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>PRODUCT LIST</h2>
+    </div>
+
+    <div class="row card">
+      <div class="col m8 l9 s12 layout main-product">
+        <div class="m-wrap">
+          <div class="row row-clear row-product" *ngFor="let product of productList">
+            <div *ngIf="product.dataPlanId !== undefined" [routerLink]="['/views/product-detail', product.id]"
+              class="col l4 s6 waves-effect prodwrap">
+              <div class="item-product">
+                <img *ngIf="product?.fileName === null" class="img" src="../../../../../assets/img/modem.jpg">
+                <img *ngIf="product?.fileName !== null" class="img" src="{{baseUrl}}{{product?.fileName}}">
+                <div class="prod-content">
+                  <h5 class="tittle truncate">{{product.name}}</h5>
+                  <strong
+                    class="price">&#8358;{{(product?.price)+(product?.dataPlan?.price) | number:'.2'}}</strong><br>
+                  <strong class="price">{{product.dataPlan.bandwidth}}{{product.dataPlan.bandWidthUnit?.name}} Data
+                    Bundle</strong>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="product.dataPlanId === undefined" class="col l4 s6 waves-effect prodwrap">
+              <div class="item-product">
+                <div (click)="onSelectDataPlan(product)" class="img">
+                  <i class="material-icons">data_usage</i>
+                  <div class="plan-detail-wrap">
+                    <h3>{{product?.name}}</h3>
+                    <h4>{{product?.bandwidth}}{{product?.bandWidthUnit?.name}} Bandwidth</h4>
+                    <small>1.5 Mbps Up-To-Speed</small>
+                    <h5>{{product?.validity}} {{product?.validityUnit?.name}}</h5>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="prod-content plan-content">
+                  <strong class="price">&#8358;{{product?.price| number: '.2'}}</strong>
+                  <button (click)="onSelectDataPlan(product)" type="button"
+                    class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                    <i class="material-icons">payment</i>
+                  </button>
+                  <!-- <button (click)="setDataPlan(product)" type="button" data-toggle="modal" data-target="#smallModal"
+                    class=" cart-btn btn btn-default btn-circle waves-effect waves-blue waves-circle waves-float pull-right">
+                    <i class="material-icons">payment</i>
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- pagination -->
+        <div>
+          <div class="wrap-pagination">
+            <nav aria-label="Page navigation example" class="pagination-product">
+              <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                  <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item">
+                  <a class="page-link">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- pagination end -->
+      </div>
+      <div class="col m4 l3 s12 wrap-filter">
+        <div class="content-filter search">
+          <input type="text" class="searchInput" placeholder="Search Product">
+          <i class="material-icons icon icons"> search</i>
+        </div>
+        <div class="content-filter">
+          <h6 class="title">Categories</h6>
+          <ul class="categories">
+            <li (click)="onSelectCategory('All')" [class.active]="selectedCategory === 'All'"><a>All</a></li>
+            <li (click)="onSelectCategory('Bandwidth')" [class.active]="selectedCategory === 'Bandwidth'">
+              <a>Bandwidth</a></li>
+            <li (click)="onSelectCategory('Devices')" [class.active]="selectedCategory === 'Devices'"><a>Devices</a>
+            </li>
+          </ul>
+        </div>
+        <div class="content-filter">
+          <h6>My List</h6>
+          <span *ngFor="let product of cart">
+            <div *ngIf="product.product.dataPlanId === undefined" class="p-list">
+              <div class="icon-circle bg-light-green">
+                <img>
+              </div>
+              <div>
+                <strong>{{product.product.name}}</strong>
+                <p>Valid for {{product?.product?.validity}} {{product?.product?.validityUnit.name}}</p>
+                <a>&#8358;{{((product?.product?.price+product?.product?.dataPlan?.price) * product.quantity)|number:'.2'}}</a>
+              </div>
+            </div>
+            <div *ngIf="product.product.dataPlanId !== undefined" class="p-list">
+              <div class="icon-circle bg-light-green">
+                <img *ngIf="product.product?.fileName === null">
+                <img *ngIf="product.product?.fileName !== null" width="50" height="50"
+                  src="{{baseUrl}}{{product.product?.fileName}}">
+              </div>
+              <div>
+                <strong>{{product.product.name}}</strong>
+                <p>{{product.product.model}}</p>
+                <a>&#8358;
+                  {{((product.product.price+product?.product?.dataPlan.price)* product.quantity) | number:'.2'}}</a>
+              </div>
+            </div>
+          </span>
+
+
+          <div class="p-list">
+            <div class="footer">
+              <span [routerLink]="['/views/cart']">View All Cart Items</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" style="display:grid;">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="confirm_pay">
+          <p>You are about to purchase</p>
+          <h2>{{selectedDataPlan?.name}}</h2>
+          <h3>{{selectedDataPlan?.bandwidth}}{{selectedDataPlan?.bandWidthUnit.name}} Bandwidth</h3>
+          <small>1.5 Mbps Up-To-Speed</small>
+          <h5>{{selectedDataPlan?.validity}}{{selectedDataPlan?.validityUnit.name}}</h5>
+          <h3>&#8358;{{selectedDataPlan?.price|number:'.2'}}</h3>
+          <br>
+          <div class="dropdown">
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Select Device--</option>
+                <option>Haiwei Modem</option>
+              </select>
+            </div>
+            <div class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select [formControl]="paymentMode" class="form-control show-tick">
+                <option value="0">--Payment Method--</option>
+                <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="hideOnlinePayment === true" class="sel col-lg-10 col-md-10 col-sm-8 col-xs-7">
+              <select class="form-control show-tick">
+                <option value="0">--Select Bank--</option>
+                <option value="1">First Bank</option>
+                <option value="2">Fidelity </option>
+                <option value="3">Zenith</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="hideOnlinePayment === false && this.currentInvoice !== undefined && this.currentInvoice?.id > 0"
+        class="modal-footer" style="text-align:center !important;">
+        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
+          [email]="customer.email" [amount]="selectedDataPlan.price*100" [ref]="refKey" [class]="'btn btn-primary'"
+          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
+        <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

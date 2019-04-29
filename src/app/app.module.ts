@@ -1,3 +1,7 @@
+import { BroadcastShoppingCartService } from './components/views/public-script/broadcast-shopping-cart.service';
+import { ProductListService } from './components/views/services/product-list.service';
+import { PaymentModeService } from './components/views/services/payment-mode.service';
+import { TicketService } from './components/views/services/ticket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -23,13 +27,18 @@ import { DeviceService } from './components/views/services/device.service';
 import { InvoiceService } from './components/views/services/invoice.service';
 import { CustomerDeviceTransactionsService } from './components/views/services/customer-device-transactions.service';
 import { SystemModuleService } from './components/views/public-script/system-module.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoolStorageModule } from 'angular2-cool-storage';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { DynamicScriptLoaderService } from './components/views/public-script/dynamic-script-loader-service';
+import { EqualValidator } from './components/views/public-script/equal-validator.directive';
+import { BroadcastImageUploadService } from './components/views/public-script/broadcast-image-upload.service';
+import { EmptyBodyInterceptor } from './components/views/public-script/empty-body-interceptor.service';
+import { UploadScriptService } from './components/views/services/upload-script.service';
 
 @NgModule({
-	declarations: [ AppComponent ],
+	declarations: [ AppComponent, EqualValidator ],
 	imports: [
 		BrowserModule,
 		FlashMessagesModule.forRoot(),
@@ -51,7 +60,19 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 		DeviceService,
 		InvoiceService,
 		CustomerDeviceTransactionsService,
-		SystemModuleService
+		SystemModuleService,
+		TicketService,
+		DynamicScriptLoaderService,
+		PaymentModeService,
+		BroadcastImageUploadService,
+		BroadcastShoppingCartService,
+		UploadScriptService,
+		ProductListService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: EmptyBodyInterceptor,
+			multi: true
+		}
 	],
 	bootstrap: [ AppComponent ]
 })

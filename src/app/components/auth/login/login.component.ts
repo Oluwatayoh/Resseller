@@ -8,7 +8,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.css' ]
+	styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit, OnDestroy {
 	signForm: FormGroup;
@@ -27,18 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 			email: [ '', [ <any>Validators.required ] ],
 			password: [ '', [ <any>Validators.required ] ]
 		});
-
-		this._systemModuleService.announceSweetProxy(
-			`Welcome back`,
-			'success',
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null
-		);
 	}
 
 	ngOnDestroy() {
@@ -46,12 +34,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 		body.classList.remove('login-page');
 	}
 
+	signUp() {
+		this._router.navigate([ '/auth/register' ]).then((pay) => {});
+	}
+
 	signIn() {
 		this._systemModuleService.on();
 		const email = this.signForm.controls['email'].value;
 		const password = this.signForm.controls['password'].value;
+		// this._router.navigate([ '/views' ]).then((pay) => {
+		// 	this._systemModuleService.off();
+		// });
 		this._customerService.loginCustomer(email, password).subscribe(
 			(payload: any) => {
+				this._locker.setObject('cart', []);
 				this._systemModuleService.announceSweetProxy(
 					`Welcome back ${payload.surname} ${payload.otherNames}`,
 					'success',

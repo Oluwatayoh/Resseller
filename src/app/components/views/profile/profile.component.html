@@ -14,33 +14,26 @@
             <!-- image -->
             <div class="img-wrap">
               <div class="img-container">
-                <img src="../../../../../assets/img/DSC_0291.jpg" alt="">
+                <img src="{{baseUrl}}{{customer.fileName}}" alt="">
               </div>
-              <div class="form-group">
-                <label class="file-upload btn btn-primary" for="imgUpload">Upload Image
-                  <input type="file" id="imgUpload">
-                </label>
-              </div>
+              <app-upload-component (completeOperation)="completeOperation($event)"></app-upload-component>
             </div>
 
             <!-- profile detail -->
-            <div *ngIf="doneEdit" style="margin-left: 100px; width: 700px !important;">
+            <div *ngIf="doneEdit" style="margin-left: 20px; width: 775px !important;">
               <div class="rg-layout">
                 <div class="rg-form-content">
                   <div class="">
-                    <span>Surname:</span>
-                    <h5>{{customer.surname}}</h5>
-                    <!-- <div *ngIf="editFields" class="form-line input-group"><input class="form-control" placeholder="Surname" type="text"></div> -->
+                    <span>Company Name:</span>
+                    <h5>Arigba-Nla Sat. Ltd. </h5>
                   </div>
-                  <div class="">
-                    <span>Othername:</span>
-                    <h5>{{customer.otherNames}}</h5>
-                    <!-- <div *ngIf="editFields" class="form-line input-group"><input class="form-control" placeholder="Othername" type="text"></div> -->
+                  <div>
+                    <span>Contact Person:</span>
+                    <h5>Mr Ariyo Bamidele</h5>
                   </div>
                   <div class="">
                     <span>Email:</span>
                     <h5>{{customer.email}}</h5>
-                    <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="email"></div> -->
                   </div>
                 </div>
                 <br>
@@ -50,11 +43,11 @@
                     <h5>{{customer.telephone}}</h5>
                     <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="number"></div> -->
                   </div>
-                  <div class="">
+                  <!-- <div class="">
                     <span>Profession:</span>
                     <h5>{{customer.profession}}</h5>
-                    <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div> -->
-                  </div>
+                    <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div> 
+                  </div> -->
                   <div class="">
                     <span>Address:</span>
                     <h5>{{customer.address}}</h5>
@@ -62,26 +55,45 @@
                   </div>
                 </div>
                 <div *ngIf="editFields" class="col-xs-4">
-                  <button (click)="onDoneEdit()" class="btn btn-block bg-blue waves-effect" type="submit">Update</button>
+                  <button (click)="onDoneEdit()" class="btn btn-block bg-blue waves-effect"
+                    type="submit">Update</button>
                 </div>
                 <br>
                 <hr>
                 <div class="rg-form-content">
                   <div class="">
-                    <span>Password:</span>
+                    <span>Current Password:</span>
                     <h5 *ngIf="donePasswordChange">***********</h5>
                     <div *ngIf="changePassword" class="form-line">
-                      <input name="current" [(ngModel)]="currentPassword" class="form-control" type="password">
+                      <input name="current" [formControl]="currentPassword" class="form-control" type="password">
                     </div>
+                  </div>
+
+                  <div *ngIf="changePassword" class="">
+                    <span>New Password:</span>
+                    <div class="form-line">
+                      <input name="password" [formControl]="password" class="form-control" type="password"
+                        validateEqual="confirmPassword" reverse="true" minlength="6" required>
+                    </div>
+                    <small [hidden]="password.valid ||  password.pristine">
+                      Password mismatch
+                    </small>
                   </div>
                   <div *ngIf="changePassword" class="">
                     <span>Confirm Password:</span>
                     <div class="form-line">
-                      <input name="password" [(ngModel)]="password" class="form-control" type="password">
+                      <input name="confirmPassword" [formControl]="confirmPassword" validateEqual="password"
+                        class="form-control" type="password" minlength="6" required>
                     </div>
+                    <small [hidden]="confirmPassword.valid ||  confirmPassword.pristine">
+                      Password mismatch
+                    </small>
                   </div>
-                  <button *ngIf="changePassword" (click)="onDonePasswordChange()" class="btn waves-effect bg-blue waves-light"
-                    type="submit">Submit</button>
+                  <button *ngIf="changePassword" (click)="onDonePasswordChange()"
+                    class="btn waves-effect bg-blue waves-light" type="submit"><i
+                      class="material-icons">check</i></button>
+                  <button (click)="cancel()" *ngIf="changePassword" class="btn waves-effect bg-red waves-light"
+                    type="cancel"><i class="material-icons">cancel</i></button>
                   <div class="switch" *ngIf="donePasswordChange">
                     <label>
                       Change Password
@@ -97,14 +109,13 @@
                 <form [formGroup]="customerForm">
                   <div class="input-group">
                     <div class="form-line">
-                      <input formControlName="surname" type="text" class="form-control" placeholder="Surname" required="autofocus" />
+                      <input type="text" class="form-control" placeholder="Company Name" required="autofocus" />
                     </div>
                   </div>
 
                   <div class="input-group">
                     <div class="form-line">
-                      <input formControlName="otherNames" type="text" class="form-control" placeholder="Other Names"
-                        required />
+                      <input type="text" class="form-control" placeholder="Contact Person" required />
                     </div>
                   </div>
 
@@ -121,14 +132,6 @@
                         required="" />
                     </div>
                   </div>
-
-                  <div class="input-group">
-                    <div class="form-line">
-                      <input type="text" formControlName="profession" placeholder="Profession" required="" />
-                    </div>
-                  </div>
-
-
                   <div class="input-group">
                     <div class="form-line">
                       <textarea class="form-control" formControlName="address" minlength="11" placeholder="Address"
@@ -136,7 +139,10 @@
                     </div>
                   </div>
 
-                  <button (click)="onDoneEdit()" class="btn btn-block btn-lg bg-pink waves-effect" type="button">Update</button>
+                  <button (click)="onDoneEdit()" class="btn btn-block btn-lg bg-blue waves-effect"
+                    type="button">Update</button>
+                  <button (click)="cancelEdit()" class="btn btn-block btn-lg bg-red waves-effect"
+                    type="button">Cancel</button>
                 </form>
               </div>
             </div>

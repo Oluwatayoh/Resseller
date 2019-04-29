@@ -3,16 +3,21 @@ import { Subscription } from 'rxjs/Subscription';
 import { SystemModuleService } from './components/views/public-script/system-module.service';
 // import { LoadingBarService } from '@ngx-loading-bar/core';
 import swal from 'sweetalert2';
+import { DynamicScriptLoaderService } from './components/views/public-script/dynamic-script-loader-service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: [ './app.component.css' ]
+	styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
 	title = 'nigcomsat';
 	loaderSubscription: Subscription;
 	private sweetAlertSubscription: Subscription;
-	constructor(private systemModuleService: SystemModuleService) {
+	constructor(
+		private systemModuleService: SystemModuleService,
+		private _dynamicScriptLoader: DynamicScriptLoaderService
+	) {
+		// this.loadScripts();
 		this.loaderSubscription = this.systemModuleService.loadingAnnounced$.subscribe((value: any) => {
 			if (value.status === 'On') {
 				// this.loadingService.start();
@@ -79,5 +84,16 @@ export class AppComponent {
 				value.cp.sweetAlertCallback(result, value.from);
 			});
 		}
+	}
+
+	private loadScripts() {
+		// You can load multiple scripts by just providing the key as argument into load method of the service
+
+		this._dynamicScriptLoader
+			.load('jquery', 'admin')
+			.then((data) => {
+				// Script Loaded Successfully
+			})
+			.catch((error) => console.log(error));
 	}
 }

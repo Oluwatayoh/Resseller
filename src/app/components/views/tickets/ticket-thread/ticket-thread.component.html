@@ -1,0 +1,39 @@
+<div *ngIf="ticket !== undefined" class="mb modal-dialog" role="document">
+  <div id="frame">
+    <div class="content">
+      <div class="contact-profile">
+        <img src="{{baseUrl}}{{ticket?.customer.fileName}}" alt="" />
+        <p>{{ticket?.customer.surname}} {{ticket?.customer.otherNames}}</p>
+        <div class="social-media">
+          <i class="fa fa-times" #closeAddExpenseModal data-dismiss="modal"></i>
+        </div>
+      </div>
+      <div class="messages">
+        <ul *ngFor="let response of ticket?.ticketResponses">
+          <li *ngIf="response.responseSource==='sent'" class="sent">
+            <img src="{{baseUrl}}{{ticket?.customer.fileName}}" alt="" />
+            <p>{{response.message}}</p>
+          </li>
+          <li *ngIf="response.responseSource==='reply'" class="replies">
+            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+            <p>{{response.message}}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="message-input">
+        <div class="wrap">
+          <input [(ngModel)]="message" type="text" placeholder="Write your message..." />
+          <div class="image-upload attachment">
+            <label for="file-input">
+              <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="attachment"></i>
+            </label>
+            <input id="file-input" #file type="file" type="file" (change)="upload(file.files)" />
+          </div>
+          <!-- <i class="fa fa-paperclip attachment" aria-hidden="true" data-toggle="tooltip" data-placement="top"
+          title="attachment"></i> -->
+          <button (click)="replyMessage()" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

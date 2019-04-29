@@ -6,7 +6,7 @@ interface Scripts {
 }
 
 export const ScriptStore: Scripts[] = [
-	{ name: 'jquery', src: '../../../assets/plugins/jquery/jquery.min.js' },
+	{ name: 'jquery', src: '../../../assets/js/jquery.min.js' },
 	{ name: 'bootstrap', src: '../../../assets/plugins/bootstrap/js/bootstrap.js' },
 	{ name: 'bootstrap-select', src: '../../../assets/plugins/bootstrap-select/js/bootstrap-select.js' },
 	{ name: 'jquery-slimscroll', src: '../../../assets/plugins/jquery-slimscroll/jquery.slimscroll.js' },
