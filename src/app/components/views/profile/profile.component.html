@@ -29,13 +29,13 @@
               <div class="rg-layout">
                 <div class="rg-form-content">
                   <div class="">
-                    <span>Surname:</span>
-                    <h5>{{customer.surname}}</h5>
+                    <span>Company Name:</span>
+                    <h5>Arigba-Nla Sat. Ltd. </h5>
                     <!-- <div *ngIf="editFields" class="form-line input-group"><input class="form-control" placeholder="Surname" type="text"></div> -->
                   </div>
                   <div>
-                    <span>Othername:</span>
-                    <h5>{{customer.otherNames}}</h5>
+                    <span>Contact Person:</span>
+                    <h5>Mr Ariyo Bamidele</h5>
                     <!-- <div *ngIf="editFields" class="form-line input-group"><input class="form-control" placeholder="Othername" type="text"></div> -->
                   </div>
                   <div class="">
@@ -51,11 +51,11 @@
                     <h5>{{customer.telephone}}</h5>
                     <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="number"></div> -->
                   </div>
-                  <div class="">
+                  <!-- <div class="">
                     <span>Profession:</span>
                     <h5>{{customer.profession}}</h5>
-                    <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div> -->
-                  </div>
+                    <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div> 
+                  </div> -->
                   <div class="">
                     <span>Address:</span>
                     <h5>{{customer.address}}</h5>
@@ -115,13 +115,13 @@
                 <form [formGroup]="customerForm">
                   <div class="input-group">
                     <div class="form-line">
-                      <input formControlName="surname" type="text" class="form-control" placeholder="Surname" required="autofocus" />
+                      <input  type="text" class="form-control" placeholder="Company Name" required="autofocus" />
                     </div>
                   </div>
 
                   <div class="input-group">
                     <div class="form-line">
-                      <input formControlName="otherNames" type="text" class="form-control" placeholder="Other Names"
+                      <input  type="text" class="form-control" placeholder="Contact Person"
                         required />
                     </div>
                   </div>
@@ -140,11 +140,11 @@
                     </div>
                   </div>
 
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                     <div class="form-line">
                       <input type="text" formControlName="profession" placeholder="Profession" required="" />
                     </div>
-                  </div>
+                  </div> -->
 
 
                   <div class="input-group">

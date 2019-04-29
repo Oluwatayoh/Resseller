@@ -32,9 +32,9 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/views/profile']"><i class="material-icons">person</i> <span>Profile</span></a>
         </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a><i class="material-icons">data_usage</i> <span>Bandwidth Usage</span></a>
-        </li>
+        <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/views/customer']"><i class="material-icons">people</i> <span>Customers</span></a>
+        </li> -->
         <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/views/typography']"><i class="material-icons">text_fields</i> <span>Typography</span></a>
         </li>
@@ -42,17 +42,17 @@
           <a [routerLink]="['/views/helper-classes']"><i class="material-icons">layers</i> <span>Helper Classes</span></a>
         </li> -->
 
-        <li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">shopping_cart</i>
-            <span>Purchases</span>
+            <span>Inventory</span>
           </a>
           <ul class="ml-menu">
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
               <a [routerLink]="['/views/product-list']">Products</a>
             </li>
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-              <a [routerLink]="['/views/cart']">My Cart</a>
+              <a [routerLink]="['/views/cart']">Order List</a>
             </li>
           </ul>
         </li>
@@ -70,7 +70,7 @@
             </li>
           </ul>
         </li> -->
-        <li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a class="menu-toggle">
             <i class="material-icons">view_list</i>
             <span>Payments</span>
@@ -84,7 +84,7 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">message</i>
             <span>Tickets</span>
@@ -380,20 +380,20 @@
         <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/views/changelogs']"><i class="material-icons">update</i> <span>Changelogs</span></a>
         </li> -->
-        <li class="header">Help</li>
-        <li>
+        <li class="header" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Help</li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> 
           <a href="javascript:void(0);">
             <i class="material-icons col-red">donut_large</i>
             <span>Customer Feedbacks</span>
           </a>
         </li>
-        <li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a href="javascript:void(0);">
             <i class="material-icons col-amber">donut_large</i>
             <span>About</span>
           </a>
         </li>
-        <li>
+        <li >
           <a (click)="signOut()">
             <i class="material-icons col-light-blue">input</i>
             <span>Sign Out</span>

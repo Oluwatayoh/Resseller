@@ -3,7 +3,7 @@
     <div class="card">
       <div class="header">
         <h4>
-          Cart List
+          Order List
         </h4>
       </div>
       <table id="cart" class="table table-hover table-condensed">
@@ -11,6 +11,7 @@
           <tr>
             <th style="width:50%"><input [checked]="checkedAll" (change)="checkAll($event)" type="checkbox">
               <span style="margin-left: 40px;">Product</span></th>
+            <th style="width:15%">Customer Name</th>
             <th style="width:10%">Price</th>
             <th style="width:8%">Quantity</th>
             <th style="width:22%" class="text-center">Subtotal</th>
@@ -34,6 +35,7 @@
                 </div>
               </div>
             </td>
+            <td>Olanrewaju Hammed</td>
             <td data-th="Price">&#8358;{{(product?.product?.price)+(product?.product?.dataPlan?.price) | number:'.2'}}
             </td>
             <td data-th="Quantity">

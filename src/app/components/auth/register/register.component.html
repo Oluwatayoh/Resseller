@@ -2,48 +2,42 @@
   <div class="card">
     <div class="logo jj-wrap">
       <img class="pull-center" src="assets/img/NigComSat.jpeg" alt="" title="NigComSat" id="Img1" />
-      <h3>CUSTOMER Registration</h3>
+      <h3>RESELLER Registration</h3>
     </div>
     <div class="content-wrap">
       <form [formGroup]="customerForm" id="sign_up">
         <div class="input-group">
           <span class="input-group-addon">
+            <i class="material-icons">location_city</i>
+          </span>
+          <div class="  ">
+            <input type="text" class="form-control" placeholder="Company Name" required="" />
+          </div>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">
             <i class="material-icons">person</i>
           </span>
           <div class="">
-            <input type="text" formControlName="surname" class="form-control" placeholder="Surname"
+            <input type="text" formControlName="surname" class="form-control" placeholder="Contact Person"
               required="autofocus" />
             <small [hidden]="customerForm.controls['surname'].valid || (customerForm.controls['surname'].pristine)">
               Username is required (minimum 3 characters).
             </small>
           </div>
         </div>
-
         <div class="input-group">
           <span class="input-group-addon">
-            <i class="material-icons">person</i>
-          </span>
-          <div class="">
-            <input type="text" formControlName="otherNames" class="form-control" placeholder="Other Names" required />
-            <small
-              [hidden]="customerForm.controls['otherNames'].valid || (customerForm.controls['otherNames'].pristine)">
-              Username is required (minimum 3 characters).
-            </small>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <span class="input-group-addon">
-            <i class="material-icons">email</i>
+            <i class="material-icons">location_on</i>
           </span>
           <div class="  ">
-            <input formControlName="email" type="email" class="form-control" placeholder="Email Address" required="" />
-            <small [hidden]="customerForm.controls['email'].valid || (customerForm.controls['email'].pristine)">
-              Email is required and format should be <i>john@doe.com</i>.
-            </small>
+            <textarea type="text" class="form-control" style="  margin: 0px !important;
+              min-width: 200px !important;
+              height: 100px !important;
+              outline: auto !important;
+              padding: 10px !important;" placeholder="Address" required=""></textarea>
           </div>
         </div>
-
         <div class="input-group">
           <span class="input-group-addon">
             <i class="material-icons">phone</i>
@@ -55,7 +49,43 @@
             </small>
           </div>
         </div>
-
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="material-icons">person</i>
+          </span>
+          <div class="">
+            <input type="text" formControlName="otherNames" class="form-control"
+              placeholder="Year of Experience as an ISP?" required />
+          </div>
+        </div>
+        <div class="upload-btn-wrapper">
+          <button class="btnUpload">Please Upload a Copy of ISP Licence</button>
+          <input type="file" name="myfile" />
+        </div>
+      </form>
+    </div>
+    <div class="content-wrap">
+      <form [formGroup]="customerForm" id="sign_up">
+        <div class="form-group">
+          <input type="checkbox" required name="regPayment" id="regPayment" class="filled-in chk-col-pink" />
+          <label for="regPayment">Registration Payment Made?</label>
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+          <div class="form-line">
+            <input type="text" placeholder="Remita RRR Code" required="" />
+          </div>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="material-icons">email</i>
+          </span>
+          <div class="  ">
+            <input formControlName="email" type="email" class="form-control" placeholder="Email Address" required="" />
+            <small [hidden]="customerForm.controls['email'].valid || (customerForm.controls['email'].pristine)">
+              Email is required and format should be <i>john@doe.com</i>.
+            </small>
+          </div>
+        </div>
 
         <div class="input-group">
           <span class="input-group-addon">
@@ -85,30 +115,7 @@
             </small>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="content-wrap">
-      <form [formGroup]="customerForm" id="sign_up">
-        <div class="row">
-          <div class="col-lg-12">
-            <select class="form-control show-tick">
-              <option value="0">---Select ID Type---</option>
-              <option value="Minor">Voter's Card</option>
-              <option value="Major">National ID</option>
-              <option value="Critical">Driver's License</option>
-              <option value="Critical">International Passport</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group">
-          <div class="form-line">
-            <input type="text" placeholder="Identification Number" required="" />
-          </div>
-        </div>
-        <div class="upload-btn-wrapper">
-          <button class="btnUpload">Upload Identification File</button>
-          <input type="file" name="myfile" />
-        </div>
+
         <div class="form-group">
           <input type="checkbox" required formControlName="accept" name="terms" id="terms"
             class="filled-in chk-col-pink" />
@@ -118,7 +125,7 @@
         <button [class.disabled]="customerForm.valid === false || customerForm.controls['accept'].value !== true"
           (click)="signUp()" class="btn btn-block btn-lg bg-pink waves-effect" type="button">SIGN UP</button>
         <div class="m-t-25 m-b--5 align-center btm-actions">
-          <a (click)="signIn()">Already a customer?</a>
+          <a (click)="signIn()">Already a Resseller?</a>
         </div>
       </form>
     </div>

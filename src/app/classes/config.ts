@@ -12,7 +12,7 @@ export class Config {
 	public static THEME = {
 		landing: 'theme-grey',
 		landing_bgcolor: 'landing-bg',
-		views: 'theme-red'
+		views: 'theme-blue'
 	};
 	public static API = {
 		endpoint: 'http://localhost:3000'
