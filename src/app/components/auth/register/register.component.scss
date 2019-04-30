@@ -29,30 +29,7 @@
   margin-top: 20px !important;
 }
 
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  margin-bottom: 10px;
-}
 
-.btnUpload {
-  border: 2px solid gray;
-  color: gray;
-  background-color: white;
-  padding: 5px 5px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.upload-btn-wrapper input[type="file"] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
 
 .content-wrap {
   margin: 10px;
