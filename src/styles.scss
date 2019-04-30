@@ -96,6 +96,33 @@ input[type="date"]::-webkit-inner-spin-button {
   color: green;
 }
 
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.btnUpload {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0 !important;
+}
+
+
 @media (max-width: 767px) {
   .navbar-brand.views {
     margin-left: 55px !important;

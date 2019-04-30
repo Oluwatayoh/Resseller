@@ -9,62 +9,37 @@
       <table id="cart" class="table table-hover table-condensed">
         <thead>
           <tr>
-            <th style="width:50%"><input [checked]="checkedAll" (change)="checkAll($event)" type="checkbox">
-              <span style="margin-left: 40px;">Product</span></th>
+            <th style="width:30%">Product</th>
             <th style="width:15%">Customer Name</th>
-            <th style="width:10%">Price</th>
+            <th style="width:10%">Order Date</th>
             <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
+            <th style="width:8%">Price</th>
+            <th style="width:10%">Payment Status</th>
+            <th style="width:10%">Dispatch Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of cart; let i =index">
-            <td data-th="Product">
-              <input [checked]="product.checked" (change)="onChecked($event, product)" type="checkbox">
-              <div class="row">
+          <tr data-toggle="modal" data-target="#smallModal">
+            <td>
+              <div class="row prd-wrap">
                 <div class="col-sm-3 hidden-xs icon-circle">
-                  <img class="none-image" *ngIf="product.product?.fileName === undefined">
-                  <img class="none-image"
-                    *ngIf="product.product?.fileName !== null && product.product?.fileName !== undefined"
-                    src="{{baseUrl}}{{product.product?.fileName}}">
+                  <img class="none-image" src="assets/img/design-icn.png">
                 </div>
                 <div class="col-sm-7">
-                  <h4 class="nomargin">{{product.product.name}}</h4>
-                  <p style="font-size: 12px;">{{product?.product?.description}}</p>
+                  <h4 class="nomargin">Ka-Band</h4>
+                  <p style="font-size: 10px;">The NigComSat-1R Ka-band consists of 8 active transponders that provide
+                    communications using 3 fixed spot beams</p>
                 </div>
               </div>
             </td>
             <td>Olanrewaju Hammed</td>
-            <td data-th="Price">&#8358;{{(product?.product?.price)+(product?.product?.dataPlan?.price) | number:'.2'}}
-            </td>
-            <td data-th="Quantity">
-              <input name="quantity" min="1" [(ngModel)]="product.quantity" type="number"
-                class="form-control text-center">
-            </td>
-            <td data-th="Subtotal" class="text-center">
-              {{(product?.product?.price)+(product?.product?.dataPlan?.price)|number:'.2'}}</td>
-            <td class="actions">
-              <button (click)="removeProduct(product, i)" class="btn btn-danger btn-sm waves-effect"><i
-                  class="far fa-trash-alt"></i></button>
-            </td>
+            <td>April 20, 2019</td>
+            <td data-th="Quantity">5</td>
+            <td data-th="Price">&#8358;1,003,400</td>
+            <td class="actions green">Paid</td>
+            <td class="actions orange">Pending</td>
           </tr>
         </tbody>
-        <tfoot>
-          <tr class="visible-xs">
-            <td class="text-center"><strong>Total {{getTotal()|number:'.2'}}</strong></td>
-          </tr>
-          <tr>
-            <td><a href="#" class="btn btn-warning waves-effect" [routerLink]="['/views/product-list']"><i
-                  class="fa fa-angle-left"></i>
-                Continue Shopping</a></td>
-            <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Total &#8358;{{getTotal()|number:'.2'}}</strong></td>
-            <td><a [class.disabled]="isAnyChecked() === false" href="#" class="btn btn-success btn-block waves-effect"
-                (click)="checkOut()" type="button" data-toggle="modal" data-target="#bigModal">Checkout <i
-                  class="fa fa-angle-right"></i></a></td>
-          </tr>
-        </tfoot>
       </table>
     </div>
   </div>
@@ -72,81 +47,65 @@
 
 
 
-<div class="modal fade" id="bigModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
-        <h4 class="modal-title" id="smallModalLabel">Purchase Confirmation</h4>
+        <h4 class="modal-title" id="smallModalLabel">Dispatch Details</h4>
         <hr>
       </div>
       <div class="modal-body">
-        <div class="modal-lay">
-          <div class="confirm_pay">
-            <p>You are about to purchase</p>
-            <div class="pay-list">
-              <h5 *ngFor="let product of cart"> &#8226; {{product.product.name}}</h5>
-            </div>
-
-            <div class="dropdown">
-              <div class="sel col-lg-12">
-                <label>Select Dispatch Method </label>
-                <select [formControl]="dispatchMethodForm" class="form-control show-tick">
-                  <option *ngFor="let dispatch of dispatchMethod" [ngValue]="dispatch.name">{{dispatch.name}}</option>
-                </select>
-              </div>
-              <div class="sel col-lg-12">
-                <label>Select Dsstination</label>
-                <select class="form-control show-tick">
-                  <option value="1">Abuja</option>
-                  <option value="2">Lagos </option>
-                  <option value="3">Port-Harcourt</option>
-                </select>
-              </div>
-              <div class="sel col-lg-12" *ngIf="courier">
-                <label>Select Courier</label>
-                <select class="form-control show-tick">
-                  <option value="1">OEM Logistics</option>
-                  <option value="2">LOADMe Travels</option>
-                  <option value="3">OMEN Courier Service</option>
-                </select>
-                <h6>Service Charge | &#8358;50,000</h6>
-              </div>
-              <div class="sel col-lg-12" *ngIf="reseller">
-                <label>Select Reseller</label>
-                <select class="form-control show-tick">
-                  <option value="1">YTR Sat. Limited</option>
-                  <option value="2">TVS </option>
-                  <option value="3">Open Sat.</option>
-                </select>
-              </div>
-            </div>
-          </div>
+        <div class="confirm_pay">
           <div>
-            <h1 style="color: #43A047; text-align: center;">&#8358;{{getTotal()|number:'.2'}}</h1>
-            <br>
-            <div class="dropdown">
-              <div class="sel col-lg-10">
-                <select [formControl]="paymentMode" class="form-control show-tick">
-                  <option value="0">--Payment Method--</option>
-                  <option *ngFor="let paymentMode of paymentModes" [ngValue]="paymentMode.name">{{paymentMode.name}}
-                  </option>
-                </select>
-              </div>
-              <div *ngIf="hideOnlinePayment === true" class=" card tp col-lg-10">
-                <div class="fm"> <input type="checkbox" id="bankAccountNumber">
-                  <label for="bankAccountNumber">Streling Bank | 0062388123</label>
-                </div>
-              </div>
+            <img class="image">
+            <div class="upload-btn-wrapper">
+              <button class="btnUpload">Upload Customer Image</button>
+              <input type="file" name="myfile" />
             </div>
           </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">person</i>
+            </span>
+            <div class="  ">
+              <input type="text" class="form-control" placeholder="Customer Name" required="" />
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">phone</i>
+            </span>
+            <div class="  ">
+              <input type="number" class="form-control" placeholder="Telephone" required="" />
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">location_on</i>
+            </span>
+            <div class="  ">
+              <textarea type="text" class="form-control" style="  margin: 0px !important;
+                min-width: 200px !important;
+                height: 100px !important;
+                outline: auto !important;
+                padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">widgets</i>
+            </span>
+            <div class="">
+              <textarea type="text" class="form-control" style="  margin: 0px !important;
+              min-width: 200px !important;
+              height: 50px !important;
+              outline: auto !important;
+              padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
+              <small>Please use <strong>','</strong> to seperate serial numbers</small>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary waves-effect">Dispatch</button>
         </div>
-      </div>
-      <div *ngIf="hideOnlinePayment===false && this.currentInvoice !== undefined && this.currentInvoice.id > 0"
-        class="modal-footer" style="text-align:center !important;">
-        <button type="button" class="btn btn-link waves-effect" angular4-paystack [key]="paystackClientKey"
-          [email]="customer.email" [amount]="getTotal()*100" [ref]="refKey" [class]="'btn btn-primary'"
-          (close)="paymentCancel()" (callback)="paymentDone($event)" class="btn waves-effect waves-light">Yes</button>
-        <button #closeAddExpenseModal type="button" class="btn btn-link waves-effect" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>
