@@ -7,7 +7,21 @@ th {
 .modal-body {
   padding: 0px 25px !important;
 }
+.cus-img-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.idtt{
+  margin: 20px;
+  border-right: 1px solid #ddd;
+  img{
+    width: 200px;
+    height: 200px;
+  }
+}
 .btn {
   margin-bottom: 10px;
   border-radius: 15px !important;

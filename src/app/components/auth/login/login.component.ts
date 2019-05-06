@@ -42,40 +42,43 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this._systemModuleService.on();
 		const email = this.signForm.controls['email'].value;
 		const password = this.signForm.controls['password'].value;
-		this._resellerService.loginReseller(email, password).subscribe(
-			(payload: any) => {
-				this._locker.setObject('cart', []);
-				this._systemModuleService.announceSweetProxy(
-					`Welcome back ${payload.companyName} (${payload.resellerNumber})`,
-					'success',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-				this._resellerService.selectReseller(payload);
-				this._locker.setObject('selectedReseller', payload);
-				this._router.navigate([ '/views' ]).then((pay) => {
-					this._systemModuleService.off();
-				});
-			},
-			(error) => {
-				this._systemModuleService.off();
-				this._systemModuleService.announceSweetProxy(
-					`Invalid username or password`,
-					'error',
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				);
-			}
-		);
+		this._router.navigate([ '/views' ]).then((pay) => {
+			this._systemModuleService.off();
+		});
+		// this._resellerService.loginReseller(email, password).subscribe(
+		// 	(payload: any) => {
+		// 		this._locker.setObject('cart', []);
+		// 		this._systemModuleService.announceSweetProxy(
+		// 			`Welcome back ${payload.companyName} (${payload.resellerNumber})`,
+		// 			'success',
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null
+		// 		);
+		// 		this._resellerService.selectReseller(payload);
+		// 		this._locker.setObject('selectedReseller', payload);
+		// 		this._router.navigate([ '/views' ]).then((pay) => {
+		// 			this._systemModuleService.off();
+		// 		});
+		// 	},
+		// 	(error) => {
+		// 		this._systemModuleService.off();
+		// 		this._systemModuleService.announceSweetProxy(
+		// 			`Invalid username or password`,
+		// 			'error',
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null,
+		// 			null
+		// 		);
+		// 	}
+		// );
 	}
 }

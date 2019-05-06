@@ -1,6 +1,6 @@
 <div class="signup-page ">
-  <div class="card">
-    <div class="logo jj-wrap">
+  <div class="card card-reg">
+    <div class="logo ">
       <img class="pull-center" src="assets/img/NigComSat.jpeg" alt="" title="NigComSat" id="Img1" />
       <h3>RESELLER Registration</h3>
     </div>
@@ -75,14 +75,14 @@
           <input type="checkbox" required name="regPayment" id="regPayment" class="filled-in chk-col-pink" />
           <label for="regPayment">Registration Payment Made?</label>
         </div> -->
-        <div class="form-group">
-          <select placeholder="Select City" formControlName="cityId" class="form-control show-tick">
-            <option disabled value="0">--Select City--</option>
+        <div class="form-line">
+          <select formControlName="cityId" class="form-control show-tick">
+            <option value="">Select City</option>
             <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}
             </option>
           </select>
         </div>
-        <div class="input-group" style="margin-top:20px;">
+        <div class="input-group" style="margin-top:20px;" >
           <div class="form-line">
             <input formControlName="rrrCode" type="text" placeholder="Payment Remita RRR Code" required="" />
             <small [hidden]="resellerForm.controls['rrrCode'].valid || (resellerForm.controls['rrrCode'].pristine)">

@@ -4,6 +4,32 @@
   background-color: #ffffff !important;
 }
 
+.card-reg {
+  padding: 10px;
+  margin-bottom: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.jj-wrap {
+  padding: 50px;
+  margin: 30px;
+  border-right: 1.5px solid #ddd;
+  img {
+    right: 0px;
+    border-radius: 20%;
+    height: 200px;
+    width: 200px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0060b4;
+  }
+}
+
+
 .notification-box {
   display: block;
   position: fixed;
