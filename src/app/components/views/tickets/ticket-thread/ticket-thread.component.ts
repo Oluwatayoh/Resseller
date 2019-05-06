@@ -39,7 +39,7 @@ export class TicketThreadComponent implements OnInit {
 	}
 
 	uploadTicketResponseAttachement(response) {
-		this._uploadScriptService.postDataPlan(response.id, 'ticketResponse', this.formData).subscribe((event: any) => {
+		this._uploadScriptService.postRecord(response.id, 'ticketResponse', this.formData).subscribe((event: any) => {
 			if (event.type === HttpEventType.UploadProgress) {
 				// this.progress = Math.round(100 * event.loaded / event.total);
 			} else if (event.type === HttpEventType.Response) {

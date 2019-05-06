@@ -3,7 +3,7 @@ import { Config } from '../../../../classes/config';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../public-script/dynamic-script-loader-service';
 import { CoolLocalStorage } from 'angular2-cool-storage';
-import { CustomersService } from '../../services/customers.service';
+import { ResellersService } from '../../services/resellers.service';
 import { ONLINEPATH } from '../../public-script/global-config';
 import { BroadcastImageUploadService } from '../../public-script/broadcast-image-upload.service';
 
@@ -14,18 +14,18 @@ import { BroadcastImageUploadService } from '../../public-script/broadcast-image
 })
 export class NavbarLeftComponent implements OnInit {
 	appInfo: any = Config.APP;
-	customer;
+	reseller;
 	baseUrl = `${ONLINEPATH}`;
 	selectedTheme = 'Red';
 	constructor(
 		private _dynamicScriptLoader: DynamicScriptLoaderService,
 		private _router: Router,
 		private _locker: CoolLocalStorage,
-		private _customerService: CustomersService,
+		private _resellerService: ResellersService,
 		private _imageUploadBroadCastUploadService: BroadcastImageUploadService
 	) {
-		this._customerService.customerSelected.subscribe((value) => {
-			this.customer = value;
+		this._resellerService.resellerSelected.subscribe((value) => {
+			this.reseller = value;
 		});
 
 		_imageUploadBroadCastUploadService.imageUpdateAnnounced$.subscribe((value) => {
@@ -34,7 +34,7 @@ export class NavbarLeftComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.customer = this._locker.getObject('selectedCustomer');
+		this.reseller = this._locker.getObject('selectedReseller');
 	}
 
 	private loadScripts() {

@@ -6,7 +6,7 @@ import { ONLINE } from '../public-script/global-config';
 export class UploadScriptService {
 	baseUrl = `${ONLINE}uploadgenericfile`;
 	constructor(private http: HttpClient) {}
-	postDataPlan(entityId, recordType, formData) {
+	postRecord(entityId, recordType, formData) {
 		const uploadReq = new HttpRequest(
 			'POST',
 			`${this.baseUrl}/${entityId}/${recordType}/uploadgenericfile`,

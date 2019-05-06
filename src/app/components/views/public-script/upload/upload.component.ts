@@ -11,10 +11,10 @@ export class UploadComponent {
 	@Output() completeOperation: EventEmitter<any> = new EventEmitter<any>();
 	public progress: number;
 	public message: string;
-	baseUrl = `${ONLINE}customers`;
-	customer: any;
+	baseUrl = `${ONLINE}resellers`;
+	reseller: any;
 	constructor(private http: HttpClient, private _locker: CoolLocalStorage) {
-		this.customer = this._locker.getObject('selectedCustomer');
+		this.reseller = this._locker.getObject('selectedReseller');
 	}
 
 	upload(files) {
@@ -29,7 +29,7 @@ export class UploadComponent {
 		}
 		const uploadReq = new HttpRequest(
 			'POST',
-			`${this.baseUrl}/${this.customer.id}/${'customer'}/uploadfile`,
+			`${this.baseUrl}/${this.reseller.id}/${'reseller'}/uploadfile`,
 			formData,
 			{
 				reportProgress: true

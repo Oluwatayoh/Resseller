@@ -1,3 +1,4 @@
+import { CityService } from './components/views/services/city.service';
 import { BroadcastShoppingCartService } from './components/views/public-script/broadcast-shopping-cart.service';
 import { ProductListService } from './components/views/services/product-list.service';
 import { PaymentModeService } from './components/views/services/payment-mode.service';
@@ -36,9 +37,11 @@ import { EqualValidator } from './components/views/public-script/equal-validator
 import { BroadcastImageUploadService } from './components/views/public-script/broadcast-image-upload.service';
 import { EmptyBodyInterceptor } from './components/views/public-script/empty-body-interceptor.service';
 import { UploadScriptService } from './components/views/services/upload-script.service';
+import { ResellersService } from './components/views/services/resellers.service';
+import { ShareModule } from './helpers/share/share.module';
 
 @NgModule({
-	declarations: [ AppComponent, EqualValidator ],
+	declarations: [ AppComponent ],
 	imports: [
 		BrowserModule,
 		FlashMessagesModule.forRoot(),
@@ -48,6 +51,7 @@ import { UploadScriptService } from './components/views/services/upload-script.s
 		AppRoutingModule,
 		HttpClientModule,
 		CoolStorageModule,
+		ShareModule,
 		// LoadingBarHttpClientModule,
 		SweetAlert2Module.forRoot()
 	],
@@ -68,6 +72,8 @@ import { UploadScriptService } from './components/views/services/upload-script.s
 		BroadcastShoppingCartService,
 		UploadScriptService,
 		ProductListService,
+		ResellersService,
+		CityService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: EmptyBodyInterceptor,

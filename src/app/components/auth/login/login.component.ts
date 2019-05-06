@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoolLocalStorage } from 'angular2-cool-storage';
-import { CustomersService } from '../../views/services/customers.service';
+import { ResellersService } from '../../views/services/resellers.service';
 import { SystemModuleService } from '../../views/public-script/system-module.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	signForm: FormGroup;
 	constructor(
 		private _router: Router,
-		private _customerService: CustomersService,
+		private _resellerService: ResellersService,
 		private _systemModuleService: SystemModuleService,
 		private _locker: CoolLocalStorage,
 		private _formBuilder: FormBuilder
@@ -42,14 +42,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this._systemModuleService.on();
 		const email = this.signForm.controls['email'].value;
 		const password = this.signForm.controls['password'].value;
-		// this._router.navigate([ '/views' ]).then((pay) => {
-		// 	this._systemModuleService.off();
-		// });
-		this._customerService.loginCustomer(email, password).subscribe(
+		this._resellerService.loginReseller(email, password).subscribe(
 			(payload: any) => {
 				this._locker.setObject('cart', []);
 				this._systemModuleService.announceSweetProxy(
-					`Welcome back ${payload.surname} ${payload.otherNames}`,
+					`Welcome back ${payload.companyName} (${payload.resellerNumber})`,
 					'success',
 					null,
 					null,
@@ -59,8 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 					null,
 					null
 				);
-				this._customerService.selectCustomer(payload);
-				this._locker.setObject('selectedCustomer', payload);
+				this._resellerService.selectReseller(payload);
+				this._locker.setObject('selectedReseller', payload);
 				this._router.navigate([ '/views' ]).then((pay) => {
 					this._systemModuleService.off();
 				});

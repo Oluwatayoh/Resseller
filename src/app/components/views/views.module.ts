@@ -1,3 +1,4 @@
+import { ShareModule } from './../../helpers/share/share.module';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TransactHistoryPreviewComponent } from './payment/transact-history/transact-history-preview/transact-history-preview.component';
 import { TransactHistoryComponent } from './payment/transact-history/transact-history.component';
@@ -30,7 +31,14 @@ import { UploadComponent } from './public-script/upload/upload.component';
 import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth-details/bandwidth-details.component';
 import { TicketThreadComponent } from './tickets/ticket-thread/ticket-thread.component';
 @NgModule({
-	imports: [ CommonModule, ViewsRoutingModule, FormsModule, ReactiveFormsModule, Angular4PaystackModule ],
+	imports: [
+		CommonModule,
+		ViewsRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		Angular4PaystackModule,
+		ShareModule
+	],
 	declarations: [
 		ViewsComponent,
 		NavbarTopComponent,

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomersService } from '../services/customers.service';
+import { ResellersService } from '../services/resellers.service';
 import { SystemModuleService } from '../public-script/system-module.service';
 import { ONLINE, ONLINEPATH } from '../public-script/global-config';
 import { BroadcastImageUploadService } from '../public-script/broadcast-image-upload.service';
@@ -17,15 +17,15 @@ export class ProfileComponent implements OnInit {
 	doneEdit = true;
 	changePassword = false;
 	donePasswordChange = true;
-	customer;
-	customerForm: FormGroup;
+	reseller;
+	resellerForm: FormGroup;
 	currentPassword: FormControl = new FormControl('');
 	password: FormControl = new FormControl('');
 	confirmPassword: FormControl = new FormControl('');
 	baseUrl = `${ONLINEPATH}`;
 	constructor(
 		private _locker: CoolLocalStorage,
-		private _customerService: CustomersService,
+		private _resellerService: ResellersService,
 		private _formBuilder: FormBuilder,
 		private _systemModuleService: SystemModuleService,
 		private _imageUploadBroadCastUploadService: BroadcastImageUploadService,
@@ -34,14 +34,14 @@ export class ProfileComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.customer = this._locker.getObject('selectedCustomer');
-		this.customerForm = this._formBuilder.group({
-			surname: [ this.customer.surname, [ <any>Validators.required, Validators.minLength(3) ] ],
-			otherNames: [ this.customer.otherNames, [ <any>Validators.required ] ],
-			email: [ this.customer.email, [ <any>Validators.required ] ],
-			telephone: [ this.customer.telephone, [ <any>Validators.required ] ],
-			profession: [ this.customer.profession, [ <any>Validators.required ] ],
-			address: [ this.customer.address, [ <any>Validators.required ] ]
+		this.reseller = this._locker.getObject('selectedReseller');
+		this.resellerForm = this._formBuilder.group({
+			companyName: [ this.reseller.companyName, [ <any>Validators.required, Validators.minLength(3) ] ],
+			contactPerson: [ this.reseller.contactPerson, [ <any>Validators.required ] ],
+			email: [ this.reseller.email, [ <any>Validators.required ] ],
+			telephone: [ this.reseller.telephone, [ <any>Validators.required ] ],
+			profession: [ this.reseller.profession, [ <any>Validators.required ] ],
+			address: [ this.reseller.address, [ <any>Validators.required ] ]
 		});
 	}
 
@@ -51,13 +51,13 @@ export class ProfileComponent implements OnInit {
 	}
 
 	onDoneEdit() {
-		const _customer = this.customerForm.value;
-		this.customer.surname = _customer.surname;
-		this.customer.otherNames = _customer.otherNames;
-		this.customer.telephone = _customer.telephone;
-		this.customer.profession = _customer.profession;
-		this.customer.address = _customer.address;
-		this._customerService.putCustomer(this.customer).subscribe(
+		const _reseller = this.resellerForm.value;
+		this.reseller.surname = _reseller.surname;
+		this.reseller.otherNames = _reseller.otherNames;
+		this.reseller.telephone = _reseller.telephone;
+		this.reseller.profession = _reseller.profession;
+		this.reseller.address = _reseller.address;
+		this._resellerService.putReseller(this.reseller).subscribe(
 			(payload) => {
 				this.editFields = false;
 				this.doneEdit = true;
@@ -91,15 +91,15 @@ export class ProfileComponent implements OnInit {
 
 	completeOperation(value) {
 		if (!!value) {
-			this._locker.setObject('selectedCustomer', value);
+			this._locker.setObject('selectedReseller', value);
 			this.cdRef.detectChanges();
 			this.ngOnInit();
 			this._imageUploadBroadCastUploadService.announceLoading(value);
 		}
 	}
 	getRealTimeImageUrl() {
-		// {{baseUrl}}{{customer.fileName}}{{getTime()}}
-		const url = this.baseUrl + this.customer.fileName;
+		// {{baseUrl}}{{reseller.fileName}}{{getTime()}}
+		const url = this.baseUrl + this.reseller.fileName;
 		// return (url += '?random+=' + Math.random());
 		return url;
 	}
@@ -114,8 +114,8 @@ export class ProfileComponent implements OnInit {
 	}
 	onDonePasswordChange() {
 		if (this.password.value === this.confirmPassword.value) {
-			this._customerService
-				.putCustomerPassword(this.customer.id, this.currentPassword.value, this.password.value, this.customer)
+			this._resellerService
+				.putResellerPassword(this.reseller.id, this.currentPassword.value, this.password.value, this.reseller)
 				.subscribe(
 					(payload) => {
 						this._systemModuleService.announceSweetProxy(

@@ -91,7 +91,7 @@ export class NewTicketComponent implements OnInit {
 	}
 
 	uploadTicketResponseAttachement(response) {
-		this._uploadScriptService.postDataPlan(response.id, 'ticketResponse', this.formData).subscribe((event: any) => {
+		this._uploadScriptService.postRecord(response.id, 'ticketResponse', this.formData).subscribe((event: any) => {
 			if (event.type === HttpEventType.UploadProgress) {
 			} else if (event.type === HttpEventType.Response) {
 				if (event.status === 200) {

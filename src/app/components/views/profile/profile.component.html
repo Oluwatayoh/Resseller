@@ -14,7 +14,7 @@
             <!-- image -->
             <div class="img-wrap">
               <div class="img-container">
-                <img src="{{baseUrl}}{{customer.fileName}}" alt="">
+                <img src="{{baseUrl}}{{reseller.uploadFileName}}" alt="">
               </div>
               <app-upload-component (completeOperation)="completeOperation($event)"></app-upload-component>
             </div>
@@ -25,32 +25,32 @@
                 <div class="rg-form-content">
                   <div class="">
                     <span>Company Name:</span>
-                    <h5>Arigba-Nla Sat. Ltd. </h5>
+                    <h5>{{reseller.companyName}}</h5>
                   </div>
                   <div>
                     <span>Contact Person:</span>
-                    <h5>Mr Ariyo Bamidele</h5>
+                    <h5>{{reseller.contactPerson}}</h5>
                   </div>
                   <div class="">
                     <span>Email:</span>
-                    <h5>{{customer.email}}</h5>
+                    <h5>{{reseller.email}}</h5>
                   </div>
                 </div>
                 <br>
                 <div class="rg-form-content">
                   <div class="">
                     <span>Tel:</span>
-                    <h5>{{customer.telephone}}</h5>
+                    <h5>{{reseller.telephone}}</h5>
                     <!-- <div *ngIf="editFields" class="form-line"><input class="form-control" type="number"></div> -->
                   </div>
                   <!-- <div class="">
                     <span>Profession:</span>
-                    <h5>{{customer.profession}}</h5>
-                    <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div> 
+                    <h5>{{reseller.profession}}</h5>
+                    <div *ngIf="editFields" class="form-line"><input class="form-control" type="text"></div>
                   </div> -->
                   <div class="">
                     <span>Address:</span>
-                    <h5>{{customer.address}}</h5>
+                    <h5>{{reseller.address}}</h5>
                     <!-- <div *ngIf="editFields" class="form-line"><textarea style="height:100px !important;" class="form-control"></textarea></div> -->
                   </div>
                 </div>
@@ -75,7 +75,10 @@
                       <input name="password" [formControl]="password" class="form-control" type="password"
                         validateEqual="confirmPassword" reverse="true" minlength="6" required>
                     </div>
-                    <small [hidden]="password.valid ||  password.pristine">
+                     <small [hidden]="password.valid || (password.pristine)">
+                      Password is required
+                    </small>
+                    <small [hidden]="password.valid ||  (password.pristine)">
                       Password mismatch
                     </small>
                   </div>
@@ -106,16 +109,16 @@
             </div>
             <div *ngIf="editFields" style="margin-left: 100px; width: 700px !important;">
               <div class="body">
-                <form [formGroup]="customerForm">
+                <form [formGroup]="resellerForm">
                   <div class="input-group">
                     <div class="form-line">
-                      <input type="text" class="form-control" placeholder="Company Name" required="autofocus" />
+                      <input type="text" formControlName="companyName" class="form-control" placeholder="Company Name" required="autofocus" />
                     </div>
                   </div>
 
                   <div class="input-group">
                     <div class="form-line">
-                      <input type="text" class="form-control" placeholder="Contact Person" required />
+                      <input type="text" formControlName="contactPerson" class="form-control" placeholder="Contact Person" required />
                     </div>
                   </div>
 
