@@ -15,12 +15,27 @@ th {
 }
 
 .idtt{
+  text-align: center;
   margin: 20px;
   border-right: 1px solid #ddd;
   img{
-    width: 200px;
+    width: 300px;
     height: 200px;
   }
+}
+
+.idType{
+    margin: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    label{
+      font-size: 10px;
+      margin-right: 5px;
+      margin-bottom: 0px !important;
+      line-height: 0px !important;
+    }
 }
 .btn {
   margin-bottom: 10px;
