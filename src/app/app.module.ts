@@ -74,8 +74,8 @@ import { DispatchInvoiceDataService } from './components/views/services/dispatch
 		UploadScriptService,
 		ProductListService,
 		ResellersService,
-    CityService,
-    DispatchInvoiceDataService
+		CityService,
+		DispatchInvoiceDataService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: EmptyBodyInterceptor,

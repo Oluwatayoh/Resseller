@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PAYSTACK_CLIENT_KEY, ONLINEPATH } from '../../public-script/global-config';
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { BroadcastShoppingCartService } from '../../public-script/broadcast-shopping-cart.service';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { Invoice } from '../../public-script/interfaces/invoice';
 import { InvoiceDetail } from '../../public-script/interfaces/invoice-detail';
 import { DispatchInvoiceDataService } from '../../services/dispatch-invoice-data.service';
+import { UploadScriptService } from '../../services/upload-script.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
 	selector: 'app-nigcomsat-order',
@@ -19,7 +21,8 @@ import { DispatchInvoiceDataService } from '../../services/dispatch-invoice-data
 	styleUrls: [ './nigcomsat-order.component.scss' ]
 })
 export class NigcomsatOrderComponent implements OnInit, OnDestroy {
-	@ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
+	@ViewChild('smallModal') smallModal: ElementRef;
+	@ViewChild('file') file: ElementRef;
 	cart: any[] = [];
 	subscription: Subscription;
 	customer: any;
@@ -27,7 +30,7 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 	paymentMode: FormControl = new FormControl();
 	hideOnlinePayment = true;
 	courier = false;
-	reseller = false;
+	reseller: any;
 	currentInvoice: any;
 	paystackClientKey: string = PAYSTACK_CLIENT_KEY;
 	refKey: string;
@@ -46,6 +49,8 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 	dispatchMethodForm: FormControl = new FormControl();
 	baseUrl = `${ONLINEPATH}`;
 	orders = [];
+	selectedOrder: any;
+	dispatchForm: FormGroup;
 	constructor(
 		private _locker: CoolLocalStorage,
 		private _broadCastShoppingService: BroadcastShoppingCartService,
@@ -54,6 +59,8 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 		private _payStackVerificationService: PaystackVerificationService,
 		private _systemModuleService: SystemModuleService,
 		private _dispatchInvoiceDataService: DispatchInvoiceDataService,
+		private _formBuilder: FormBuilder,
+		private _uploadService: UploadScriptService,
 		private _router: Router
 	) {
 		this.subscription = this._broadCastShoppingService.cartUpdateAnnounced$.subscribe((value: any) => {
@@ -101,6 +108,7 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 			}
 		});
 		this.getResellerOrders();
+		this.loadDispatchForm();
 	}
 
 	getResellerOrders() {
@@ -142,6 +150,14 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 		this.cart.splice(index, 1);
 		this._locker.setObject('cart', this.cart);
 		this._broadCastShoppingService.announceCartOperation({ operation: 'refresh' });
+	}
+	loadDispatchForm() {
+		this.dispatchForm = this._formBuilder.group({
+			receiverName: [ '', [ <any>Validators.required, Validators.minLength(3) ] ],
+			serialNumber: [ '', [ <any>Validators.required ] ],
+			receiverTelephoneNumber: [ '', [ <any>Validators.required ] ],
+			receiverAddress: [ '', [ <any>Validators.required ] ]
+		});
 	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
@@ -219,7 +235,7 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 					);
 					this._locker.setObject('cart', []);
 					this._broadCastShoppingService.announceCartOperation({ operation: 'refresh' });
-					this.closeAddExpenseModal.nativeElement.click();
+					this.smallModal.nativeElement.click();
 					this._router.navigate([ '/views/product-list' ]);
 				},
 				(error) => {
@@ -262,5 +278,71 @@ export class NigcomsatOrderComponent implements OnInit, OnDestroy {
 	onChecked(event, product) {
 		const value = event.target.checked;
 		product.checked = value;
+	}
+
+	isFileSelected() {
+		const fi = this.file.nativeElement;
+		return fi.files.length > 0;
+	}
+
+	selectOrder(order) {
+		this.dispatchForm.reset();
+		if (!order.deviceTransactionDetail.status) {
+			this.selectedOrder = order;
+		}
+	}
+
+	submit() {
+		console.log(this.dispatchForm.value);
+		this.selectedOrder.receiverName = this.dispatchForm.value.receiverName;
+		this.selectedOrder.receiverAddress = this.dispatchForm.value.receiverAddress;
+		this.selectedOrder.receiverTelephoneNumber = this.dispatchForm.value.receiverTelephoneNumber;
+		this.selectedOrder.serialNumber = this.dispatchForm.value.serialNumber;
+
+		this._dispatchInvoiceDataService.putDispatchInvoiceData(this.selectedOrder).subscribe(
+			(payload: any) => {
+				const formData = this.upload2();
+				const entityId = payload.id;
+				const recordType = 'ReceiverImage';
+				console.log(payload);
+
+				this._uploadService.postRecord(entityId, recordType, formData).subscribe(
+					(event: any) => {
+						if (event.type === HttpEventType.UploadProgress) {
+						} else if (event.type === HttpEventType.Response) {
+							if (event.status === 200) {
+								this.smallModal.nativeElement.click();
+								this.getResellerOrders();
+								this._systemModuleService.announceSweetProxy(
+									'Device dispatched successfully',
+									'success',
+									null,
+									null,
+									null,
+									null,
+									null,
+									null,
+									null
+								);
+							}
+						}
+					},
+					(error2) => {}
+				);
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	}
+
+	upload2() {
+		const formData = new FormData();
+		const fi = this.file.nativeElement;
+		if (fi.files && fi.files[0]) {
+			const fileToUpload = fi.files[0];
+			formData.append(fileToUpload.name, fileToUpload);
+			return formData;
+		}
 	}
 }

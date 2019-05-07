@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orders" data-toggle="modal" data-target="#smallModal">
+          <tr *ngFor="let order of orders" data-toggle="modal" data-target="#smallModal" (click)="selectOrder(order)">
             <td>
               <div class="row prd-wrap">
                 <div class="col-sm-3 hidden-xs icon-circle lft">
@@ -39,7 +39,7 @@
             <td class="actions green">Paid</td>
             <td class="actions orange">
               <span *ngIf="order?.deviceTransactionDetail?.status ===false">Pending</span>
-              <span *ngIf="order?.deviceTransactionDetail?.status ===true">Dispatched</span>
+              <span class="green" *ngIf="order?.deviceTransactionDetail?.status ===true">Dispatched</span>
             </td>
           </tr>
         </tbody>
@@ -50,64 +50,84 @@
 
 
 
-<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade" #smallModal id="smallModal" tabindex="-1">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
         <h4 class="modal-title" id="smallModalLabel">Dispatch Details</h4>
         <hr>
       </div>
-      <div class="modal-body">
-        <div class="confirm_pay">
-          <div>
-            <img class="image">
-            <div class="upload-btn-wrapper">
-              <button class="btnUpload">Upload Customer Image</button>
-              <input type="file" name="myfile" />
+      <div class="modal-body" [formGroup]="dispatchForm">
+        <div class="row card-reg">
+          <div class="idtt col-sm-8">
+            <h4>Customer Identification Details</h4>
+            <div class="cus-img-wrap ">
+               <img *ngIf="selectedOrder?.customer?.uploadFileName !== null" src="{{baseUrl}}{{selectedOrder?.customer?.uploadFileName}}">
+              <div class="idType">
+                <label>Identity Type:</label>
+                <h6>{{selectedOrder?.customer?.identificationType?.name}}</h6>
+              </div>
+              <div class="idType">
+                <label>Identification No:</label>
+                <h6>{{selectedOrder?.customer?.identificationNo}}</h6>
+              </div>
             </div>
           </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">person</i>
-            </span>
-            <div class="  ">
-              <input type="text" class="form-control" placeholder="Customer Name" required="" />
+          <div class="col-sm-6">
+            <div class="cus-img-wrap">
+              <img class="image">
+              <div class="upload-btn-wrapper">
+                <button class="btnUpload">Upload Customer Image</button>
+                <input  #file type="file" name="myfile" (change)="isFileSelected()" />
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">phone</i>
-            </span>
-            <div class="  ">
-              <input type="number" class="form-control" placeholder="Telephone" required="" />
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">person</i>
+              </span>
+              <div class="  ">
+                <input formControlName="receiverName" type="text" class="form-control" placeholder="Customer Name" required="" />
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">location_on</i>
-            </span>
-            <div class="  ">
-              <textarea type="text" class="form-control" style="  margin: 0px !important;
-                min-width: 200px !important;
-                height: 100px !important;
-                outline: auto !important;
-                padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">phone</i>
+              </span>
+              <div class="  ">
+                <input formControlName="receiverTelephoneNumber" type="text" class="form-control" placeholder="Telephone" required="" />
+              </div>
             </div>
+
           </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">widgets</i>
-            </span>
-            <div class="">
-              <textarea type="text" class="form-control" style="  margin: 0px !important;
-              min-width: 200px !important;
-              height: 50px !important;
-              outline: auto !important;
-              padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
-              <small>Please use <strong>','</strong> to seperate serial numbers</small>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">location_on</i>
+              </span>
+              <div class="  ">
+                <textarea formControlName="receiverAddress" type="text" class="form-control" style="  margin: 0px !important;
+                      min-width: 200px !important;
+                      height: 100px !important;
+                      outline: auto !important;
+                      padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+              </div>
             </div>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">widgets</i>
+              </span>
+              <div class="">
+                <textarea formControlName="serialNumber" type="text" class="form-control" style="  margin: 0px !important;
+                    min-width: 200px !important;
+                    height: 50px !important;
+                    outline: auto !important;
+                    padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
+                <small>Please use <strong>','</strong> to seperate serial numbers</small>
+              </div>
+            </div>
+            <button [class.disabled]="this.dispatchForm.valid !== true || !isFileSelected()" (click)="submit()" type="button" class="btn btn-primary waves-effect"  style="width:100%;">Dispatch</button>
           </div>
-          <button type="button" class="btn btn-primary waves-effect">Dispatch</button>
+
         </div>
       </div>
     </div>
