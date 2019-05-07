@@ -66,6 +66,7 @@ import { MyCartComponent } from './purchases/my-cart/my-cart.component';
 import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.component';
 import { ProductDetailsComponent } from './purchases/product-details/product-details.component';
 import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth-details/bandwidth-details.component';
+import { NigcomsatOrderComponent } from './purchases/nigcomsat-order/nigcomsat-order.component';
 const viewsRoutes: Routes = [
 	{
 		path: 'views',
@@ -81,6 +82,7 @@ const viewsRoutes: Routes = [
 			{ path: 'product-list', component: ProductListComponent },
 			{ path: 'product-detail/:id', component: ProductDetailsComponent },
 			{ path: 'cart', component: MyCartComponent },
+			{ path: 'nigcomsat-orders', component: NigcomsatOrderComponent },
 			{ path: 'support-ticket', component: SupportTicketComponent },
 			{ path: 'payment-ticket', component: PaymentTicketComponent },
 			{ path: 'message-ticket', component: MessageTicketComponent },

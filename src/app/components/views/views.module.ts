@@ -30,6 +30,7 @@ import { SupportTicketComponent } from './tickets/support-ticket/support-ticket.
 import { UploadComponent } from './public-script/upload/upload.component';
 import { BandwidthDetailsComponent } from './purchases/product-details/bandwidth-details/bandwidth-details.component';
 import { TicketThreadComponent } from './tickets/ticket-thread/ticket-thread.component';
+import { NigcomsatOrderComponent } from './purchases/nigcomsat-order/nigcomsat-order.component';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -63,7 +64,8 @@ import { TicketThreadComponent } from './tickets/ticket-thread/ticket-thread.com
 		SupportTicketComponent,
 		UploadComponent,
 		BandwidthDetailsComponent,
-		TicketThreadComponent
+		TicketThreadComponent,
+		NigcomsatOrderComponent
 	],
 	providers: []
 })

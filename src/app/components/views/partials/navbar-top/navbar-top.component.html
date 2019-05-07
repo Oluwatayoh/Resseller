@@ -21,7 +21,10 @@
           <a style="cursor:pointer;" class="waves-effect" class="dropdown-toggle" data-toggle="dropdown" role="button">
             <i class="material-icons">shopping_cart</i>
             <span class="label-count">{{cart?.length}}</span>
+              <i class="material-icons">reorder</i>
+            <span class="label-count">{{orders?.length}}</span>
           </a>
+
           <ul class="dropdown-menu">
             <li class="header">Order List</li>
             <li class="body">
@@ -44,7 +47,7 @@
               </ul>
             </li>
             <li class="footer">
-              <a [routerLink]="['/views/cart']">View All Order</a>
+              <a [routerLink]="['/views/nigcomsat-orders']">View All Order</a>
             </li>
           </ul>
         </li>

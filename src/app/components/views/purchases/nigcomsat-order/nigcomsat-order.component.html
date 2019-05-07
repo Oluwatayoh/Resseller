@@ -1,0 +1,115 @@
+<div class="row clearfix">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="header">
+        <h4>
+          NigComSat Order List
+        </h4>
+      </div>
+      <table id="cart" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th style="width:30%">Product</th>
+            <th style="width:15%">Customer Name</th>
+            <th style="width:10%">Order Date</th>
+            <th style="width:8%">Quantity</th>
+            <th style="width:8%">Price</th>
+            <th style="width:10%">Payment Status</th>
+            <th style="width:10%">Dispatch Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders" data-toggle="modal" data-target="#smallModal">
+            <td>
+              <div class="row prd-wrap">
+                <div class="col-sm-3 hidden-xs icon-circle lft">
+                  <img *ngIf="order?.deviceTransactionDetail?.device?.fileName === null" class="none-image" src="assets/img/design-icn.png">
+                   <img *ngIf="order?.deviceTransactionDetail?.device?.fileName !== null" src="{{baseUrl}}{{order?.deviceTransactionDetail?.device?.fileName}}" width="80" height="80">
+                </div>
+                <div class="col-sm-7">
+                  <h6 class="nomargin">{{order?.deviceTransactionDetail?.device?.name}}</h6>
+                  <p style="font-size: 8px;">{{order?.deviceTransactionDetail?.device?.description}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{order.customer.surname}} {{order.customer.otherNames}}</td>
+            <td>April 20, 2019</td>
+            <td data-th="Quantity">{{order?.invoiceDetail?.quantity}}</td>
+            <td data-th="Price">&#8358;{{order?.invoiceDetail?.price|number:'.2'}}</td>
+            <td class="actions green">Paid</td>
+            <td class="actions orange">
+              <span *ngIf="order?.deviceTransactionDetail?.status ===false">Pending</span>
+              <span *ngIf="order?.deviceTransactionDetail?.status ===true">Dispatched</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" id="smallModalLabel">Dispatch Details</h4>
+        <hr>
+      </div>
+      <div class="modal-body">
+        <div class="confirm_pay">
+          <div>
+            <img class="image">
+            <div class="upload-btn-wrapper">
+              <button class="btnUpload">Upload Customer Image</button>
+              <input type="file" name="myfile" />
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">person</i>
+            </span>
+            <div class="  ">
+              <input type="text" class="form-control" placeholder="Customer Name" required="" />
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">phone</i>
+            </span>
+            <div class="  ">
+              <input type="number" class="form-control" placeholder="Telephone" required="" />
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">location_on</i>
+            </span>
+            <div class="  ">
+              <textarea type="text" class="form-control" style="  margin: 0px !important;
+                min-width: 200px !important;
+                height: 100px !important;
+                outline: auto !important;
+                padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons">widgets</i>
+            </span>
+            <div class="">
+              <textarea type="text" class="form-control" style="  margin: 0px !important;
+              min-width: 200px !important;
+              height: 50px !important;
+              outline: auto !important;
+              padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
+              <small>Please use <strong>','</strong> to seperate serial numbers</small>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary waves-effect">Dispatch</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

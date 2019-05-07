@@ -4,6 +4,7 @@ import { CoolLocalStorage } from 'angular2-cool-storage';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Config } from '../../../../classes/config';
 import { ONLINEPATH } from '../../public-script/global-config';
+import { DispatchInvoiceDataService } from '../../services/dispatch-invoice-data.service';
 
 @Component({
 	selector: 'app-navbar-top',
@@ -15,7 +16,13 @@ export class NavbarTopComponent implements OnInit, OnDestroy {
 	cart: any[] = [];
 	subscription: Subscription;
 	baseUrl = `${ONLINEPATH}`;
-	constructor(private _locker: CoolLocalStorage, private _broadCastShoppingService: BroadcastShoppingCartService) {
+	reseller: any;
+	orders = [];
+	constructor(
+		private _locker: CoolLocalStorage,
+		private _broadCastShoppingService: BroadcastShoppingCartService,
+		private _dispatchInvoiceDataService: DispatchInvoiceDataService
+	) {
 		this.subscription = this._broadCastShoppingService.cartUpdateAnnounced$.subscribe((value: any) => {
 			if (value.operation === 'add') {
 				let innerCart: any[] = this._locker.getObject('cart');
@@ -35,6 +42,19 @@ export class NavbarTopComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.cart = this._locker.getObject('cart');
+		this.reseller = this._locker.getObject('selectedReseller');
+		this.getResellerOrders();
+	}
+
+	getResellerOrders() {
+		this._dispatchInvoiceDataService.getDispatchInvoiceData(this.reseller.id).subscribe(
+			(payload: any) => {
+				this.orders = payload;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
 	}
 
 	ngOnDestroy() {

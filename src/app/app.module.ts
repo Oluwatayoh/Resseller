@@ -39,6 +39,7 @@ import { EmptyBodyInterceptor } from './components/views/public-script/empty-bod
 import { UploadScriptService } from './components/views/services/upload-script.service';
 import { ResellersService } from './components/views/services/resellers.service';
 import { ShareModule } from './helpers/share/share.module';
+import { DispatchInvoiceDataService } from './components/views/services/dispatch-invoice-data.service';
 
 @NgModule({
 	declarations: [ AppComponent ],
@@ -73,7 +74,8 @@ import { ShareModule } from './helpers/share/share.module';
 		UploadScriptService,
 		ProductListService,
 		ResellersService,
-		CityService,
+    CityService,
+    DispatchInvoiceDataService
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: EmptyBodyInterceptor,
