@@ -48,63 +48,79 @@
 
 
 <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;">
         <h4 class="modal-title" id="smallModalLabel">Dispatch Details</h4>
         <hr>
       </div>
       <div class="modal-body">
-        <div class="confirm_pay">
-          <div>
-            <img class="image">
-            <div class="upload-btn-wrapper">
-              <button class="btnUpload">Upload Customer Image</button>
-              <input type="file" name="myfile" />
+        <div class="row card-reg">
+          <div class="idtt col-sm-8">
+            <h4>Customer Identification Details</h4>
+            <div class="cus-img-wrap ">
+              <img src="assets/img/international-passport.jpg">
+              <div class="idType">
+                <label>Identity Type:</label>
+                <h6>International Passport</h6>
+              </div>
             </div>
           </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">person</i>
-            </span>
-            <div class="  ">
-              <input type="text" class="form-control" placeholder="Customer Name" required="" />
+          <div class="col-sm-6">
+            <div class="cus-img-wrap">
+              <img class="image">
+              <div class="upload-btn-wrapper">
+                <button class="btnUpload">Upload Customer Image</button>
+                <input type="file" name="myfile" />
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">phone</i>
-            </span>
-            <div class="  ">
-              <input type="number" class="form-control" placeholder="Telephone" required="" />
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">person</i>
+              </span>
+              <div class="  ">
+                <input type="text" class="form-control" placeholder="Customer Name" required="" />
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">location_on</i>
-            </span>
-            <div class="  ">
-              <textarea type="text" class="form-control" style="  margin: 0px !important;
-                min-width: 200px !important;
-                height: 100px !important;
-                outline: auto !important;
-                padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">phone</i>
+              </span>
+              <div class="  ">
+                <input type="number" class="form-control" placeholder="Telephone" required="" />
+              </div>
             </div>
+
           </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons">widgets</i>
-            </span>
-            <div class="">
-              <textarea type="text" class="form-control" style="  margin: 0px !important;
-              min-width: 200px !important;
-              height: 50px !important;
-              outline: auto !important;
-              padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
-              <small>Please use <strong>','</strong> to seperate serial numbers</small>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">location_on</i>
+              </span>
+              <div class="  ">
+                <textarea type="text" class="form-control" style="  margin: 0px !important;
+                      min-width: 200px !important;
+                      height: 100px !important;
+                      outline: auto !important;
+                      padding: 10px !important;" placeholder="Customer Address" required=""></textarea>
+              </div>
             </div>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="material-icons">widgets</i>
+              </span>
+              <div class="">
+                <textarea type="text" class="form-control" style="  margin: 0px !important;
+                    min-width: 200px !important;
+                    height: 50px !important;
+                    outline: auto !important;
+                    padding: 10px !important;" placeholder="Serial Number(s)" required=""></textarea>
+                <small>Please use <strong>','</strong> to seperate serial numbers</small>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary waves-effect"  style="width:100%;">Dispatch</button>
           </div>
-          <button type="button" class="btn btn-primary waves-effect">Dispatch</button>
+
         </div>
       </div>
     </div>
